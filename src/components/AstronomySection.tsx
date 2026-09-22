@@ -11,7 +11,7 @@ export const AstronomySection: React.FC<AstronomySectionProps> = ({ onSelectEvid
   const [orionPerspective, setOrionPerspective] = useState<'ground' | 'sky'>('ground');
 
   return (
-    <section id="astronomy" className="py-20 bg-[#2B211B] text-[#F4EFE5] border-b border-[#8A4F3D]">
+    <section id="astronomy" className="py-20 bg-[#2B211B] bg-surveyor-grid-dark text-[#F4EFE5] border-b border-[#8A4F3D]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         
         {/* Section Header */}

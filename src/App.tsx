@@ -39,7 +39,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F4EFE5] text-[#171513] selection:bg-[#8A4F3D] selection:text-[#F4EFE5] font-sans antialiased">
+    <div className="min-h-screen bg-[#F4EFE5] bg-surveyor-grid text-[#171513] selection:bg-[#8A4F3D] selection:text-[#F4EFE5] font-sans antialiased">
       {/* Minimal Left-Side Navigation */}
       <LeftSidebarNav onOpenLegend={() => setIsLegendOpen(true)} />
 

@@ -81,11 +81,11 @@ export const EpistemicMatrix: React.FC<EpistemicMatrixProps> = ({ onSelectRecord
                 : 'border-transparent hover:border-emerald-600/40'
             }`}
           >
-            <div className="flex items-center justify-between">
-              <span className="w-2 h-2 rounded-full bg-emerald-500" />
-              <span className="font-serif text-3xl font-bold text-emerald-800">{counts.ESTABLISHED}</span>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="font-serif text-3xl font-bold text-emerald-800 leading-none">{counts.ESTABLISHED}</span>
+              <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
             </div>
-            <span className="font-mono text-xs uppercase font-bold text-emerald-900 block mt-1">
+            <span className="font-mono text-xs uppercase font-bold text-emerald-900 block">
               Established
             </span>
             <span className="text-[10px] font-mono text-[#2B211B]/60 block truncate">Direct physical proof</span>
@@ -100,11 +100,11 @@ export const EpistemicMatrix: React.FC<EpistemicMatrixProps> = ({ onSelectRecord
                 : 'border-transparent hover:border-sky-600/40'
             }`}
           >
-            <div className="flex items-center justify-between">
-              <span className="w-2 h-2 rounded-full bg-sky-500" />
-              <span className="font-serif text-3xl font-bold text-sky-800">{counts.SUPPORTED}</span>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="font-serif text-3xl font-bold text-sky-800 leading-none">{counts.SUPPORTED}</span>
+              <span className="w-2 h-2 rounded-full bg-sky-500 shrink-0" />
             </div>
-            <span className="font-mono text-xs uppercase font-bold text-sky-900 block mt-1">
+            <span className="font-mono text-xs uppercase font-bold text-sky-900 block">
               Supported
             </span>
             <span className="text-[10px] font-mono text-[#2B211B]/60 block truncate">Strong consensus</span>
@@ -119,11 +119,11 @@ export const EpistemicMatrix: React.FC<EpistemicMatrixProps> = ({ onSelectRecord
                 : 'border-transparent hover:border-amber-600/40'
             }`}
           >
-            <div className="flex items-center justify-between">
-              <span className="w-2 h-2 rounded-full bg-amber-500" />
-              <span className="font-serif text-3xl font-bold text-amber-800">{counts.DEBATED}</span>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="font-serif text-3xl font-bold text-amber-800 leading-none">{counts.DEBATED}</span>
+              <span className="w-2 h-2 rounded-full bg-amber-500 shrink-0" />
             </div>
-            <span className="font-mono text-xs uppercase font-bold text-amber-900 block mt-1">
+            <span className="font-mono text-xs uppercase font-bold text-amber-900 block">
               Debated
             </span>
             <span className="text-[10px] font-mono text-[#2B211B]/60 block truncate">Competing models</span>
@@ -138,11 +138,11 @@ export const EpistemicMatrix: React.FC<EpistemicMatrixProps> = ({ onSelectRecord
                 : 'border-transparent hover:border-rose-600/40'
             }`}
           >
-            <div className="flex items-center justify-between">
-              <span className="w-2 h-2 rounded-full bg-rose-500" />
-              <span className="font-serif text-3xl font-bold text-rose-800">{counts.SPECULATIVE}</span>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="font-serif text-3xl font-bold text-rose-800 leading-none">{counts.SPECULATIVE}</span>
+              <span className="w-2 h-2 rounded-full bg-rose-500 shrink-0" />
             </div>
-            <span className="font-mono text-xs uppercase font-bold text-rose-900 block mt-1">
+            <span className="font-mono text-xs uppercase font-bold text-rose-900 block">
               Speculative
             </span>
             <span className="text-[10px] font-mono text-[#2B211B]/60 block truncate">Lacks proof / refuted</span>
@@ -157,11 +157,11 @@ export const EpistemicMatrix: React.FC<EpistemicMatrixProps> = ({ onSelectRecord
                 : 'border-transparent hover:border-stone-600/40'
             }`}
           >
-            <div className="flex items-center justify-between">
-              <span className="w-2 h-2 rounded-full bg-stone-500" />
-              <span className="font-serif text-3xl font-bold text-stone-700">{counts.UNKNOWN}</span>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="font-serif text-3xl font-bold text-stone-700 leading-none">{counts.UNKNOWN}</span>
+              <span className="w-2 h-2 rounded-full bg-stone-500 shrink-0" />
             </div>
-            <span className="font-mono text-xs uppercase font-bold text-stone-800 block mt-1">
+            <span className="font-mono text-xs uppercase font-bold text-stone-800 block">
               Unknown
             </span>
             <span className="text-[10px] font-mono text-[#2B211B]/60 block truncate">Awaiting discovery</span>

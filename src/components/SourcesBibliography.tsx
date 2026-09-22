@@ -27,7 +27,7 @@ export const SourcesBibliography: React.FC = () => {
   });
 
   return (
-    <section id="sources" className="py-20 bg-[#2B211B] text-[#F4EFE5] border-b border-[#8A4F3D]">
+    <section id="sources" className="py-20 bg-[#2B211B] bg-surveyor-grid-dark text-[#F4EFE5] border-b border-[#8A4F3D]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         
         {/* Section Header */}

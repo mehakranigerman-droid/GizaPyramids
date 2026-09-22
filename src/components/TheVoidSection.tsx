@@ -10,7 +10,7 @@ export const TheVoidSection: React.FC<TheVoidSectionProps> = ({ onSelectEvidence
   const [simulationStep, setSimulationStep] = useState<'cosmic' | 'detector' | 'discovery'>('discovery');
 
   return (
-    <section id="void" className="py-20 bg-[#2B211B] text-[#F4EFE5] border-b border-[#8A4F3D]">
+    <section id="void" className="py-20 bg-[#2B211B] bg-surveyor-grid-dark text-[#F4EFE5] border-b border-[#8A4F3D]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         
         {/* Section Header */}
