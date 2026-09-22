@@ -260,7 +260,7 @@ export const BuildingGiza: React.FC<BuildingGizaProps> = ({ onSelectEvidence }) 
                       <h4 className="font-serif font-bold text-base text-[#2B211B]">
                         {model.name}
                       </h4>
-                      <EvidenceBadge level={model.status} size="sm" showLabel={false} />
+                      <EvidenceBadge level={model.status} size="sm" showLabel={false} as="span" />
                     </div>
                     <span className="font-mono text-[11px] text-[#8A4F3D] block mt-1">
                       {model.author}

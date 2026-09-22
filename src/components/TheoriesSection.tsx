@@ -95,7 +95,7 @@ export const TheoriesSection: React.FC<TheoriesSectionProps> = ({ onSelectEviden
               >
                 <div>
                   <div className="flex items-center justify-between mb-1">
-                    <EvidenceBadge level={t.consensusStatus} size="sm" showLabel={false} />
+                    <EvidenceBadge level={t.consensusStatus} size="sm" showLabel={false} as="span" />
                   </div>
                   <h4 className="font-serif font-bold text-base text-[#2B211B] mt-1">
                     {t.claim}

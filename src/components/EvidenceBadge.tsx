@@ -8,6 +8,7 @@ interface EvidenceBadgeProps {
   size?: 'sm' | 'md' | 'lg';
   showLabel?: boolean;
   className?: string;
+  as?: 'button' | 'span';
 }
 
 export const EvidenceBadge: React.FC<EvidenceBadgeProps> = ({
@@ -15,7 +16,8 @@ export const EvidenceBadge: React.FC<EvidenceBadgeProps> = ({
   onClick,
   size = 'md',
   showLabel = true,
-  className = ''
+  className = '',
+  as
 }) => {
   const info = EVIDENCE_LEVELS[level] || EVIDENCE_LEVELS.UNKNOWN;
 
@@ -25,14 +27,10 @@ export const EvidenceBadge: React.FC<EvidenceBadgeProps> = ({
     lg: 'text-sm px-3 py-1.5 gap-2.5'
   }[size];
 
-  return (
-    <button
-      type="button"
-      id={`evidence-badge-${level.toLowerCase()}`}
-      onClick={onClick}
-      title={`${info.label}: ${info.description} (Click to inspect evidence)`}
-      className={`inline-flex items-center rounded-full font-mono font-medium tracking-wide uppercase transition-all duration-200 border cursor-pointer select-none ${info.badgeBg} ${info.badgeBorder} ${info.badgeText} hover:brightness-125 focus:outline-none focus:ring-2 focus:ring-[#8A4F3D]/50 ${sizeClasses} ${className}`}
-    >
+  const isButton = as === 'button' || (as !== 'span' && Boolean(onClick));
+
+  const content = (
+    <>
       <span
         className="inline-block rounded-full animate-pulse"
         style={{
@@ -43,6 +41,32 @@ export const EvidenceBadge: React.FC<EvidenceBadgeProps> = ({
         }}
       />
       {showLabel && <span>{info.label}</span>}
-    </button>
+    </>
+  );
+
+  const baseClasses = `inline-flex items-center rounded-full font-mono font-medium tracking-wide uppercase transition-all duration-200 border select-none ${info.badgeBg} ${info.badgeBorder} ${info.badgeText} ${sizeClasses} ${className}`;
+
+  if (isButton) {
+    return (
+      <button
+        type="button"
+        id={`evidence-badge-${level.toLowerCase()}`}
+        onClick={onClick}
+        title={`${info.label}: ${info.description} (Click to inspect evidence)`}
+        className={`${baseClasses} cursor-pointer hover:brightness-125 focus:outline-none focus:ring-2 focus:ring-[#8A4F3D]/50`}
+      >
+        {content}
+      </button>
+    );
+  }
+
+  return (
+    <span
+      id={`evidence-badge-${level.toLowerCase()}`}
+      title={`${info.label}: ${info.description}`}
+      className={`${baseClasses} cursor-default`}
+    >
+      {content}
+    </span>
   );
 };
