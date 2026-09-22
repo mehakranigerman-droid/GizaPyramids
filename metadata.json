@@ -1,0 +1,6 @@
+{
+  "name": "Giza Pyramids — An Interactive Data Story",
+  "description": "An interactive data-driven storytelling exploration of the Giza pyramid complex, distinguishing established archaeological evidence, supported interpretations, debated theories, and unknowns.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
