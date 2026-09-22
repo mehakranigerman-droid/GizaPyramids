@@ -50,98 +50,98 @@ export const SourcesBibliography: React.FC = () => {
           </p>
         </div>
 
-        {/* Filter & Search Toolbar */}
-        <div className="flex flex-col md:flex-row gap-3 mb-8 bg-[#171513] p-3.5 border border-[#B49A72]/40">
+        {/* Filter & Search Toolbar (Open Clean Layout) */}
+        <div className="flex flex-col sm:flex-row gap-4 mb-10 pb-4 border-b border-[#B49A72]/20">
           <div className="relative flex-1">
-            <Search className="w-4 h-4 absolute left-3 top-3 text-[#8A4F3D]" />
+            <Search className="w-4 h-4 absolute left-0 top-2.5 text-[#8A4F3D]" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by author (e.g. Lehner, Tallet, Spence) or title..."
-              className="w-full pl-9 pr-4 py-2 bg-[#241B16] border border-[#B49A72]/30 text-xs font-mono text-[#F4EFE5] placeholder-[#D8C7A3]/50 focus:outline-none focus:border-[#8A4F3D]"
+              className="w-full pl-6 pr-4 py-2 bg-transparent border-b border-[#B49A72]/30 text-xs font-mono text-[#F4EFE5] placeholder-[#D8C7A3]/40 focus:outline-none focus:border-[#8A4F3D]"
             />
           </div>
 
-          <div className="flex items-center gap-2 overflow-x-auto">
+          <div className="flex items-center gap-2">
             <select
               value={activeCategory}
               onChange={(e) => setActiveCategory(e.target.value)}
-              className="px-3 py-2 bg-[#241B16] border border-[#B49A72]/30 text-xs font-mono text-[#D8C7A3] focus:outline-none focus:border-[#8A4F3D]"
+              className="py-2 bg-transparent border-b border-[#B49A72]/30 text-xs font-mono text-[#D8C7A3] focus:outline-none focus:border-[#8A4F3D] cursor-pointer"
             >
               {categories.map((cat) => (
-                <option key={cat} value={cat}>{cat}</option>
+                <option key={cat} value={cat} className="bg-[#1C1613] text-[#F4EFE5]">{cat}</option>
               ))}
             </select>
           </div>
         </div>
 
-        {/* Sources Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
+        {/* Sources Grid (Open Border-T Rail) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {filteredSources.map((source: SourceItem) => (
             <div
               key={source.id}
-              className="bg-[#171513] border border-[#B49A72]/30 p-5 flex flex-col justify-between hover:border-[#8A4F3D] transition-colors"
+              className="border-t border-[#B49A72]/30 pt-4 flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <span className="font-mono text-[10px] text-[#8A4F3D] uppercase font-bold">
+                  <span className="font-mono text-[10px] text-[#8A4F3D] uppercase font-bold tracking-wider">
                     {source.category}
                   </span>
-                  <span className="font-mono text-xs text-[#D8C7A3]">
+                  <span className="font-mono text-xs text-[#D8C7A3]/70">
                     {source.year}
                   </span>
                 </div>
-                <h4 className="font-serif font-bold text-base text-[#F4EFE5] mb-2 leading-snug">
+                <h4 className="font-serif font-bold text-base text-[#F4EFE5] mb-1.5 leading-snug">
                   {source.title}
                 </h4>
-                <p className="text-xs font-mono text-[#D8C7A3] mb-3">
+                <p className="text-xs font-mono text-[#D8C7A3] mb-2">
                   {source.author}
                 </p>
-                <p className="text-xs text-[#F4EFE5]/80 leading-relaxed font-sans border-t border-[#B49A72]/20 pt-2 mb-3">
+                <p className="text-xs text-[#F4EFE5]/75 leading-relaxed font-sans mb-4">
                   {source.note}
                 </p>
               </div>
 
-              <div className="pt-2 text-[11px] font-mono text-[#8A4F3D] flex items-center justify-between">
-                <span className="truncate pr-2">{source.publication}</span>
-                <span className="text-emerald-400 shrink-0 text-[10px] border border-emerald-800/60 bg-emerald-950/40 px-1.5 py-0.5">
-                  Peer-Reviewed
+              <div className="pt-2 border-t border-[#B49A72]/15 text-[11px] font-mono text-[#8A4F3D] flex items-center justify-between">
+                <span className="truncate pr-2 text-[#D8C7A3]/80">{source.publication}</span>
+                <span className="text-emerald-400 shrink-0 text-[10px] font-mono">
+                  ● Peer-Reviewed
                 </span>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Academic Colophon / Student Master's Statement */}
-        <div className="bg-[#171513] border-2 border-[#B49A72] p-6 sm:p-8">
-          <div className="flex items-center gap-3 border-b border-[#B49A72]/40 pb-4 mb-4">
+        {/* Academic Colophon / Student Master's Statement (Open Layout) */}
+        <div className="border-t border-[#B49A72]/30 pt-10">
+          <div className="flex items-center gap-3 border-b border-[#B49A72]/20 pb-4 mb-6">
             <GraduationCap className="w-6 h-6 text-[#8A4F3D]" />
             <div>
-              <h3 className="font-serif text-xl font-bold text-[#F4EFE5]">
+              <h3 className="font-serif text-2xl font-bold text-[#F4EFE5]">
                 Academic Colophon & Methodological Statement
               </h3>
-              <p className="font-mono text-xs text-[#D8C7A3]">
+              <p className="font-mono text-xs text-[#D8C7A3]/70 mt-0.5">
                 Master of Visual and Communication Design // Academic Assignment 2
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs font-sans text-[#D8C7A3] leading-relaxed">
-            <div className="space-y-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-xs font-sans text-[#D8C7A3] leading-relaxed">
+            <div className="space-y-4">
               <p>
-                <strong>Epistemic Design Philosophy:</strong> This interactive data story was created to resolve the growing polarization between dry academic excavation reports and viral sensationalism. By translating peer-reviewed archaeological datasets into visual hierarchies, users can directly explore both what is scientifically verified and what remains genuinely unresolved.
+                <strong className="text-[#F4EFE5] block mb-1">Epistemic Design Philosophy:</strong> This interactive data story was created to resolve the growing polarization between dry academic excavation reports and viral sensationalism. By translating peer-reviewed archaeological datasets into visual hierarchies, users can directly explore both what is scientifically verified and what remains genuinely unresolved.
               </p>
               <p>
-                <strong>Visual Aesthetic Discipline:</strong> Built adhering to natural physical materials of the Giza Plateau: aged Nummulitic limestone, desert sand, ancient Nile mud silt, Tura calcite, and terracotta ceramic sealings. Intentionally banished are commercial AI gradients, neon turquoise Egyptian stereotypes, and glassmorphic tropes.
+                <strong className="text-[#F4EFE5] block mb-1">Visual Aesthetic Discipline:</strong> Built adhering to natural physical materials of the Giza Plateau: aged Nummulitic limestone, desert sand, ancient Nile mud silt, Tura calcite, and terracotta ceramic sealings. Intentionally banished are commercial AI gradients, neon turquoise Egyptian stereotypes, and glassmorphic tropes.
               </p>
             </div>
 
-            <div className="space-y-3 bg-[#241B16] p-4 border border-[#B49A72]/30">
-              <span className="font-mono font-bold text-[#F4EFE5] block uppercase text-[11px]">
+            <div className="space-y-3">
+              <span className="font-mono font-bold text-[#F4EFE5] block uppercase text-[11px] tracking-wider">
                 Editorial Integrity Charter
               </span>
-              <ul className="space-y-1.5 list-disc list-inside text-[#D8C7A3]/90 font-mono text-[11px]">
+              <ul className="space-y-2 list-disc list-inside text-[#D8C7A3]/90 font-mono text-[11px]">
                 <li>Zero invented dates, dimensions, or attributions.</li>
                 <li>Strict epistemic separation of facts from hypotheses.</li>
                 <li>Attribution based on primary epigraphic evidence (Diary of Merer, worker graffiti, Dream Stela).</li>
@@ -150,7 +150,7 @@ export const SourcesBibliography: React.FC = () => {
             </div>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-[#B49A72]/30 text-center font-mono text-xs text-[#D8C7A3]/60">
+          <div className="mt-8 pt-4 border-t border-[#B49A72]/20 text-center font-mono text-xs text-[#D8C7A3]/50">
             © Giza Pyramids Data Story // Built for Educational & Scholarly Research
           </div>
         </div>

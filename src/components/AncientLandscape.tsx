@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { EvidenceBadge } from './EvidenceBadge';
-import { Waves, Calendar, FileText, ArrowRight, Anchor, Navigation } from 'lucide-react';
+import { Waves, Calendar, FileText, ArrowRight, Anchor, Navigation, Image as ImageIcon } from 'lucide-react';
+import { IMAGES } from '../assets/images';
 
 interface AncientLandscapeProps {
   onSelectEvidence: (claimId: string) => void;
@@ -64,58 +65,75 @@ export const AncientLandscape: React.FC<AncientLandscapeProps> = ({ onSelectEvid
           </p>
         </div>
 
-        {/* 2024 Discovery Spotlight: The Ahramat Branch */}
-        <div className="bg-[#F4EFE5] border-2 border-[#B49A72] p-6 sm:p-8 mb-10 shadow-md">
-          <div className="flex flex-wrap items-start justify-between gap-4 border-b border-[#D8C7A3] pb-4 mb-6">
+        {/* 2024 Discovery Spotlight: The Ahramat Branch (Open Layout) */}
+        <div className="mb-16">
+          <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-[#2B211B]/15 pb-4 mb-6">
             <div>
-              <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 font-bold flex items-center gap-1.5">
-                <Waves className="w-4 h-4" /> 2024 Geophysical Breakthrough // Nature Communications Earth & Environment
+              <span className="font-mono text-xs uppercase tracking-widest text-emerald-800 font-bold flex items-center gap-1.5">
+                <Waves className="w-4 h-4 text-emerald-700" /> 2024 Geophysical Breakthrough // Nature Communications
               </span>
-              <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#2B211B] mt-1">
+              <h3 className="text-3xl sm:text-4xl font-serif font-bold text-[#2B211B] mt-1">
                 The Ahramat ("Pyramids") Branch
               </h3>
             </div>
             <EvidenceBadge level="ESTABLISHED" onClick={() => onSelectEvidence('ahramat-waterway')} />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="lg:col-span-2 text-sm text-[#171513] space-y-3 leading-relaxed">
+          {/* Visual Reconstruction of the Ahramat Waterway */}
+          <div className="relative aspect-[16/7] sm:aspect-[2.4/1] overflow-hidden rounded-xs shadow-lg mb-8">
+            <img
+              src={IMAGES.ancientNileBranch}
+              alt="Historical reconstruction of the Ahramat branch of the Nile River carrying Tura limestone barges to Giza"
+              className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500"
+              referrerPolicy="no-referrer"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1C1613]/90 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs font-mono text-[#D8C7A3]">
+              <span className="flex items-center gap-2 drop-shadow">
+                <ImageIcon className="w-3.5 h-3.5 text-[#8A4F3D]" /> Historical Landscape // The Ahramat Branch & Giza Plateau Harbours (c. 2550 BCE)
+              </span>
+              <span className="hidden sm:inline-block text-[#B49A72] drop-shadow">
+                Confirmed May 2024 // Radar Satellite & Deep Sediment Cores
+              </span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            <div className="lg:col-span-2 text-sm text-[#171513]/85 space-y-4 leading-relaxed">
               <p>
-                In May 2024, a team of geoscientists led by Dr. Eman Ghoneim published radar satellite imagery and deep sediment cores establishing the existence of a <strong>64-kilometer extinct river branch</strong> running from Lisht to Giza.
+                In May 2024, a team of geoscientists led by Dr. Eman Ghoneim published radar satellite imagery and deep sediment cores establishing the existence of a <strong className="text-[#2B211B]">64-kilometer extinct river branch</strong> running from Lisht to Giza.
               </p>
               <p>
-                During Dynasty 4, this branch had a width ranging from <strong>200 to 700 meters</strong> and a depth exceeding 5 meters during the annual inundation (Akhet). It flowed immediately alongside the western desert margins, directly bordering the 31 pyramids of the Old and Middle Kingdoms.
+                During Dynasty 4, this branch had a width ranging from <strong className="text-[#2B211B]">200 to 700 meters</strong> and a depth exceeding 5 meters during the annual inundation (Akhet). It flowed immediately alongside the western desert margins, directly bordering the 31 pyramids of the Old and Middle Kingdoms.
               </p>
-              <p className="bg-[#EFE7DA] p-3.5 border-l-4 border-[#8A4F3D] text-xs font-mono">
+              <p className="border-t border-b border-[#2B211B]/15 py-3 text-xs font-mono text-[#8A4F3D]">
                 The terminal ends of Giza’s causeways and valley temples are not random dead-ends; they were water-gate harbours and quays where boats docked directly at the foot of the desert plateau.
               </p>
             </div>
 
-            <div className="bg-[#2B211B] text-[#F4EFE5] p-5 border border-[#B49A72] flex flex-col justify-between">
-              <div>
-                <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold block mb-2">
-                  Hydrological Specifications
-                </span>
-                <div className="space-y-2 text-xs font-mono text-[#D8C7A3]">
-                  <div className="flex justify-between border-b border-[#B49A72]/30 pb-1">
-                    <span>Length:</span>
-                    <span className="text-[#F4EFE5]">64 km (39.7 mi)</span>
-                  </div>
-                  <div className="flex justify-between border-b border-[#B49A72]/30 pb-1">
-                    <span>Width:</span>
-                    <span className="text-[#F4EFE5]">0.2 – 0.7 km</span>
-                  </div>
-                  <div className="flex justify-between border-b border-[#B49A72]/30 pb-1">
-                    <span>Active Period:</span>
-                    <span className="text-[#F4EFE5]">c. 2700 – 1900 BCE</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Desiccation:</span>
-                    <span className="text-[#F4EFE5]">Late Holocene Megadrought</span>
-                  </div>
+            <div className="pt-1">
+              <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold tracking-wider block mb-3">
+                Hydrological Specifications
+              </span>
+              <div className="space-y-2 text-xs font-mono text-[#2B211B]">
+                <div className="flex justify-between border-b border-[#2B211B]/10 pb-1.5">
+                  <span className="text-[#2B211B]/70">Length</span>
+                  <span className="font-bold">64 km (39.7 mi)</span>
+                </div>
+                <div className="flex justify-between border-b border-[#2B211B]/10 pb-1.5">
+                  <span className="text-[#2B211B]/70">Channel Width</span>
+                  <span className="font-bold">0.2 – 0.7 km</span>
+                </div>
+                <div className="flex justify-between border-b border-[#2B211B]/10 pb-1.5">
+                  <span className="text-[#2B211B]/70">Active Period</span>
+                  <span className="font-bold">c. 2700 – 1900 BCE</span>
+                </div>
+                <div className="flex justify-between pt-0.5">
+                  <span className="text-[#2B211B]/70">Desiccation</span>
+                  <span className="font-bold">Late Holocene Megadrought</span>
                 </div>
               </div>
-              <div className="mt-4 pt-3 border-t border-[#B49A72]/30 text-[11px] font-mono text-[#D8C7A3]/70">
+              <div className="mt-4 text-[11px] font-mono text-[#2B211B]/50 italic">
                 Source: Ghoneim et al., Communications Earth & Environment (2024)
               </div>
             </div>
@@ -123,65 +141,65 @@ export const AncientLandscape: React.FC<AncientLandscapeProps> = ({ onSelectEvid
         </div>
 
         {/* Primary Eyewitness Text: Diary of Merer (Papyrus Jarf) */}
-        <div className="bg-[#2B211B] text-[#F4EFE5] border-2 border-[#8A4F3D] p-6 sm:p-8 shadow-xl">
-          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#B49A72]/40 pb-4 mb-6">
+        <div className="border-t border-[#2B211B]/15 pt-10">
+          <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-[#2B211B]/15 pb-4 mb-6">
             <div>
               <span className="font-mono text-xs text-[#8A4F3D] uppercase tracking-widest font-bold flex items-center gap-2">
                 <FileText className="w-4 h-4 text-[#8A4F3D]" /> The World's Oldest Written Papyrus // Discovered 2013
               </span>
-              <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#F4EFE5] mt-1">
+              <h3 className="text-3xl sm:text-4xl font-serif font-bold text-[#2B211B] mt-1">
                 The Diary of Inspector Merer (Papyrus Jarf)
               </h3>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="font-mono text-xs text-[#D8C7A3]">Primary Source Document</span>
+            <div className="flex items-center gap-3">
+              <span className="font-mono text-xs text-[#2B211B]/60">Primary Source Document</span>
               <EvidenceBadge level="ESTABLISHED" onClick={() => onSelectEvidence('khufu-authorship')} />
             </div>
           </div>
 
-          <p className="text-sm text-[#D8C7A3] max-w-3xl mb-6 leading-relaxed">
-            In 2013, French archaeologist Pierre Tallet uncovered rolls of hieratic papyri in the Red Sea port of Wadi al-Jarf. Dating to <strong>Year 26 of Khufu’s reign</strong>, they contain the personal daily operations log of Inspector Merer, an official commanding a team of 40 boatmen delivering Tura limestone casing to Khufu's pyramid.
+          <p className="text-sm text-[#171513]/85 max-w-3xl mb-8 leading-relaxed">
+            In 2013, French archaeologist Pierre Tallet uncovered rolls of hieratic papyri in the Red Sea port of Wadi al-Jarf. Dating to <strong className="text-[#2B211B]">Year 26 of Khufu’s reign</strong>, they contain the personal daily operations log of Inspector Merer, an official commanding a team of 40 boatmen delivering Tura limestone casing to Khufu's pyramid.
           </p>
 
-          {/* Interactive Logbook Day Selector */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6">
+          {/* Interactive Logbook Day Selector (Clean Underline Tabs) */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 border-b border-[#2B211B]/15 mb-6">
             {mererLogEntries.map((entry, idx) => (
               <button
                 key={idx}
                 type="button"
                 onClick={() => setActiveLogDay(idx)}
-                className={`p-3 text-left border transition-all cursor-pointer ${
+                className={`py-3 px-2 text-left cursor-pointer transition-all border-b-2 -mb-px ${
                   activeLogDay === idx
-                    ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#D8C7A3] font-bold'
-                    : 'bg-[#171513] text-[#D8C7A3] border-[#B49A72]/30 hover:bg-[#241B16]'
+                    ? 'border-[#8A4F3D] text-[#2B211B]'
+                    : 'border-transparent text-[#2B211B]/60 hover:text-[#2B211B]'
                 }`}
               >
-                <span className="font-mono text-[10px] text-[#F4EFE5]/80 block uppercase">
-                  Logbook Stage {idx + 1}
+                <span className="font-mono text-[10px] text-[#8A4F3D] block uppercase font-bold">
+                  Stage 0{idx + 1}
                 </span>
-                <span className="font-serif text-xs sm:text-sm font-bold block mt-0.5">
+                <span className="font-serif text-sm font-bold block mt-0.5">
                   {entry.day}
                 </span>
               </button>
             ))}
           </div>
 
-          {/* Active Day Dossier */}
-          <div className="bg-[#171513] border border-[#B49A72]/40 p-5 sm:p-6">
-            <div className="flex items-center justify-between border-b border-[#B49A72]/30 pb-3 mb-3">
+          {/* Active Day Dossier (Clean Editorial Reading Layout) */}
+          <div className="py-2">
+            <div className="flex flex-wrap items-baseline justify-between border-b border-[#2B211B]/10 pb-3 mb-4 gap-2">
               <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold flex items-center gap-1.5">
-                <Navigation className="w-3.5 h-3.5" /> {mererLogEntries[activeLogDay].action}
+                <Navigation className="w-3.5 h-3.5 text-[#8A4F3D]" /> {mererLogEntries[activeLogDay].action}
               </span>
-              <span className="font-mono text-xs text-[#D8C7A3]">
+              <span className="font-mono text-xs text-[#2B211B]/60">
                 Location: {mererLogEntries[activeLogDay].location}
               </span>
             </div>
 
-            <p className="text-sm text-[#F4EFE5] leading-relaxed mb-4">
+            <p className="text-sm text-[#171513]/90 leading-relaxed mb-6">
               {mererLogEntries[activeLogDay].text}
             </p>
 
-            <blockquote className="border-l-2 border-[#8A4F3D] pl-4 py-2 bg-[#241B16] text-[#D8C7A3] font-serif italic text-sm">
+            <blockquote className="border-l-2 border-[#8A4F3D] pl-4 py-1 text-[#2B211B] font-serif italic text-base leading-relaxed">
               {mererLogEntries[activeLogDay].quote}
             </blockquote>
           </div>

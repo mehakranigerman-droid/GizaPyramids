@@ -20,7 +20,7 @@ export const EvidenceModal: React.FC<EvidenceModalProps> = ({ record, onClose })
     >
       <div 
         id="evidence-modal-card"
-        className="relative w-full max-w-2xl bg-[#F4EFE5] border-2 border-[#B49A72] shadow-2xl p-6 md:p-8 max-h-[90vh] overflow-y-auto text-[#171513]"
+        className="relative w-full max-w-2xl bg-[#F4EFE5] shadow-2xl p-6 md:p-8 max-h-[90vh] overflow-y-auto text-[#171513]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header with Close Button */}
@@ -36,7 +36,7 @@ export const EvidenceModal: React.FC<EvidenceModalProps> = ({ record, onClose })
           <button
             id="evidence-modal-close-btn"
             onClick={onClose}
-            className="p-1.5 rounded text-[#2B211B] hover:bg-[#D8C7A3]/50 transition-colors"
+            className="p-1.5 text-[#2B211B] hover:text-[#8A4F3D] cursor-pointer transition-colors"
             aria-label="Close modal"
           >
             <X className="w-6 h-6" />
@@ -44,7 +44,7 @@ export const EvidenceModal: React.FC<EvidenceModalProps> = ({ record, onClose })
         </div>
 
         {/* Epistemic Status Banner */}
-        <div className={`p-4 rounded border mb-6 flex items-start gap-3.5 ${info.badgeBg} ${info.badgeBorder}`}>
+        <div className="pb-4 mb-5 border-b border-[#D8C7A3]/60 flex items-start gap-3">
           <div className="mt-0.5">
             {record.level === 'ESTABLISHED' && <CheckCircle2 className="w-5 h-5 text-emerald-600" />}
             {record.level === 'SUPPORTED' && <ShieldCheck className="w-5 h-5 text-sky-600" />}
@@ -58,7 +58,7 @@ export const EvidenceModal: React.FC<EvidenceModalProps> = ({ record, onClose })
                 Epistemic Status: {info.label}
               </span>
             </div>
-            <p className="text-sm mt-1 text-[#2B211B] leading-relaxed">
+            <p className="text-sm mt-1 text-[#2B211B]/80 leading-relaxed">
               {info.description}
             </p>
           </div>
@@ -69,7 +69,7 @@ export const EvidenceModal: React.FC<EvidenceModalProps> = ({ record, onClose })
           <h4 className="text-xs font-mono uppercase tracking-wider text-[#8A4F3D] font-bold mb-2">
             Executive Summary
           </h4>
-          <p className="text-base text-[#171513] leading-relaxed bg-[#EFE7DA] p-4 border-l-4 border-[#8A4F3D]">
+          <p className="text-base text-[#171513] leading-relaxed border-l-2 border-[#8A4F3D] pl-3 py-1">
             {record.summary}
           </p>
         </div>
@@ -90,13 +90,13 @@ export const EvidenceModal: React.FC<EvidenceModalProps> = ({ record, onClose })
         </div>
 
         {/* Limitations & Counterarguments */}
-        <div className="mb-6">
+        <div className="mb-6 border-t border-[#D8C7A3]/60 pt-4">
           <h4 className="text-xs font-mono uppercase tracking-wider text-[#8A4F3D] font-bold mb-2.5 flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-[#8A4F3D]" /> Known Limitations & Counterarguments
           </h4>
-          <ul className="space-y-2 bg-[#F9F6F0] p-3.5 border border-[#D8C7A3]">
+          <ul className="space-y-2">
             {record.limitationsAndCounterpoints.map((item, idx) => (
-              <li key={idx} className="text-sm leading-relaxed text-[#2B211B] flex items-start gap-2">
+              <li key={idx} className="text-sm leading-relaxed text-[#2B211B]/85 flex items-start gap-2">
                 <span className="text-[#8A4F3D] font-bold">•</span>
                 <span>{item}</span>
               </li>
@@ -113,7 +113,7 @@ export const EvidenceModal: React.FC<EvidenceModalProps> = ({ record, onClose })
             {record.sources.map((source, idx) => (
               <span 
                 key={idx}
-                className="inline-flex items-center gap-1.5 text-xs font-mono bg-[#E8DFC8] px-2.5 py-1 border border-[#B49A72]/40 text-[#2B211B]"
+                className="inline-flex items-center gap-1.5 text-xs font-mono border-b border-[#B49A72]/40 pb-0.5 text-[#2B211B]"
               >
                 <ExternalLink className="w-3 h-3 text-[#8A4F3D]" />
                 {source}

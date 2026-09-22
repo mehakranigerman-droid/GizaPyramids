@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Navbar } from './components/Navbar';
+import { LeftSidebarNav } from './components/LeftSidebarNav';
 import { HeroSection } from './components/HeroSection';
 import { PyramidComparison } from './components/PyramidComparison';
 import { TimelineGenerations } from './components/TimelineGenerations';
@@ -40,49 +40,52 @@ export function App() {
 
   return (
     <div className="min-h-screen bg-[#F4EFE5] text-[#171513] selection:bg-[#8A4F3D] selection:text-[#F4EFE5] font-sans antialiased">
-      {/* Navigation Header */}
-      <Navbar onOpenLegend={() => setIsLegendOpen(true)} />
+      {/* Minimal Left-Side Navigation */}
+      <LeftSidebarNav onOpenLegend={() => setIsLegendOpen(true)} />
 
-      <main>
-        {/* Hero Section */}
-        <HeroSection
-          onBeginExploring={handleScrollToFirstSection}
-          onOpenLegend={() => setIsLegendOpen(true)}
-        />
+      {/* Main Content Area offset for the left sidebar */}
+      <div className="transition-all duration-300 pt-11 lg:pt-0 lg:pl-64">
+        <main>
+          {/* Hero Section */}
+          <HeroSection
+            onBeginExploring={handleScrollToFirstSection}
+            onOpenLegend={() => setIsLegendOpen(true)}
+          />
 
-        {/* Chapter 01: The Three Giants (Pyramid Scale & Geometry) */}
-        <PyramidComparison onSelectEvidence={handleSelectEvidenceById} />
+          {/* Chapter 01: The Three Giants (Pyramid Scale & Geometry) */}
+          <PyramidComparison onSelectEvidence={handleSelectEvidenceById} />
 
-        {/* Chapter 02: Three Generations (Dynastic Succession) */}
-        <TimelineGenerations onSelectEvidence={handleSelectEvidenceById} />
+          {/* Chapter 02: Three Generations (Dynastic Succession) */}
+          <TimelineGenerations onSelectEvidence={handleSelectEvidenceById} />
 
-        {/* Chapter 03: A Machine Made of Stone (Labor, Materials, Ramps) */}
-        <BuildingGiza onSelectEvidence={handleSelectEvidenceById} />
+          {/* Chapter 03: A Machine Made of Stone (Labor, Materials, Ramps) */}
+          <BuildingGiza onSelectEvidence={handleSelectEvidenceById} />
 
-        {/* Chapter 04: The River That Disappeared (Ahramat Branch & Diary of Merer) */}
-        <AncientLandscape onSelectEvidence={handleSelectEvidenceById} />
+          {/* Chapter 04: The River That Disappeared (Ahramat Branch & Diary of Merer) */}
+          <AncientLandscape onSelectEvidence={handleSelectEvidenceById} />
 
-        {/* Chapter 05 & 10: The Great Sphinx & The Erosion Debate */}
-        <GreatSphinx onSelectEvidence={handleSelectEvidenceById} />
+          {/* Chapter 05 & 10: The Great Sphinx & The Erosion Debate */}
+          <GreatSphinx onSelectEvidence={handleSelectEvidenceById} />
 
-        {/* Chapter 06 & 07: Archaeoastronomy & Orion Correlation */}
-        <AstronomySection onSelectEvidence={handleSelectEvidenceById} />
+          {/* Chapter 06 & 07: Archaeoastronomy & Orion Correlation */}
+          <AstronomySection onSelectEvidence={handleSelectEvidenceById} />
 
-        {/* Chapter 08: Inside the Great Pyramid (Khufu Architectural Anatomy) */}
-        <KhufuInterior onSelectEvidence={handleSelectEvidenceById} />
+          {/* Chapter 08: Inside the Great Pyramid (Khufu Architectural Anatomy) */}
+          <KhufuInterior onSelectEvidence={handleSelectEvidenceById} />
 
-        {/* Chapter 09: The Void (ScanPyramids Cosmic Muons) */}
-        <TheVoidSection onSelectEvidence={handleSelectEvidenceById} />
+          {/* Chapter 09: The Void (ScanPyramids Cosmic Muons) */}
+          <TheVoidSection onSelectEvidence={handleSelectEvidenceById} />
 
-        {/* Chapter 11: Extraordinary Claims (Critical Dossier) */}
-        <TheoriesSection onSelectEvidence={handleSelectEvidenceById} />
+          {/* Chapter 11: Extraordinary Claims (Critical Dossier) */}
+          <TheoriesSection onSelectEvidence={handleSelectEvidenceById} />
 
-        {/* Chapter 12: What We Know, What We Don't (The Evidence Matrix) */}
-        <EpistemicMatrix onSelectRecord={(rec) => setSelectedRecord(rec)} />
+          {/* Chapter 12: What We Know, What We Don't (The Evidence Matrix) */}
+          <EpistemicMatrix onSelectRecord={(rec) => setSelectedRecord(rec)} />
 
-        {/* Chapter 13: Sources & Scholarly Bibliography */}
-        <SourcesBibliography />
-      </main>
+          {/* Chapter 13: Sources & Scholarly Bibliography */}
+          <SourcesBibliography />
+        </main>
+      </div>
 
       {/* Epistemic Legend Modal */}
       <EpistemicLegendModal

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { EvidenceBadge } from './EvidenceBadge';
-import { Hammer, Users, Truck, ArrowRight, ShieldCheck, CheckCircle2, Box, Info } from 'lucide-react';
+import { Hammer, Users, Truck, ArrowRight, ShieldCheck, CheckCircle2, Box, Info, Image as ImageIcon } from 'lucide-react';
+import { IMAGES } from '../assets/images';
 
 interface BuildingGizaProps {
   onSelectEvidence: (claimId: string) => void;
@@ -61,114 +62,133 @@ export const BuildingGiza: React.FC<BuildingGizaProps> = ({ onSelectEvidence }) 
           </p>
         </div>
 
-        {/* Tab Selector */}
-        <div className="flex flex-wrap gap-2 border-b border-[#B49A72] pb-4 mb-8">
+        {/* Tab Selector (Minimal Editorial Tabs) */}
+        <div className="flex flex-wrap gap-6 sm:gap-10 border-b border-[#2B211B]/15 mb-8">
           <button
             type="button"
             onClick={() => setActiveTab('labor')}
-            className={`px-5 py-2.5 text-xs font-mono uppercase tracking-wider font-bold transition-all cursor-pointer flex items-center gap-2 ${
+            className={`pb-3 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border-b-2 -mb-px flex items-center gap-2 ${
               activeTab === 'labor'
-                ? 'bg-[#8A4F3D] text-[#F4EFE5] shadow-sm'
-                : 'bg-[#EFE7DA] text-[#2B211B] hover:bg-[#D8C7A3]'
+                ? 'border-[#8A4F3D] text-[#2B211B] font-bold'
+                : 'border-transparent text-[#2B211B]/60 hover:text-[#2B211B]'
             }`}
           >
-            <Users className="w-4 h-4" /> The Builders (Labor & Diet)
+            <Users className="w-4 h-4 text-[#8A4F3D]" /> The Builders (Labor & Diet)
           </button>
           <button
             type="button"
             onClick={() => setActiveTab('materials')}
-            className={`px-5 py-2.5 text-xs font-mono uppercase tracking-wider font-bold transition-all cursor-pointer flex items-center gap-2 ${
+            className={`pb-3 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border-b-2 -mb-px flex items-center gap-2 ${
               activeTab === 'materials'
-                ? 'bg-[#8A4F3D] text-[#F4EFE5] shadow-sm'
-                : 'bg-[#EFE7DA] text-[#2B211B] hover:bg-[#D8C7A3]'
+                ? 'border-[#8A4F3D] text-[#2B211B] font-bold'
+                : 'border-transparent text-[#2B211B]/60 hover:text-[#2B211B]'
             }`}
           >
-            <Box className="w-4 h-4" /> Stone Sourcing & Supply Lines
+            <Box className="w-4 h-4 text-[#8A4F3D]" /> Stone Sourcing & Supply Lines
           </button>
           <button
             type="button"
             onClick={() => setActiveTab('ramps')}
-            className={`px-5 py-2.5 text-xs font-mono uppercase tracking-wider font-bold transition-all cursor-pointer flex items-center gap-2 ${
+            className={`pb-3 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border-b-2 -mb-px flex items-center gap-2 ${
               activeTab === 'ramps'
-                ? 'bg-[#8A4F3D] text-[#F4EFE5] shadow-sm'
-                : 'bg-[#EFE7DA] text-[#2B211B] hover:bg-[#D8C7A3]'
+                ? 'border-[#8A4F3D] text-[#2B211B] font-bold'
+                : 'border-transparent text-[#2B211B]/60 hover:text-[#2B211B]'
             }`}
           >
-            <Hammer className="w-4 h-4" /> The Ramp Engineering Debate
+            <Hammer className="w-4 h-4 text-[#8A4F3D]" /> The Ramp Engineering Debate
           </button>
         </div>
 
         {/* TAB 1: LABOR & SOCIAL ARCHAEOLOGY */}
         {activeTab === 'labor' && (
-          <div className="space-y-8 animate-fadeIn">
-            {/* The Myth vs Archaeological Reality */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="space-y-10 animate-fadeIn">
+            {/* Visual Quarry & Hauling Scene (Clean, minimal frame) */}
+            <div className="relative aspect-[16/7] sm:aspect-[2.4/1] overflow-hidden rounded-xs shadow-lg">
+              <img
+                src={IMAGES.quarryLabor}
+                alt="Ancient Egyptian quarry workers cutting limestone and hauling megalithic blocks on wooden sledges"
+                className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1C1613]/90 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs font-mono text-[#D8C7A3]">
+                <span className="flex items-center gap-2 drop-shadow">
+                  <ImageIcon className="w-3.5 h-3.5 text-[#8A4F3D]" /> Quarry Reconstruction // Masons & Sledge Haulers at Giza (c. 2550 BCE)
+                </span>
+                <span className="hidden sm:inline-block text-[#B49A72] drop-shadow">
+                  Corvée State Draft // Heit el-Ghurab
+                </span>
+              </div>
+            </div>
+
+            {/* The Myth vs Archaeological Reality (Open Comparative Columns) */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 pt-2">
               {/* Myth Column */}
-              <div className="bg-[#EFE7DA] p-6 border-l-4 border-[#8A4F3D]">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold">
+              <div>
+                <div className="flex items-center justify-between border-b border-[#2B211B]/15 pb-2 mb-3">
+                  <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold tracking-wider">
                     The Hollywood & Herodotus Myth
                   </span>
                   <EvidenceBadge level="SPECULATIVE" onClick={() => onSelectEvidence('labor-not-slaves')} />
                 </div>
-                <h4 className="font-serif text-xl font-bold text-[#2B211B] mb-2">
+                <h4 className="font-serif text-2xl font-bold text-[#2B211B] mb-2">
                   100,000 Enslaved Captives Driven by Whips
                 </h4>
-                <p className="text-sm text-[#171513] leading-relaxed">
+                <p className="text-sm text-[#171513]/85 leading-relaxed">
                   Popularized by Greek historian Herodotus (writing in 450 BCE, two millennia after construction) and cemented by 1950s Hollywood cinema. This narrative imagined millions of starving foreign slaves beaten into erecting monuments under tyrannical whim.
                 </p>
               </div>
 
               {/* Reality Column */}
-              <div className="bg-[#EFE7DA] p-6 border-l-4 border-emerald-600">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="font-mono text-xs text-emerald-800 uppercase font-bold">
+              <div>
+                <div className="flex items-center justify-between border-b border-[#2B211B]/15 pb-2 mb-3">
+                  <span className="font-mono text-xs text-emerald-800 uppercase font-bold tracking-wider">
                     Archaeological Reality: Heit el-Ghurab
                   </span>
                   <EvidenceBadge level="ESTABLISHED" onClick={() => onSelectEvidence('labor-not-slaves')} />
                 </div>
-                <h4 className="font-serif text-xl font-bold text-[#2B211B] mb-2">
+                <h4 className="font-serif text-2xl font-bold text-[#2B211B] mb-2">
                   Conscripted Nationals & Skilled Guilds
                 </h4>
-                <p className="text-sm text-[#171513] leading-relaxed">
+                <p className="text-sm text-[#171513]/85 leading-relaxed">
                   Excavated by Mark Lehner and Zahi Hawass, the "Lost City of the Pyramids" proves workers were organized in patriotic rotational state drafts (corvée labor), supported by specialized stonecutters, architects, scribes, and doctors who received royal medical care.
                 </p>
               </div>
             </div>
 
-            {/* Empirical Excavation Proofs at Heit el-Ghurab */}
-            <div className="bg-[#EFE7DA] border border-[#B49A72] p-6 sm:p-8">
-              <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#2B211B] mb-6">
+            {/* Empirical Excavation Proofs at Heit el-Ghurab (Open 3-Column Dossier) */}
+            <div className="border-t border-[#2B211B]/15 pt-8">
+              <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#2B211B] mb-6">
                 Excavation Evidence from the Worker Settlement (Heit el-Ghurab)
               </h3>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {/* 1. Diet & Nutrition */}
-                <div className="bg-[#F4EFE5] p-5 border border-[#D8C7A3]">
-                  <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold block mb-2">
+                <div>
+                  <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold tracking-wider block mb-2">
                     01 // High-Calorie Royal Rations
                   </span>
-                  <p className="text-xs text-[#171513] leading-relaxed">
+                  <p className="text-xs text-[#171513]/85 leading-relaxed">
                     Zooarchaeologist Richard Redding analyzed over 175,000 animal bone fragments, revealing daily slaughter of thousands of kilos of young male cattle and sheep. This high-protein diet was luxury food in ancient Egypt, distributed by the central royal palace to fuel heavy physical labor.
                   </p>
                 </div>
 
                 {/* 2. Medical Care & Skeletal Pathology */}
-                <div className="bg-[#F4EFE5] p-5 border border-[#D8C7A3]">
-                  <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold block mb-2">
+                <div>
+                  <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold tracking-wider block mb-2">
                     02 // Advanced Medical Treatment
                   </span>
-                  <p className="text-xs text-[#171513] leading-relaxed">
+                  <p className="text-xs text-[#171513]/85 leading-relaxed">
                     Anthropologist Azza Sarry el-Din examined hundreds of worker skeletons in the upper cemetery. Remains show cleanly set bone fractures with splints, successful cranial trepanation, and amputations with full bone remodeling—proving patients survived and received elite surgical care.
                   </p>
                 </div>
 
                 {/* 3. Social Organization & Graffiti */}
-                <div className="bg-[#F4EFE5] p-5 border border-[#D8C7A3]">
-                  <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold block mb-2">
+                <div>
+                  <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold tracking-wider block mb-2">
                     03 // Crew Identity & Competition
                   </span>
-                  <p className="text-xs text-[#171513] leading-relaxed">
+                  <p className="text-xs text-[#171513]/85 leading-relaxed">
                     Builders were divided into phyles (approx 200 men) and zha (20 men) with proudly inscribed gang names in red ochre: "The Companions of Khufu" and "The Drunkards of Menkaure". They were buried with grave goods right in the shadow of the pyramids.
                   </p>
                 </div>
@@ -179,25 +199,25 @@ export const BuildingGiza: React.FC<BuildingGizaProps> = ({ onSelectEvidence }) 
 
         {/* TAB 2: STONE SOURCING & SUPPLY LINES */}
         {activeTab === 'materials' && (
-          <div className="space-y-8 animate-fadeIn">
-            <div className="bg-[#EFE7DA] border border-[#B49A72] p-6 sm:p-8">
-              <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#2B211B] mb-2">
+          <div className="space-y-8 animate-fadeIn pt-2">
+            <div>
+              <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#2B211B] mb-2">
                 Geological Sourcing Matrix // Three Distinct Materials
               </h3>
-              <p className="text-sm text-[#2B211B]/80 mb-6">
+              <p className="text-sm text-[#2B211B]/80 mb-8 max-w-3xl leading-relaxed">
                 Over 97% of the pyramid volume came from local plateau stone, while specialized casing and lintels required trans-regional river shipping.
               </p>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {/* 1. Local Limestone */}
-                <div className="bg-[#F4EFE5] p-5 border-t-4 border-[#B49A72]">
-                  <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold block">
+                <div>
+                  <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold tracking-wider block mb-1">
                     Core Masonry // 97% of Volume
                   </span>
-                  <h4 className="font-serif font-bold text-lg text-[#2B211B] mt-1 mb-2">
+                  <h4 className="font-serif font-bold text-xl text-[#2B211B] mb-3">
                     Nummulitic Limestone
                   </h4>
-                  <div className="text-xs space-y-1.5 text-[#2B211B]">
+                  <div className="text-xs space-y-2 text-[#2B211B]/85 leading-relaxed">
                     <p><strong>Origin:</strong> Giza plateau quarry pits (located 200–500m south of pyramids).</p>
                     <p><strong>Characteristics:</strong> Packed with fossilized foraminifera (nummulites). Coarse, dense, but easily split along bedding planes.</p>
                     <p><strong>Transport:</strong> Hauled on wooden sledges over lubricated gypsum mud ramps directly onto the site.</p>
@@ -205,14 +225,14 @@ export const BuildingGiza: React.FC<BuildingGizaProps> = ({ onSelectEvidence }) 
                 </div>
 
                 {/* 2. Tura Casing */}
-                <div className="bg-[#F4EFE5] p-5 border-t-4 border-[#D8C7A3]">
-                  <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold block">
+                <div>
+                  <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold tracking-wider block mb-1">
                     Exterior Cladding // High Polish
                   </span>
-                  <h4 className="font-serif font-bold text-lg text-[#2B211B] mt-1 mb-2">
+                  <h4 className="font-serif font-bold text-xl text-[#2B211B] mb-3">
                     Fine White Tura Limestone
                   </h4>
-                  <div className="text-xs space-y-1.5 text-[#2B211B]">
+                  <div className="text-xs space-y-2 text-[#2B211B]/85 leading-relaxed">
                     <p><strong>Origin:</strong> Underground galleries at Tura & Maasara (east bank of Nile, ~13 km away).</p>
                     <p><strong>Characteristics:</strong> Pure, ultra-fine calcite grain capable of being polished to mirror smoothness with sub-millimeter joint tolerance (&lt;0.5 mm).</p>
                     <p><strong>Transport:</strong> Loaded on wooden river barges during the Nile flood season (Akhet) across to the Giza harbour.</p>
@@ -220,14 +240,14 @@ export const BuildingGiza: React.FC<BuildingGizaProps> = ({ onSelectEvidence }) 
                 </div>
 
                 {/* 3. Aswan Granite */}
-                <div className="bg-[#F4EFE5] p-5 border-t-4 border-[#8A4F3D]">
-                  <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold block">
+                <div>
+                  <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold tracking-wider block mb-1">
                     Structural Beams & Vaults
                   </span>
-                  <h4 className="font-serif font-bold text-lg text-[#2B211B] mt-1 mb-2">
+                  <h4 className="font-serif font-bold text-xl text-[#2B211B] mb-3">
                     Pink/Red Aswan Granite
                   </h4>
-                  <div className="text-xs space-y-1.5 text-[#2B211B]">
+                  <div className="text-xs space-y-2 text-[#2B211B]/85 leading-relaxed">
                     <p><strong>Origin:</strong> Aswan quarries, 800+ kilometers south at the Nile’s First Cataract.</p>
                     <p><strong>Characteristics:</strong> Extremely hard igneous rock (Mohs hardness 6–7) containing quartz and feldspar. Used for King’s Chamber 50-ton roof beams.</p>
                     <p><strong>Transport:</strong> Carried on immense cargo barges drifting downstream during high water, a journey of several weeks.</p>
@@ -240,8 +260,9 @@ export const BuildingGiza: React.FC<BuildingGizaProps> = ({ onSelectEvidence }) 
 
         {/* TAB 3: THE RAMP HYPOTHESES */}
         {activeTab === 'ramps' && (
-          <div className="space-y-6 animate-fadeIn">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
+          <div className="space-y-8 animate-fadeIn pt-2">
+            {/* Minimal Underline Selector for Ramp Models */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 border-b border-[#2B211B]/15">
               {(['straight', 'spiral', 'internal'] as const).map((key) => {
                 const model = rampModels[key];
                 const isSelected = selectedRampId === key;
@@ -250,19 +271,19 @@ export const BuildingGiza: React.FC<BuildingGizaProps> = ({ onSelectEvidence }) 
                     key={key}
                     type="button"
                     onClick={() => setSelectedRampId(key)}
-                    className={`p-4 text-left border-2 transition-all cursor-pointer ${
+                    className={`py-3 px-2 text-left cursor-pointer transition-all border-b-2 -mb-px ${
                       isSelected
-                        ? 'border-[#8A4F3D] bg-[#EFE7DA] shadow-md'
-                        : 'border-[#D8C7A3] bg-[#F4EFE5] hover:bg-[#EFE7DA]/50'
+                        ? 'border-[#8A4F3D] text-[#2B211B]'
+                        : 'border-transparent text-[#2B211B]/60 hover:text-[#2B211B]'
                     }`}
                   >
                     <div className="flex items-center justify-between">
-                      <h4 className="font-serif font-bold text-base text-[#2B211B]">
+                      <h4 className="font-serif font-bold text-base sm:text-lg text-[#2B211B]">
                         {model.name}
                       </h4>
                       <EvidenceBadge level={model.status} size="sm" showLabel={false} as="span" />
                     </div>
-                    <span className="font-mono text-[11px] text-[#8A4F3D] block mt-1">
+                    <span className="font-mono text-[11px] text-[#8A4F3D] block mt-0.5">
                       {model.author}
                     </span>
                   </button>
@@ -270,26 +291,26 @@ export const BuildingGiza: React.FC<BuildingGizaProps> = ({ onSelectEvidence }) 
               })}
             </div>
 
-            {/* Selected Ramp Model Details */}
-            <div className="bg-[#EFE7DA] border border-[#B49A72] p-6 sm:p-8">
-              <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#D8C7A3] pb-4 mb-4">
+            {/* Selected Ramp Model Details (Clean 2-Column Evaluation) */}
+            <div>
+              <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-[#2B211B]/15 pb-3 mb-6">
                 <div>
-                  <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold">
+                  <span className="font-mono text-xs text-[#8A4F3D] uppercase tracking-wider font-bold block">
                     Mechanical Feasibility Assessment
                   </span>
-                  <h3 className="text-2xl font-serif font-bold text-[#2B211B] mt-1">
+                  <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#2B211B] mt-1">
                     {rampModels[selectedRampId].name}
                   </h3>
                 </div>
                 <EvidenceBadge level={rampModels[selectedRampId].status} />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-[#171513]">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-[#171513] mb-6">
                 <div>
-                  <h5 className="font-mono text-xs font-bold text-[#2B211B] uppercase tracking-wider mb-2">
+                  <h5 className="font-mono text-xs font-bold text-[#8A4F3D] uppercase tracking-wider mb-2">
                     Proposed Mechanical Process
                   </h5>
-                  <p className="leading-relaxed bg-[#F4EFE5] p-4 border border-[#D8C7A3]">
+                  <p className="leading-relaxed text-[#171513]/85">
                     {rampModels[selectedRampId].description}
                   </p>
                 </div>
@@ -298,13 +319,13 @@ export const BuildingGiza: React.FC<BuildingGizaProps> = ({ onSelectEvidence }) 
                   <h5 className="font-mono text-xs font-bold text-[#8A4F3D] uppercase tracking-wider mb-2">
                     Physical & Structural Constraints
                   </h5>
-                  <p className="leading-relaxed bg-[#F4EFE5] p-4 border border-[#D8C7A3]">
+                  <p className="leading-relaxed text-[#171513]/85">
                     {rampModels[selectedRampId].limitations}
                   </p>
                 </div>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-[#D8C7A3] flex items-start gap-3 bg-[#2B211B] text-[#F4EFE5] p-4">
+              <div className="flex items-start gap-3 bg-[#2B211B] text-[#F4EFE5] p-5 rounded-xs">
                 <Info className="w-5 h-5 text-[#8A4F3D] shrink-0 mt-0.5" />
                 <div className="text-xs font-mono leading-relaxed">
                   <span className="text-[#D8C7A3] font-bold uppercase block mb-1">

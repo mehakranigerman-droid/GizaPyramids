@@ -35,62 +35,62 @@ export const AstronomySection: React.FC<AstronomySectionProps> = ({ onSelectEvid
           </p>
         </div>
 
-        {/* 1. Cardinal Precision Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div className="bg-[#171513] p-5 border border-[#B49A72]/40">
-            <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold block mb-1">
+        {/* 1. Cardinal Precision Statistics (Clean Open Columns) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 border-b border-[#B49A72]/20 pb-10 mb-12">
+          <div>
+            <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold tracking-wider block mb-1">
               Astronomical Precision
             </span>
-            <div className="text-3xl font-serif font-bold text-[#D8C7A3] my-1">
+            <div className="text-3xl font-serif font-bold text-[#F4EFE5] my-1">
               3' 38" of Arc
             </div>
-            <p className="text-xs text-[#F4EFE5]/80 leading-relaxed font-mono">
+            <p className="text-xs text-[#D8C7A3] leading-relaxed font-mono mt-2">
               The baseline deviates from true astronomical north by less than 4 minutes of arc—a discrepancy under <strong>1/15th of a single degree</strong>.
             </p>
           </div>
 
-          <div className="bg-[#171513] p-5 border border-[#B49A72]/40">
-            <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold block mb-1">
+          <div>
+            <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold tracking-wider block mb-1">
               The "Imperishable Stars"
             </span>
-            <div className="text-xl font-serif font-bold text-[#D8C7A3] my-1">
-              Ikhemu-sek (Circumpolar)
+            <div className="text-2xl font-serif font-bold text-[#F4EFE5] my-1">
+              Ikhemu-sek
             </div>
-            <p className="text-xs text-[#F4EFE5]/80 leading-relaxed">
+            <p className="text-xs text-[#D8C7A3] leading-relaxed mt-2">
               Egyptian religious cosmology venerated the northern circumpolar stars that never dip below the horizon as the eternal resting place of the Pharaoh's soul.
             </p>
           </div>
 
-          <div className="bg-[#171513] p-5 border border-[#B49A72]/40">
-            <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold block mb-1">
+          <div>
+            <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold tracking-wider block mb-1">
               Southern Sky Deity
             </span>
-            <div className="text-xl font-serif font-bold text-[#D8C7A3] my-1">
-              Sah (Orion) & Sopdet (Sirius)
+            <div className="text-2xl font-serif font-bold text-[#F4EFE5] my-1">
+              Sah & Sopdet
             </div>
-            <p className="text-xs text-[#F4EFE5]/80 leading-relaxed">
-              Sah was the divine celestial embodiment of Osiris, lord of rebirth and eternity; Sopdet was Isis, whose morning rising heralded the life-giving Nile flood.
+            <p className="text-xs text-[#D8C7A3] leading-relaxed mt-2">
+              Sah was the divine celestial embodiment of Osiris (Orion), lord of rebirth and eternity; Sopdet was Isis (Sirius), whose morning rising heralded the Nile flood.
             </p>
           </div>
         </div>
 
-        {/* 2. Alignment Methods Comparison: Spence vs Dash */}
-        <div className="bg-[#171513] border-2 border-[#B49A72]/40 p-6 sm:p-8 mb-16">
-          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#B49A72]/30 pb-4 mb-6">
+        {/* 2. Alignment Methods Comparison: Spence vs Dash (Open Layout) */}
+        <div className="border-b border-[#B49A72]/20 pb-14 mb-14">
+          <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-[#B49A72]/20 pb-4 mb-8">
             <div>
               <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold tracking-widest">
                 Scientific Observational Modeling
               </span>
-              <h3 className="text-2xl font-serif font-bold text-[#F4EFE5] mt-1">
+              <h3 className="text-3xl sm:text-4xl font-serif font-bold text-[#F4EFE5] mt-1">
                 How Did Egyptian Priests Find True North?
               </h3>
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-6 border-b border-[#B49A72]/20 sm:border-0">
               <button
                 type="button"
                 onClick={() => setAlignmentMethod('spence')}
-                className={`px-3 py-1.5 text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer ${
-                  alignmentMethod === 'spence' ? 'bg-[#8A4F3D] text-[#F4EFE5] font-bold' : 'bg-[#2B211B] text-[#D8C7A3]'
+                className={`pb-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border-b-2 -mb-px ${
+                  alignmentMethod === 'spence' ? 'border-[#8A4F3D] text-[#F4EFE5] font-bold' : 'border-transparent text-[#D8C7A3]/60 hover:text-[#F4EFE5]'
                 }`}
               >
                 Stellar Simultaneous Transit (Spence)
@@ -98,8 +98,8 @@ export const AstronomySection: React.FC<AstronomySectionProps> = ({ onSelectEvid
               <button
                 type="button"
                 onClick={() => setAlignmentMethod('dash')}
-                className={`px-3 py-1.5 text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer ${
-                  alignmentMethod === 'dash' ? 'bg-[#8A4F3D] text-[#F4EFE5] font-bold' : 'bg-[#2B211B] text-[#D8C7A3]'
+                className={`pb-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border-b-2 -mb-px ${
+                  alignmentMethod === 'dash' ? 'border-[#8A4F3D] text-[#F4EFE5] font-bold' : 'border-transparent text-[#D8C7A3]/60 hover:text-[#F4EFE5]'
                 }`}
               >
                 Solar Gnomon Method (Dash)
@@ -108,12 +108,12 @@ export const AstronomySection: React.FC<AstronomySectionProps> = ({ onSelectEvid
           </div>
 
           {alignmentMethod === 'spence' ? (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center animate-fadeIn">
-              <div className="space-y-3 text-sm text-[#D8C7A3] leading-relaxed">
-                <div className="inline-flex items-center gap-1.5 text-xs font-mono text-sky-400 bg-sky-950/60 px-2 py-0.5 border border-sky-800/60">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center animate-fadeIn">
+              <div className="space-y-4 text-sm text-[#D8C7A3] leading-relaxed">
+                <span className="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-400">
                   <Star className="w-3.5 h-3.5" /> Published in Nature (2000) by Dr. Kate Spence (Cambridge)
-                </div>
-                <h4 className="font-serif text-lg font-bold text-[#F4EFE5]">
+                </span>
+                <h4 className="font-serif text-2xl font-bold text-[#F4EFE5]">
                   The Kochab & Mizar Vertical Transit
                 </h4>
                 <p>
@@ -122,13 +122,13 @@ export const AstronomySection: React.FC<AstronomySectionProps> = ({ onSelectEvid
                 <p>
                   Spence demonstrated that ancient astronomers sighted a weighted plumb line (merkhet) suspended between two bright circumpolar stars on opposite sides of the true celestial pole: <strong>Kochab</strong> (in Ursa Minor) and <strong>Mizar</strong> (in Ursa Major).
                 </p>
-                <p className="bg-[#241B16] p-3 border-l-2 border-[#8A4F3D] text-xs font-mono text-[#F4EFE5]">
+                <p className="border-l-2 border-[#8A4F3D] pl-4 py-1 text-xs font-mono text-[#F4EFE5]">
                   When a vertical plumb line aligned both stars simultaneously, the line pointed with astonishing accuracy to true celestial north.
                 </p>
               </div>
 
               {/* Diagram */}
-              <div className="bg-[#241B16] p-4 border border-[#B49A72]/30 text-center">
+              <div className="bg-[#1C1613] p-6 rounded-xs text-center">
                 <svg viewBox="0 0 360 220" className="w-full h-auto mx-auto">
                   <circle cx="180" cy="110" r="80" stroke="#B49A72" strokeWidth="0.5" strokeDasharray="3 3" fill="none" />
                   <circle cx="180" cy="110" r="3" fill="#8A4F3D" />
@@ -145,18 +145,18 @@ export const AstronomySection: React.FC<AstronomySectionProps> = ({ onSelectEvid
                   <circle cx="180" cy="185" r="4" fill="#F4EFE5" />
                   <text x="195" y="188" fill="#F4EFE5" fontSize="10" fontFamily="Cinzel" fontWeight="bold">KOCHAB</text>
                 </svg>
-                <span className="text-[11px] font-mono text-[#D8C7A3]/70">
+                <span className="text-[11px] font-mono text-[#D8C7A3]/70 block mt-2">
                   Simultaneous vertical transit sighting across the North Celestial Pole
                 </span>
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center animate-fadeIn">
-              <div className="space-y-3 text-sm text-[#D8C7A3] leading-relaxed">
-                <div className="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-400 bg-emerald-950/60 px-2 py-0.5 border border-emerald-800/60">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center animate-fadeIn">
+              <div className="space-y-4 text-sm text-[#D8C7A3] leading-relaxed">
+                <span className="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-400">
                   <Compass className="w-3.5 h-3.5" /> Published in Journal of Egyptian Archaeology (2017) by Glen Dash
-                </div>
-                <h4 className="font-serif text-lg font-bold text-[#F4EFE5]">
+                </span>
+                <h4 className="font-serif text-2xl font-bold text-[#F4EFE5]">
                   The Indian Circle / Autumnal Equinox Method
                 </h4>
                 <p>
@@ -165,13 +165,13 @@ export const AstronomySection: React.FC<AstronomySectionProps> = ({ onSelectEvid
                 <p>
                   Connecting two equal-radius points where the shadow intersects a circle creates an almost flawless east-west line.
                 </p>
-                <p className="bg-[#241B16] p-3 border-l-2 border-[#8A4F3D] text-xs font-mono text-[#F4EFE5]">
+                <p className="border-l-2 border-[#8A4F3D] pl-4 py-1 text-xs font-mono text-[#F4EFE5]">
                   Crucially, this method naturally produces the exact minute counterclockwise error (approx 3 to 4 minutes of arc) observed on all three Giza pyramids.
                 </p>
               </div>
 
               {/* Diagram */}
-              <div className="bg-[#241B16] p-4 border border-[#B49A72]/30 text-center">
+              <div className="bg-[#1C1613] p-6 rounded-xs text-center">
                 <svg viewBox="0 0 360 220" className="w-full h-auto mx-auto">
                   <circle cx="180" cy="110" r="70" stroke="#B49A72" strokeWidth="0.8" fill="none" />
                   <circle cx="180" cy="110" r="5" fill="#D8C7A3" />
@@ -182,7 +182,7 @@ export const AstronomySection: React.FC<AstronomySectionProps> = ({ onSelectEvid
                   <line x1="90" y1="140" x2="270" y2="140" stroke="#D8C7A3" strokeWidth="1.5" strokeDasharray="4 4" />
                   <text x="180" y="160" fill="#F4EFE5" fontSize="10" fontFamily="monospace" textAnchor="middle">True East-West Equinox Baseline</text>
                 </svg>
-                <span className="text-[11px] font-mono text-[#D8C7A3]/70">
+                <span className="text-[11px] font-mono text-[#D8C7A3]/70 block mt-2">
                   Shadow intersection method explaining the slight counterclockwise rotation
                 </span>
               </div>
@@ -190,40 +190,40 @@ export const AstronomySection: React.FC<AstronomySectionProps> = ({ onSelectEvid
           )}
         </div>
 
-        {/* 3. Orion: Pattern or Intention? (The Orion Correlation Theory) */}
-        <div className="bg-[#241B16] border-2 border-[#8A4F3D] p-6 sm:p-8">
-          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#B49A72]/30 pb-4 mb-6">
+        {/* 3. Orion: Pattern or Intention? (The Orion Correlation Theory - Open Layout) */}
+        <div>
+          <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-[#B49A72]/20 pb-4 mb-8">
             <div>
               <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold tracking-widest">
                 Chapter 07 // Astronomical Investigation
               </span>
-              <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#F4EFE5] mt-1">
+              <h3 className="text-3xl sm:text-4xl font-serif font-bold text-[#F4EFE5] mt-1">
                 Orion: Pattern or Intention?
               </h3>
             </div>
             <EvidenceBadge level="DEBATED" onClick={() => onSelectEvidence('orion-correlation-theory')} />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-8">
             {/* The Claim */}
-            <div className="bg-[#171513] p-5 border border-[#B49A72]/40">
-              <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold block mb-2">
+            <div>
+              <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold tracking-wider block mb-2">
                 The Orion Correlation Hypothesis (Bauval & Gilbert, 1994)
               </span>
               <p className="text-sm text-[#D8C7A3] leading-relaxed mb-4">
                 Proposes that the relative positioning and brightness of the three Giza pyramids correspond directly to the three belt stars of Orion (Alnitak, Alnilam, and Mintaka). Because Menkaure is smaller and offset from the Khufu-Khafre axis—just as Mintaka is dimmer and offset from the other two stars—proponents argue it constitutes an intentional astrological map.
               </p>
-              <div className="bg-[#2B211B] p-3 text-xs font-mono text-[#F4EFE5] border-l-2 border-[#8A4F3D]">
+              <div className="border-l-2 border-[#8A4F3D] pl-4 py-1 text-xs font-mono text-[#F4EFE5]">
                 Later claimed to match the sky as it appeared at its lowest precessional point in <strong>10,500 BCE</strong>.
               </div>
             </div>
 
             {/* The Rigorous Astronomical & Textual Critique */}
-            <div className="bg-[#171513] p-5 border border-[#B49A72]/40">
-              <span className="font-mono text-xs text-amber-500 uppercase font-bold block mb-2 flex items-center gap-1.5">
-                <AlertTriangle className="w-4 h-4 text-amber-500" /> Scientific & Egyptological Critiques
+            <div>
+              <span className="font-mono text-xs text-amber-400 uppercase font-bold tracking-wider block mb-2 flex items-center gap-1.5">
+                <AlertTriangle className="w-4 h-4 text-amber-400" /> Scientific & Egyptological Critiques
               </span>
-              <div className="space-y-3 text-xs text-[#D8C7A3] leading-relaxed">
+              <div className="space-y-4 text-xs text-[#D8C7A3] leading-relaxed">
                 <div>
                   <strong className="text-[#F4EFE5] block">1. The Spatial Inversion (The Krupp Critique):</strong>
                   As astronomer Dr. Edwin Krupp demonstrated, when facing south to view Orion in the sky, Mintaka is on the right (West). But on the Giza plateau, Menkaure is in the Southwest. To make the map overlay the stars, one must flip the constellation upside-down or invert North and South.
@@ -240,7 +240,7 @@ export const AstronomySection: React.FC<AstronomySectionProps> = ({ onSelectEvid
             </div>
           </div>
 
-          <div className="p-4 bg-[#171513] border border-[#8A4F3D] text-xs font-mono text-[#D8C7A3] flex items-center gap-3">
+          <div className="pt-4 border-t border-[#B49A72]/20 text-xs font-mono text-[#D8C7A3] flex items-center gap-3">
             <span className="text-[#8A4F3D] text-lg font-bold">!</span>
             <span>
               <strong>Editorial Guidance:</strong> Visual similarity alone does not constitute intentional design. In the absence of contemporary textual corroboration and given the severe spatial inversions, the Orion Correlation Theory remains classified as <strong>DEBATED / UNPROVEN</strong>.

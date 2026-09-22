@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { EvidenceBadge } from './EvidenceBadge';
-import { Layers, Mountain, AlertCircle, HelpCircle, CheckCircle2, ShieldAlert } from 'lucide-react';
+import { Layers, Mountain, AlertCircle, HelpCircle, CheckCircle2, ShieldAlert, Camera } from 'lucide-react';
+import { IMAGES } from '../assets/images';
 
 interface GreatSphinxProps {
   onSelectEvidence: (claimId: string) => void;
@@ -59,48 +60,67 @@ export const GreatSphinx: React.FC<GreatSphinxProps> = ({ onSelectEvidence }) =>
           </p>
         </div>
 
-        {/* Physical Scale & Dimensions Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
-          <div className="bg-[#EFE7DA] p-4 border border-[#D8C7A3]">
-            <span className="font-mono text-xs text-[#8A4F3D] uppercase block font-bold">Length</span>
-            <span className="text-2xl font-serif font-bold text-[#2B211B]">73.5 meters</span>
-            <span className="text-[11px] font-mono text-[#2B211B]/70 block">241 feet from paws to tail</span>
+        {/* Physical Scale & Dimensions (Clean Minimal Columns) */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 border-b border-[#2B211B]/15 pb-8 mb-10">
+          <div>
+            <span className="font-mono text-xs text-[#8A4F3D] uppercase block font-bold tracking-wider">Length</span>
+            <span className="text-3xl font-serif font-bold text-[#2B211B] block mt-1">73.5 m</span>
+            <span className="text-xs font-mono text-[#2B211B]/60 block mt-0.5">241 ft paws to tail</span>
           </div>
-          <div className="bg-[#EFE7DA] p-4 border border-[#D8C7A3]">
-            <span className="font-mono text-xs text-[#8A4F3D] uppercase block font-bold">Height</span>
-            <span className="text-2xl font-serif font-bold text-[#2B211B]">20.2 meters</span>
-            <span className="text-[11px] font-mono text-[#2B211B]/70 block">66 feet to crown of head</span>
+          <div>
+            <span className="font-mono text-xs text-[#8A4F3D] uppercase block font-bold tracking-wider">Height</span>
+            <span className="text-3xl font-serif font-bold text-[#2B211B] block mt-1">20.2 m</span>
+            <span className="text-xs font-mono text-[#2B211B]/60 block mt-0.5">66 ft to crown</span>
           </div>
-          <div className="bg-[#EFE7DA] p-4 border border-[#D8C7A3]">
-            <span className="font-mono text-xs text-[#8A4F3D] uppercase block font-bold">Width</span>
-            <span className="text-2xl font-serif font-bold text-[#2B211B]">19.3 meters</span>
-            <span className="text-[11px] font-mono text-[#2B211B]/70 block">63 feet across haunches</span>
+          <div>
+            <span className="font-mono text-xs text-[#8A4F3D] uppercase block font-bold tracking-wider">Width</span>
+            <span className="text-3xl font-serif font-bold text-[#2B211B] block mt-1">19.3 m</span>
+            <span className="text-xs font-mono text-[#2B211B]/60 block mt-0.5">63 ft across haunches</span>
           </div>
-          <div className="bg-[#EFE7DA] p-4 border border-[#D8C7A3]">
-            <span className="font-mono text-xs text-[#8A4F3D] uppercase block font-bold">Quarry Context</span>
-            <span className="text-2xl font-serif font-bold text-[#2B211B]">In-Situ Bedrock</span>
-            <span className="text-[11px] font-mono text-[#2B211B]/70 block">Carved within deep ditch cut</span>
+          <div>
+            <span className="font-mono text-xs text-[#8A4F3D] uppercase block font-bold tracking-wider">Quarry Context</span>
+            <span className="text-3xl font-serif font-bold text-[#2B211B] block mt-1">In-Situ</span>
+            <span className="text-xs font-mono text-[#2B211B]/60 block mt-0.5">Living limestone outcrop</span>
+          </div>
+        </div>
+
+        {/* Featured Great Sphinx Geological Photograph (Clean Frame) */}
+        <div className="relative aspect-[16/7] sm:aspect-[2.4/1] overflow-hidden rounded-xs shadow-lg mb-12">
+          <img
+            src={IMAGES.greatSphinx}
+            alt="The Great Sphinx of Giza facing east in its limestone enclosure with Khafre's pyramid behind"
+            className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500"
+            referrerPolicy="no-referrer"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1C1613]/90 via-transparent to-transparent pointer-events-none" />
+          <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs font-mono text-[#D8C7A3]">
+            <span className="flex items-center gap-2 drop-shadow">
+              <Camera className="w-3.5 h-3.5 text-[#8A4F3D]" /> The Great Sphinx of Giza // In-Situ Yardang Carved from Member I, II, & III Mokattam Limestone
+            </span>
+            <span className="hidden sm:inline-block text-[#B49A72] drop-shadow">
+              East-Facing Cardinal Orientation (089.5°)
+            </span>
           </div>
         </div>
 
         {/* Geological Stratigraphy Visualizer */}
-        <div className="bg-[#2B211B] text-[#F4EFE5] border-2 border-[#B49A72] p-6 sm:p-8 mb-12 shadow-lg">
-          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#B49A72]/40 pb-4 mb-6">
+        <div className="border-t border-[#2B211B]/15 pt-8 mb-16">
+          <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-[#2B211B]/15 pb-4 mb-8">
             <div>
               <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold tracking-widest flex items-center gap-2">
                 <Mountain className="w-4 h-4 text-[#8A4F3D]" /> Geological Stratigraphy // Giza Mokattam Formation
               </span>
-              <h3 className="text-2xl font-serif font-bold text-[#F4EFE5] mt-1">
+              <h3 className="text-3xl sm:text-4xl font-serif font-bold text-[#2B211B] mt-1">
                 The Three Members of the Sphinx Bedrock
               </h3>
             </div>
-            <span className="text-xs font-mono text-[#D8C7A3]">Select Stratum to Inspect</span>
+            <span className="text-xs font-mono text-[#2B211B]/60">Select Stratum in SVG to Inspect</span>
           </div>
 
           {/* Interactive Stratigraphy Layer Stack */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* SVG Visual Representation of the 3 strata */}
-            <div className="lg:col-span-6 bg-[#171513] p-4 border border-[#B49A72]/30">
+            <div className="lg:col-span-6 bg-[#1C1613] p-4 rounded-xs">
               <svg viewBox="0 0 500 280" className="w-full h-auto" preserveAspectRatio="xMidYMid meet">
                 {/* Stratum 3: Head (Member III) */}
                 <g 
@@ -108,7 +128,7 @@ export const GreatSphinx: React.FC<GreatSphinxProps> = ({ onSelectEvidence }) =>
                   className="cursor-pointer transition-opacity hover:opacity-90"
                 >
                   <rect 
-                    x="240" y="30" width="120" height="60" rx="6" 
+                    x="240" y="30" width="120" height="60" rx="4" 
                     fill={activeStratum === 'm3' ? '#8A4F3D' : '#5C4A3E'} 
                     stroke="#D8C7A3" strokeWidth="1.5" 
                   />
@@ -162,104 +182,104 @@ export const GreatSphinx: React.FC<GreatSphinxProps> = ({ onSelectEvidence }) =>
               </svg>
             </div>
 
-            {/* Stratum Details Card */}
-            <div className="lg:col-span-6 bg-[#171513] p-5 border border-[#B49A72]/40">
-              <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold block mb-1">
+            {/* Stratum Details */}
+            <div className="lg:col-span-6">
+              <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold tracking-wider block mb-1">
                 Selected Geological Horizon
               </span>
-              <h4 className="text-xl font-serif font-bold text-[#F4EFE5] mb-2">
+              <h4 className="text-2xl font-serif font-bold text-[#2B211B] mb-3">
                 {strataData[activeStratum].name}
               </h4>
-              <div className="space-y-2 text-xs font-mono text-[#D8C7A3] mb-4">
-                <p><strong>Lithology:</strong> {strataData[activeStratum].rockType}</p>
-                <p><strong>Thickness:</strong> {strataData[activeStratum].depth}</p>
-                <p><strong>Weathering Profile:</strong> {strataData[activeStratum].erosionPattern}</p>
+              <div className="space-y-2 text-xs font-mono text-[#2B211B]/80 mb-4 border-y border-[#2B211B]/10 py-3">
+                <p><strong className="text-[#2B211B]">Lithology:</strong> {strataData[activeStratum].rockType}</p>
+                <p><strong className="text-[#2B211B]">Thickness:</strong> {strataData[activeStratum].depth}</p>
+                <p><strong className="text-[#2B211B]">Weathering Profile:</strong> {strataData[activeStratum].erosionPattern}</p>
               </div>
-              <p className="text-sm text-[#F4EFE5] bg-[#241B16] p-3.5 border-l-2 border-[#8A4F3D] leading-relaxed">
+              <p className="text-sm text-[#171513]/90 leading-relaxed">
                 {strataData[activeStratum].notes}
               </p>
             </div>
           </div>
         </div>
 
-        {/* The Age & Erosion Debate: Mainstream vs Water-Weathering */}
-        <div className="bg-[#EFE7DA] border border-[#B49A72] p-6 sm:p-8">
-          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#D8C7A3] pb-4 mb-6">
+        {/* The Age & Erosion Debate: Mainstream vs Water-Weathering (Open Layout) */}
+        <div className="border-t border-[#2B211B]/15 pt-8">
+          <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-[#2B211B]/15 pb-4 mb-6">
             <div>
               <span className="font-mono text-xs text-[#8A4F3D] uppercase tracking-widest font-bold">
                 Scientific Controversy Dossier // Chapter 10
               </span>
-              <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#2B211B] mt-1">
+              <h3 className="text-3xl sm:text-4xl font-serif font-bold text-[#2B211B] mt-1">
                 How Old Is the Sphinx?
               </h3>
             </div>
             <EvidenceBadge level="DEBATED" onClick={() => onSelectEvidence('sphinx-water-erosion')} />
           </div>
 
-          <div className="flex gap-2 mb-6">
+          <div className="flex flex-wrap gap-6 sm:gap-10 border-b border-[#2B211B]/15 mb-8">
             <button
               type="button"
               onClick={() => setDebateSide('mainstream')}
-              className={`px-4 py-2 text-xs font-mono uppercase font-bold tracking-wider transition-colors cursor-pointer ${
+              className={`pb-3 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border-b-2 -mb-px ${
                 debateSide === 'mainstream'
-                  ? 'bg-[#2B211B] text-[#F4EFE5]'
-                  : 'bg-[#F4EFE5] text-[#2B211B] hover:bg-[#D8C7A3]'
+                  ? 'border-[#8A4F3D] text-[#2B211B] font-bold'
+                  : 'border-transparent text-[#2B211B]/60 hover:text-[#2B211B]'
               }`}
             >
-              Mainstream Geological & Archaeological Consensus (c. 2540 BCE)
+              Mainstream Archaeological Consensus (c. 2540 BCE)
             </button>
             <button
               type="button"
               onClick={() => setDebateSide('waterHypothesis')}
-              className={`px-4 py-2 text-xs font-mono uppercase font-bold tracking-wider transition-colors cursor-pointer ${
+              className={`pb-3 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border-b-2 -mb-px ${
                 debateSide === 'waterHypothesis'
-                  ? 'bg-[#8A4F3D] text-[#F4EFE5]'
-                  : 'bg-[#F4EFE5] text-[#2B211B] hover:bg-[#D8C7A3]'
+                  ? 'border-[#8A4F3D] text-[#2B211B] font-bold'
+                  : 'border-transparent text-[#2B211B]/60 hover:text-[#2B211B]'
               }`}
             >
-              Water Erosion Alternative Hypothesis (Schoch & West, 5000–9000+ BCE)
+              Water Erosion Hypothesis (5000–9000+ BCE)
             </button>
           </div>
 
           {debateSide === 'mainstream' ? (
             <div className="space-y-4 animate-fadeIn">
-              <div className="bg-[#F4EFE5] p-5 border-l-4 border-emerald-700">
-                <span className="font-mono text-xs font-bold text-emerald-800 uppercase block mb-1">
+              <div>
+                <span className="font-mono text-xs font-bold text-emerald-800 uppercase tracking-wider block mb-1">
                   Supported Consensus // Colin Reader, Mark Lehner, K. Lal Gauri, Zahi Hawass
                 </span>
-                <h4 className="font-serif text-lg font-bold text-[#2B211B] mb-2">
+                <h4 className="font-serif text-2xl font-bold text-[#2B211B] mb-3">
                   4th Dynasty Construction Under Khafre (c. 2558–2532 BCE)
                 </h4>
-                <div className="space-y-2.5 text-sm text-[#171513] leading-relaxed">
+                <div className="space-y-3 text-sm text-[#171513]/85 leading-relaxed">
                   <p>
-                    <strong>1. Direct Quarry & Temple Integration:</strong> Petrological core matching demonstrates that the 50-to-100 ton limestone megaliths used to build Khafre's Sphinx Temple and Valley Temple came directly from the ditch dug out around the Sphinx. The temples and Sphinx are an indivisible single construction phase.
+                    <strong className="text-[#2B211B]">1. Direct Quarry & Temple Integration:</strong> Petrological core matching demonstrates that the 50-to-100 ton limestone megaliths used to build Khafre's Sphinx Temple and Valley Temple came directly from the ditch dug out around the Sphinx. The temples and Sphinx are an indivisible single construction phase.
                   </p>
                   <p>
-                    <strong>2. Salt Haloclasty & Episodic Rains:</strong> Geologist K. Lal Gauri proved that subsurface capillary moisture drawing dew and groundwater into Member II limestone causes salt crystals to repeatedly expand and burst the soft marl stone (haloclasty). Combined with periodic torrential desert flash floods during the Old Kingdom, this rapidly creates undulating rounded fissures within centuries.
+                    <strong className="text-[#2B211B]">2. Salt Haloclasty & Episodic Rains:</strong> Geologist K. Lal Gauri proved that subsurface capillary moisture drawing dew and groundwater into Member II limestone causes salt crystals to repeatedly expand and burst the soft marl stone (haloclasty). Combined with periodic torrential desert flash floods during the Old Kingdom, this rapidly creates undulating rounded fissures within centuries.
                   </p>
                   <p>
-                    <strong>3. Absolute Total Absence of Pre-Dynastic Urbanism:</strong> If the Sphinx was carved between 7,000 and 10,000 BCE, where are the settlements, copper tools, pottery kilns, and cemeteries of the massive population required to quarry it? In 8,000 BCE, Egypt was inhabited purely by Epipalaeolithic hunter-gatherer bands.
+                    <strong className="text-[#2B211B]">3. Absolute Total Absence of Pre-Dynastic Urbanism:</strong> If the Sphinx was carved between 7,000 and 10,000 BCE, where are the settlements, copper tools, pottery kilns, and cemeteries of the massive population required to quarry it? In 8,000 BCE, Egypt was inhabited purely by Epipalaeolithic hunter-gatherer bands.
                   </p>
                 </div>
               </div>
             </div>
           ) : (
             <div className="space-y-4 animate-fadeIn">
-              <div className="bg-[#F4EFE5] p-5 border-l-4 border-amber-600">
-                <span className="font-mono text-xs font-bold text-amber-800 uppercase block mb-1">
+              <div>
+                <span className="font-mono text-xs font-bold text-[#8A4F3D] uppercase tracking-wider block mb-1">
                   Alternative Hypothesis // Robert Schoch (Boston University), John Anthony West
                 </span>
-                <h4 className="font-serif text-lg font-bold text-[#2B211B] mb-2">
+                <h4 className="font-serif text-2xl font-bold text-[#2B211B] mb-3">
                   Precipitation-Induced Water Weathering (5,000–9,000+ BCE)
                 </h4>
-                <div className="space-y-2.5 text-sm text-[#171513] leading-relaxed">
+                <div className="space-y-3 text-sm text-[#171513]/85 leading-relaxed">
                   <p>
-                    <strong>1. Undulating Vertical Runoff Profiles:</strong> Schoch argues that the rounded, undulating vertical gullying visible on the Sphinx enclosure wall and flanks could only be produced by prolonged, heavy rainfall sheet-wash, which last occurred in Egypt during the African Humid Period prior to the mid-4th millennium BCE.
+                    <strong className="text-[#2B211B]">1. Undulating Vertical Runoff Profiles:</strong> Schoch argues that the rounded, undulating vertical gullying visible on the Sphinx enclosure wall and flanks could only be produced by prolonged, heavy rainfall sheet-wash, which last occurred in Egypt during the African Humid Period prior to the mid-4th millennium BCE.
                   </p>
                   <p>
-                    <strong>2. Subsurface Seismic Wave Velocity:</strong> Shallow seismic refraction surveys conducted by Thomas Dobecki showed deeper subsurface weathering depth at the front and sides of the Sphinx than behind its rump, interpreted by Schoch as evidence that the front was carved thousands of years earlier.
+                    <strong className="text-[#2B211B]">2. Subsurface Seismic Wave Velocity:</strong> Shallow seismic refraction surveys conducted by Thomas Dobecki showed deeper subsurface weathering depth at the front and sides of the Sphinx than behind its rump, interpreted by Schoch as evidence that the front was carved thousands of years earlier.
                   </p>
-                  <p className="bg-[#EFE7DA] p-3 text-xs font-mono text-[#8A4F3D]">
+                  <p className="border-t border-b border-[#2B211B]/15 py-3 text-xs font-mono text-[#8A4F3D]">
                     <strong>Critical Archaeological Limitation:</strong> This hypothesis relies purely on geomorphology while ignoring the total absence of contemporary 7000 BCE artifacts, carbon-14 dates, or inscriptions anywhere in the Nile Valley.
                   </p>
                 </div>

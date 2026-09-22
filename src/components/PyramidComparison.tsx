@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { PYRAMIDS } from '../data/pyramidsData';
 import { PyramidData } from '../types';
 import { EvidenceBadge } from './EvidenceBadge';
-import { Scale, Maximize2, Layers, CheckCircle2 } from 'lucide-react';
+import { Scale, Maximize2, Layers, CheckCircle2, Camera } from 'lucide-react';
+import { IMAGES } from '../assets/images';
 
 interface PyramidComparisonProps {
   onSelectEvidence: (claimId: string) => void;
@@ -10,7 +11,7 @@ interface PyramidComparisonProps {
 
 export const PyramidComparison: React.FC<PyramidComparisonProps> = ({ onSelectEvidence }) => {
   const [selectedPyramidId, setSelectedPyramidId] = useState<'khufu' | 'khafre' | 'menkaure'>('khufu');
-  const [viewMode, setViewMode] = useState<'sideBySide' | 'overlay' | 'dataBars'>('sideBySide');
+  const [viewMode, setViewMode] = useState<'sideBySide' | 'overlay' | 'dataBars' | 'photo'>('sideBySide');
   const [metricUnit, setMetricUnit] = useState<'meters' | 'feet'>('meters');
 
   const selectedPyramid = PYRAMIDS.find((p) => p.id === selectedPyramidId) || PYRAMIDS[0];
@@ -47,18 +48,18 @@ export const PyramidComparison: React.FC<PyramidComparisonProps> = ({ onSelectEv
         </div>
 
         {/* View Mode & Unit Controls */}
-        <div className="flex flex-wrap items-center justify-between gap-4 mb-6 bg-[#EFE7DA] p-3 border border-[#D8C7A3]">
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-mono uppercase font-bold text-[#8A4F3D] flex items-center gap-1.5 mr-2">
-              <Scale className="w-3.5 h-3.5" /> Visual Mode:
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-8 border-b border-[#2B211B]/15 pb-4">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-xs font-mono uppercase text-[#8A4F3D] font-bold flex items-center gap-1.5 mr-2">
+              <Scale className="w-3.5 h-3.5" /> View:
             </span>
             <button
               type="button"
               onClick={() => setViewMode('sideBySide')}
-              className={`px-3 py-1.5 text-xs font-mono uppercase tracking-wider transition-colors ${
+              className={`px-3 py-1.5 text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer rounded-xs ${
                 viewMode === 'sideBySide'
                   ? 'bg-[#2B211B] text-[#F4EFE5] font-bold'
-                  : 'bg-transparent text-[#2B211B] hover:bg-[#D8C7A3]'
+                  : 'text-[#2B211B]/70 hover:text-[#2B211B] hover:bg-[#2B211B]/5'
               }`}
             >
               Side-by-Side Scale
@@ -66,10 +67,10 @@ export const PyramidComparison: React.FC<PyramidComparisonProps> = ({ onSelectEv
             <button
               type="button"
               onClick={() => setViewMode('overlay')}
-              className={`px-3 py-1.5 text-xs font-mono uppercase tracking-wider transition-colors ${
+              className={`px-3 py-1.5 text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer rounded-xs ${
                 viewMode === 'overlay'
                   ? 'bg-[#2B211B] text-[#F4EFE5] font-bold'
-                  : 'bg-transparent text-[#2B211B] hover:bg-[#D8C7A3]'
+                  : 'text-[#2B211B]/70 hover:text-[#2B211B] hover:bg-[#2B211B]/5'
               }`}
             >
               Silhouette Overlay
@@ -77,32 +78,44 @@ export const PyramidComparison: React.FC<PyramidComparisonProps> = ({ onSelectEv
             <button
               type="button"
               onClick={() => setViewMode('dataBars')}
-              className={`px-3 py-1.5 text-xs font-mono uppercase tracking-wider transition-colors ${
+              className={`px-3 py-1.5 text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer rounded-xs ${
                 viewMode === 'dataBars'
                   ? 'bg-[#2B211B] text-[#F4EFE5] font-bold'
-                  : 'bg-transparent text-[#2B211B] hover:bg-[#D8C7A3]'
+                  : 'text-[#2B211B]/70 hover:text-[#2B211B] hover:bg-[#2B211B]/5'
               }`}
             >
               Volume & Weight
             </button>
+            <button
+              type="button"
+              onClick={() => setViewMode('photo')}
+              className={`px-3 py-1.5 text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer flex items-center gap-1.5 rounded-xs ${
+                viewMode === 'photo'
+                  ? 'bg-[#8A4F3D] text-[#F4EFE5] font-bold'
+                  : 'text-[#2B211B]/70 hover:text-[#2B211B] hover:bg-[#2B211B]/5'
+              }`}
+            >
+              <Camera className="w-3.5 h-3.5" /> Field Photography
+            </button>
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="text-xs font-mono text-[#2B211B]">Units:</span>
+            <span className="text-xs font-mono text-[#2B211B]/60">Units:</span>
             <button
               type="button"
               onClick={() => setMetricUnit('meters')}
-              className={`px-2 py-1 text-xs font-mono ${
-                metricUnit === 'meters' ? 'bg-[#8A4F3D] text-[#F4EFE5] font-bold' : 'text-[#2B211B]'
+              className={`px-2 py-1 text-xs font-mono cursor-pointer transition-colors ${
+                metricUnit === 'meters' ? 'text-[#8A4F3D] font-bold underline underline-offset-4' : 'text-[#2B211B]/60 hover:text-[#2B211B]'
               }`}
             >
               Metric (m)
             </button>
+            <span className="text-[#2B211B]/30 font-mono">/</span>
             <button
               type="button"
               onClick={() => setMetricUnit('feet')}
-              className={`px-2 py-1 text-xs font-mono ${
-                metricUnit === 'feet' ? 'bg-[#8A4F3D] text-[#F4EFE5] font-bold' : 'text-[#2B211B]'
+              className={`px-2 py-1 text-xs font-mono cursor-pointer transition-colors ${
+                metricUnit === 'feet' ? 'text-[#8A4F3D] font-bold underline underline-offset-4' : 'text-[#2B211B]/60 hover:text-[#2B211B]'
               }`}
             >
               Imperial (ft)
@@ -111,10 +124,10 @@ export const PyramidComparison: React.FC<PyramidComparisonProps> = ({ onSelectEv
         </div>
 
         {/* Dynamic Scale Visualization Stage */}
-        <div className="bg-[#2B211B] text-[#F4EFE5] border-2 border-[#B49A72] p-4 sm:p-6 mb-10 shadow-lg relative overflow-hidden">
-          <div className="flex items-center justify-between border-b border-[#B49A72]/40 pb-3 mb-4 text-xs font-mono text-[#D8C7A3]">
-            <span>GEOMETRIC SCALE VISUALIZER // TRUE RELATIVE ELEVATION</span>
-            <span>BASE LINE ZERO = GIZA BEDROCK DATUM</span>
+        <div className="bg-[#241B16] text-[#F4EFE5] p-4 sm:p-6 mb-10 shadow-xl relative overflow-hidden rounded-xs">
+          <div className="flex items-center justify-between border-b border-[#B49A72]/20 pb-3 mb-4 text-xs font-mono text-[#D8C7A3]">
+            <span className="tracking-wider">GEOMETRIC SCALE VISUALIZER // TRUE RELATIVE ELEVATION</span>
+            <span className="text-[#B49A72]/70 hidden sm:inline">BASE LINE ZERO = GIZA BEDROCK DATUM</span>
           </div>
 
           {/* SVG Canvas for True Scale Comparison */}
@@ -324,10 +337,73 @@ export const PyramidComparison: React.FC<PyramidComparisonProps> = ({ onSelectEv
               </div>
             </div>
           )}
+
+          {/* Field Photography Mode */}
+          {viewMode === 'photo' && (
+            <div className="relative aspect-[21/9] sm:aspect-[2.5/1] overflow-hidden bg-[#171513]">
+              <img
+                src={IMAGES.heroPlateau}
+                alt="Giza Plateau field photograph showing Khufu, Khafre, and Menkaure"
+                className="w-full h-full object-cover object-center"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#171513]/90 via-transparent to-transparent pointer-events-none" />
+              
+              {/* Interactive Monument Markers on the Panorama */}
+              <div className="absolute inset-0 p-4 flex items-end justify-around pb-6 pointer-events-none">
+                {/* Khufu Marker */}
+                <button
+                  type="button"
+                  onClick={() => setSelectedPyramidId('khufu')}
+                  className={`pointer-events-auto px-3 py-1.5 border text-xs font-mono uppercase tracking-wider backdrop-blur-md cursor-pointer transition-all ${
+                    selectedPyramidId === 'khufu'
+                      ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#F4EFE5] shadow-lg scale-105'
+                      : 'bg-[#171513]/80 text-[#D8C7A3] border-[#B49A72]/50 hover:bg-[#171513]'
+                  }`}
+                >
+                  <span className="font-bold block">1. Khufu (Great Pyramid)</span>
+                  <span className="text-[10px] opacity-80">146.6m // 2.58M m³</span>
+                </button>
+
+                {/* Khafre Marker */}
+                <button
+                  type="button"
+                  onClick={() => setSelectedPyramidId('khafre')}
+                  className={`pointer-events-auto px-3 py-1.5 border text-xs font-mono uppercase tracking-wider backdrop-blur-md cursor-pointer transition-all ${
+                    selectedPyramidId === 'khafre'
+                      ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#F4EFE5] shadow-lg scale-105'
+                      : 'bg-[#171513]/80 text-[#D8C7A3] border-[#B49A72]/50 hover:bg-[#171513]'
+                  }`}
+                >
+                  <span className="font-bold block">2. Khafre</span>
+                  <span className="text-[10px] opacity-80">143.5m // Casing Cap</span>
+                </button>
+
+                {/* Menkaure Marker */}
+                <button
+                  type="button"
+                  onClick={() => setSelectedPyramidId('menkaure')}
+                  className={`pointer-events-auto px-3 py-1.5 border text-xs font-mono uppercase tracking-wider backdrop-blur-md cursor-pointer transition-all ${
+                    selectedPyramidId === 'menkaure'
+                      ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#F4EFE5] shadow-lg scale-105'
+                      : 'bg-[#171513]/80 text-[#D8C7A3] border-[#B49A72]/50 hover:bg-[#171513]'
+                  }`}
+                >
+                  <span className="font-bold block">3. Menkaure</span>
+                  <span className="text-[10px] opacity-80">65.5m // Granite Base</span>
+                </button>
+              </div>
+
+              {/* Photo Legend */}
+              <div className="absolute top-2 right-2 bg-[#171513]/80 border border-[#B49A72]/40 px-2.5 py-1 text-[11px] font-mono text-[#D8C7A3] flex items-center gap-1.5">
+                <Camera className="w-3 h-3 text-[#8A4F3D]" /> Click tag to inspect dossier
+              </div>
+            </div>
+          )}
         </div>
 
-        {/* Interactive Selector Tabs */}
-        <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-8">
+        {/* Interactive Selector Tabs (Minimal Underline Bar) */}
+        <div className="grid grid-cols-3 border-b border-[#2B211B]/15 mb-8">
           {PYRAMIDS.map((p) => {
             const isSelected = selectedPyramidId === p.id;
             return (
@@ -335,121 +411,118 @@ export const PyramidComparison: React.FC<PyramidComparisonProps> = ({ onSelectEv
                 key={p.id}
                 type="button"
                 onClick={() => setSelectedPyramidId(p.id)}
-                className={`p-3 sm:p-4 text-left border-2 transition-all cursor-pointer ${
+                className={`py-3 sm:py-4 px-2 text-left cursor-pointer transition-all border-b-2 -mb-px ${
                   isSelected
-                    ? 'border-[#8A4F3D] bg-[#EFE7DA] shadow-md'
-                    : 'border-[#D8C7A3] bg-[#F4EFE5] hover:bg-[#EFE7DA]/60'
+                    ? 'border-[#8A4F3D] text-[#2B211B]'
+                    : 'border-transparent text-[#2B211B]/60 hover:text-[#2B211B]'
                 }`}
               >
-                <div className="flex items-center justify-between">
-                  <span className="font-serif font-bold text-base sm:text-lg text-[#2B211B]">
-                    {p.pharaoh}
-                  </span>
-                  {isSelected && <span className="w-2 h-2 rounded-full bg-[#8A4F3D]" />}
-                </div>
-                <span className="block font-mono text-[11px] text-[#8A4F3D] mt-0.5">
+                <span className="font-serif font-bold text-base sm:text-xl block">
+                  {p.pharaoh}
+                </span>
+                <span className="font-mono text-[11px] text-[#8A4F3D] block mt-0.5">
                   {p.estimatedBCE}
                 </span>
-                <span className="block font-mono text-xs text-[#2B211B]/70 mt-1">
-                  {metricUnit === 'meters' ? `${p.originalHeightM}m Height` : `${mToFt(p.originalHeightM)}ft Height`}
+                <span className="font-mono text-xs text-[#2B211B]/60 block mt-0.5">
+                  {metricUnit === 'meters' ? `${p.originalHeightM}m` : `${mToFt(p.originalHeightM)}ft`}
                 </span>
               </button>
             );
           })}
         </div>
 
-        {/* Selected Pyramid Detailed Architectural Dossier */}
-        <div className="bg-[#EFE7DA] border border-[#B49A72] p-6 sm:p-8">
-          <div className="flex flex-wrap items-start justify-between gap-4 border-b border-[#D8C7A3] pb-4 mb-6">
+        {/* Selected Pyramid Detailed Architectural Dossier (Open Editorial Layout) */}
+        <div className="py-2">
+          <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-[#2B211B]/15 pb-4 mb-8">
             <div>
-              <span className="font-mono text-xs text-[#8A4F3D] uppercase tracking-wider font-bold">
+              <span className="font-mono text-xs text-[#8A4F3D] uppercase tracking-widest block font-bold">
                 Royal Monument Dossier // {selectedPyramid.reignPeriod}
               </span>
-              <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#2B211B] mt-1">
+              <h3 className="text-3xl sm:text-4xl font-serif font-bold text-[#2B211B] mt-1">
                 {selectedPyramid.name}
               </h3>
               <p className="font-serif italic text-sm text-[#8A4F3D] mt-0.5">
                 {selectedPyramid.arabicName}
               </p>
             </div>
-            <div className="text-right">
-              <span className="font-mono text-xs text-[#2B211B] uppercase block">Slope & Seked</span>
-              <span className="font-mono text-sm font-bold text-[#2B211B] block">
+            <div className="text-left sm:text-right">
+              <span className="font-mono text-xs text-[#2B211B]/60 uppercase block">Slope & Seked</span>
+              <span className="font-mono text-base font-bold text-[#2B211B] block">
                 {selectedPyramid.slopeAngleDeg}° ({selectedPyramid.sekedRatio})
               </span>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             {/* Metric Column 1 */}
-            <div className="bg-[#F4EFE5] p-4 border border-[#D8C7A3]">
-              <span className="block font-mono text-xs text-[#8A4F3D] uppercase font-bold mb-1">
+            <div>
+              <span className="block font-mono text-xs text-[#8A4F3D] uppercase tracking-wider font-bold mb-3">
                 Dimensional Footprint
               </span>
-              <div className="space-y-1.5 text-sm text-[#2B211B]">
-                <div className="flex justify-between border-b border-[#D8C7A3]/50 pb-1">
-                  <span className="font-mono text-xs">Original Height:</span>
+              <div className="space-y-2 text-sm text-[#2B211B]">
+                <div className="flex justify-between border-b border-[#2B211B]/10 pb-1.5">
+                  <span className="font-mono text-xs text-[#2B211B]/70">Original Height</span>
                   <span className="font-bold">{metricUnit === 'meters' ? `${selectedPyramid.originalHeightM} m` : `${mToFt(selectedPyramid.originalHeightM)} ft`}</span>
                 </div>
-                <div className="flex justify-between border-b border-[#D8C7A3]/50 pb-1">
-                  <span className="font-mono text-xs">Current Height:</span>
+                <div className="flex justify-between border-b border-[#2B211B]/10 pb-1.5">
+                  <span className="font-mono text-xs text-[#2B211B]/70">Current Height</span>
                   <span className="font-bold">{metricUnit === 'meters' ? `${selectedPyramid.currentHeightM} m` : `${mToFt(selectedPyramid.currentHeightM)} ft`}</span>
                 </div>
-                <div className="flex justify-between border-b border-[#D8C7A3]/50 pb-1">
-                  <span className="font-mono text-xs">Base Length:</span>
+                <div className="flex justify-between border-b border-[#2B211B]/10 pb-1.5">
+                  <span className="font-mono text-xs text-[#2B211B]/70">Base Length</span>
                   <span className="font-bold">{metricUnit === 'meters' ? `${selectedPyramid.baseLengthM} m` : `${mToFt(selectedPyramid.baseLengthM)} ft`}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="font-mono text-xs">Base Area:</span>
+                <div className="flex justify-between pt-0.5">
+                  <span className="font-mono text-xs text-[#2B211B]/70">Base Area</span>
                   <span className="font-bold">{selectedPyramid.baseAreaM2.toLocaleString()} m²</span>
                 </div>
               </div>
             </div>
 
             {/* Metric Column 2 */}
-            <div className="bg-[#F4EFE5] p-4 border border-[#D8C7A3]">
-              <span className="block font-mono text-xs text-[#8A4F3D] uppercase font-bold mb-1">
+            <div>
+              <span className="block font-mono text-xs text-[#8A4F3D] uppercase tracking-wider font-bold mb-3">
                 Materials & Sourcing
               </span>
-              <div className="space-y-2 text-xs text-[#2B211B]">
+              <div className="space-y-3 text-xs text-[#2B211B]">
                 <div>
-                  <span className="font-mono font-bold block">Exterior Casing:</span>
-                  <p>{selectedPyramid.casingMaterial}</p>
+                  <span className="font-mono font-bold text-[#8A4F3D] block mb-0.5">Exterior Casing</span>
+                  <p className="leading-relaxed text-[#2B211B]/85">{selectedPyramid.casingMaterial}</p>
                 </div>
                 <div>
-                  <span className="font-mono font-bold block">Core Masonry:</span>
-                  <p>{selectedPyramid.coreMaterial}</p>
+                  <span className="font-mono font-bold text-[#8A4F3D] block mb-0.5">Core Masonry</span>
+                  <p className="leading-relaxed text-[#2B211B]/85">{selectedPyramid.coreMaterial}</p>
                 </div>
               </div>
             </div>
 
             {/* Metric Column 3 */}
-            <div className="bg-[#F4EFE5] p-4 border border-[#D8C7A3]">
-              <span className="block font-mono text-xs text-[#8A4F3D] uppercase font-bold mb-1">
+            <div>
+              <span className="block font-mono text-xs text-[#8A4F3D] uppercase tracking-wider font-bold mb-3">
                 Internal Architecture
               </span>
-              <p className="text-xs leading-relaxed text-[#2B211B]">
+              <p className="text-xs leading-relaxed text-[#2B211B]/85">
                 {selectedPyramid.internalComplexity}
               </p>
             </div>
           </div>
 
           {/* Architectural Innovations */}
-          <div className="bg-[#F4EFE5] p-4 border border-[#D8C7A3] mb-4">
-            <h4 className="font-mono text-xs font-bold text-[#8A4F3D] uppercase tracking-wider mb-2">
+          <div className="border-t border-[#2B211B]/15 pt-6 mb-4">
+            <h4 className="font-mono text-xs font-bold text-[#8A4F3D] uppercase tracking-wider mb-3">
               Key Engineering Innovations & Distinctives
             </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-[#2B211B]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-[#2B211B]">
               {selectedPyramid.architecturalInnovations.map((item, idx) => (
                 <div key={idx} className="flex items-start gap-2">
-                  <span className="text-[#8A4F3D] font-bold">✓</span>
-                  <span>{item}</span>
+                  <span className="text-[#8A4F3D] font-bold">—</span>
+                  <span className="leading-relaxed">{item}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          <p className="text-xs text-[#2B211B]/80 italic">
+          <p className="text-xs text-[#2B211B]/60 italic mt-4">
             * Note on Casing: Most of Khufu and Menkaure's outer white limestone casing was stripped away by medieval builders to construct the mosques and fortresses of Cairo following the 1303 CE earthquake.
           </p>
         </div>

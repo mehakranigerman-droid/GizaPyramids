@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { KHUFU_CHAMBERS } from '../data/khufuInteriorData';
 import { ChamberItem } from '../types';
 import { EvidenceBadge } from './EvidenceBadge';
-import { Eye, Info, Layers, Compass, HelpCircle } from 'lucide-react';
+import { Eye, Info, Layers, Compass, HelpCircle, Camera } from 'lucide-react';
+import { IMAGES } from '../assets/images';
 
 interface KhufuInteriorProps {
   onSelectEvidence: (claimId: string) => void;
@@ -46,15 +47,15 @@ export const KhufuInterior: React.FC<KhufuInteriorProps> = ({ onSelectEvidence }
           </p>
         </div>
 
-        {/* Filter Toolbar */}
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-6 bg-[#EFE7DA] p-3 border border-[#D8C7A3]">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-xs font-mono font-bold text-[#8A4F3D] mr-2">Highlight:</span>
+        {/* Filter Toolbar (Clean Underline Tabs) */}
+        <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-[#2B211B]/15 pb-3 mb-8">
+          <div className="flex flex-wrap items-baseline gap-6">
+            <span className="text-xs font-mono font-bold text-[#8A4F3D] uppercase tracking-wider">Highlight:</span>
             <button
               type="button"
               onClick={() => setFilterType('all')}
-              className={`px-3 py-1 text-xs font-mono uppercase tracking-wider transition-colors ${
-                filterType === 'all' ? 'bg-[#2B211B] text-[#F4EFE5] font-bold' : 'bg-transparent text-[#2B211B] hover:bg-[#D8C7A3]'
+              className={`pb-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border-b-2 -mb-3.5 ${
+                filterType === 'all' ? 'border-[#8A4F3D] text-[#2B211B] font-bold' : 'border-transparent text-[#2B211B]/60 hover:text-[#2B211B]'
               }`}
             >
               All Features (14)
@@ -62,8 +63,8 @@ export const KhufuInterior: React.FC<KhufuInteriorProps> = ({ onSelectEvidence }
             <button
               type="button"
               onClick={() => setFilterType('known')}
-              className={`px-3 py-1 text-xs font-mono uppercase tracking-wider transition-colors ${
-                filterType === 'known' ? 'bg-[#2B211B] text-[#F4EFE5] font-bold' : 'bg-transparent text-[#2B211B] hover:bg-[#D8C7A3]'
+              className={`pb-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border-b-2 -mb-3.5 ${
+                filterType === 'known' ? 'border-[#8A4F3D] text-[#2B211B] font-bold' : 'border-transparent text-[#2B211B]/60 hover:text-[#2B211B]'
               }`}
             >
               Known Chambers
@@ -71,8 +72,8 @@ export const KhufuInterior: React.FC<KhufuInteriorProps> = ({ onSelectEvidence }
             <button
               type="button"
               onClick={() => setFilterType('detected')}
-              className={`px-3 py-1 text-xs font-mono uppercase tracking-wider transition-colors ${
-                filterType === 'detected' ? 'bg-[#8A4F3D] text-[#F4EFE5] font-bold' : 'bg-transparent text-[#2B211B] hover:bg-[#D8C7A3]'
+              className={`pb-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border-b-2 -mb-3.5 ${
+                filterType === 'detected' ? 'border-[#8A4F3D] text-[#2B211B] font-bold' : 'border-transparent text-[#2B211B]/60 hover:text-[#2B211B]'
               }`}
             >
               ScanPyramids Voids
@@ -80,8 +81,8 @@ export const KhufuInterior: React.FC<KhufuInteriorProps> = ({ onSelectEvidence }
             <button
               type="button"
               onClick={() => setFilterType('shafts')}
-              className={`px-3 py-1 text-xs font-mono uppercase tracking-wider transition-colors ${
-                filterType === 'shafts' ? 'bg-[#2B211B] text-[#F4EFE5] font-bold' : 'bg-transparent text-[#2B211B] hover:bg-[#D8C7A3]'
+              className={`pb-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border-b-2 -mb-3.5 ${
+                filterType === 'shafts' ? 'border-[#8A4F3D] text-[#2B211B] font-bold' : 'border-transparent text-[#2B211B]/60 hover:text-[#2B211B]'
               }`}
             >
               Passages & Shafts
@@ -93,17 +94,17 @@ export const KhufuInterior: React.FC<KhufuInteriorProps> = ({ onSelectEvidence }
           </div>
         </div>
 
-        {/* Interactive Architectural Cutaway Stage */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start mb-10">
+        {/* Interactive Architectural Cutaway Stage (Open Layout) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-10">
           
           {/* SVG Cutaway Diagram (7 Cols) */}
-          <div className="lg:col-span-7 bg-[#2B211B] p-4 sm:p-6 border-2 border-[#B49A72] relative shadow-xl overflow-hidden">
-            <div className="flex items-center justify-between text-xs font-mono text-[#D8C7A3] border-b border-[#B49A72]/30 pb-2 mb-3">
+          <div className="lg:col-span-7 bg-[#1C1613] p-4 sm:p-6 relative overflow-hidden">
+            <div className="flex items-center justify-between text-xs font-mono text-[#D8C7A3]/70 border-b border-[#B49A72]/20 pb-2 mb-4">
               <span>KHUFU CROSS-SECTION (NORTH → SOUTH)</span>
               <span>DATUM 0.0m = BEDROCK</span>
             </div>
 
-            <div className="relative w-full aspect-[4/3] bg-[#171513] border border-[#B49A72]/20">
+            <div className="relative w-full aspect-[4/3] bg-[#171513]">
               <svg viewBox="0 0 800 600" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
                 <defs>
                   {/* Masonry Pattern */}
@@ -252,9 +253,9 @@ export const KhufuInterior: React.FC<KhufuInteriorProps> = ({ onSelectEvidence }
             </div>
           </div>
 
-          {/* Chamber Inspector Dossier Card (5 Cols) */}
-          <div className="lg:col-span-5 bg-[#EFE7DA] border-2 border-[#B49A72] p-6 shadow-md text-[#171513]">
-            <div className="border-b border-[#D8C7A3] pb-4 mb-4">
+          {/* Chamber Inspector Dossier (Open Editorial Layout) */}
+          <div className="lg:col-span-5 text-[#171513]">
+            <div className="border-b border-[#2B211B]/20 pb-4 mb-4">
               <div className="flex items-center justify-between gap-2 mb-1">
                 <span className="font-mono text-xs uppercase font-bold text-[#8A4F3D]">
                   {selectedChamber.status.replace('_', ' ')}
@@ -266,45 +267,71 @@ export const KhufuInterior: React.FC<KhufuInteriorProps> = ({ onSelectEvidence }
               </h3>
             </div>
 
-            <div className="space-y-3 text-xs font-mono text-[#2B211B] mb-5">
-              <div className="flex justify-between border-b border-[#D8C7A3]/60 pb-1">
+            <div className="space-y-2 text-xs font-mono text-[#2B211B] mb-5">
+              <div className="flex justify-between border-b border-[#2B211B]/10 pb-1">
                 <span className="font-bold">Elevation:</span>
                 <span>{selectedChamber.elevationMeters > 0 ? `+${selectedChamber.elevationMeters}m above bedrock` : `${selectedChamber.elevationMeters}m below bedrock`}</span>
               </div>
-              <div className="flex justify-between border-b border-[#D8C7A3]/60 pb-1">
+              <div className="flex justify-between border-b border-[#2B211B]/10 pb-1">
                 <span className="font-bold">Dimensions:</span>
                 <span className="text-right">{selectedChamber.dimensions}</span>
               </div>
-              <div className="flex justify-between border-b border-[#D8C7A3]/60 pb-1">
+              <div className="flex justify-between border-b border-[#2B211B]/10 pb-1">
                 <span className="font-bold">Materials:</span>
                 <span className="text-right">{selectedChamber.material}</span>
               </div>
             </div>
 
-            <div className="mb-4">
-              <h5 className="font-mono text-xs font-bold text-[#8A4F3D] uppercase tracking-wider mb-1">
+            {/* Visual Photographic Survey Embed */}
+            <div className="mb-5 overflow-hidden">
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <img
+                  src={IMAGES.grandGallery}
+                  alt="Interior photograph looking up the soaring corbelled vault of the Grand Gallery"
+                  className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#171513]/90 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute bottom-2 left-3 right-3 flex items-center justify-between text-[11px] font-mono text-[#D8C7A3]">
+                  <span className="bg-[#171513]/90 px-2 py-0.5 flex items-center gap-1.5">
+                    <Camera className="w-3 h-3 text-[#8A4F3D]" /> Grand Gallery Corbelled Vault (8.6m)
+                  </span>
+                  <span className="text-[#D8C7A3]/90 bg-[#171513]/80 px-2 py-0.5">
+                    26° Ascending Slope
+                  </span>
+                </div>
+              </div>
+              <p className="text-[11px] font-mono text-[#2B211B]/70 pt-2 leading-relaxed">
+                {selectedChamber.id === 'grand-gallery'
+                  ? 'Active photographic survey: 47-meter ascending corbelled gallery with 8 overlapping tiers of limestone.'
+                  : 'Architectural Context: Grand Gallery interior masonry ascending toward the King\'s Chamber.'}
+              </p>
+            </div>
+
+            <div className="border-t border-[#2B211B]/15 pt-4 mb-4">
+              <h5 className="font-mono text-xs font-bold text-[#8A4F3D] uppercase tracking-wider mb-1.5">
                 Architectural Description
               </h5>
-              <p className="text-sm text-[#171513] leading-relaxed bg-[#F4EFE5] p-3.5 border border-[#D8C7A3]">
+              <p className="text-sm text-[#171513]/90 leading-relaxed">
                 {selectedChamber.description}
               </p>
             </div>
 
-            <div>
-              <h5 className="font-mono text-xs font-bold text-[#2B211B] uppercase tracking-wider mb-1">
+            <div className="border-t border-[#2B211B]/15 pt-4">
+              <h5 className="font-mono text-xs font-bold text-[#2B211B] uppercase tracking-wider mb-1.5">
                 Archaeological Discovery & Context
               </h5>
-              <p className="text-xs text-[#2B211B]/90 leading-relaxed bg-[#F4EFE5] p-3 border border-[#D8C7A3]">
+              <p className="text-xs text-[#2B211B]/80 leading-relaxed">
                 {selectedChamber.archaeologicalDiscovery}
               </p>
             </div>
 
             {selectedChamber.debatedAspects && (
-              <div className="mt-4 pt-3 border-t border-[#D8C7A3]">
+              <div className="mt-4 pt-3 border-t border-[#2B211B]/15">
                 <span className="font-mono text-xs font-bold text-amber-800 uppercase block mb-1">
                   ⚠ Unresolved Question / Debated Aspect:
                 </span>
-                <p className="text-xs text-[#171513] italic bg-amber-950/10 p-2.5 border border-amber-700/30">
+                <p className="text-xs text-[#171513] italic border-l-2 border-amber-700/60 pl-3 py-1">
                   {selectedChamber.debatedAspects}
                 </p>
               </div>

@@ -70,20 +70,20 @@ export const EpistemicMatrix: React.FC<EpistemicMatrixProps> = ({ onSelectRecord
           </p>
         </div>
 
-        {/* Epistemic Distribution Counters */}
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-8">
+        {/* Epistemic Distribution Counters (Open Metric Bars) */}
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-6 border-b border-[#D8C7A3] pb-8 mb-8">
           <button
             type="button"
             onClick={() => setSelectedLevel(selectedLevel === 'ESTABLISHED' ? 'ALL' : 'ESTABLISHED')}
-            className={`p-3.5 border text-left transition-all cursor-pointer ${
+            className={`pt-3 text-left transition-all cursor-pointer border-t-2 ${
               selectedLevel === 'ESTABLISHED'
-                ? 'border-emerald-700 bg-emerald-950/20 shadow-md ring-2 ring-emerald-600'
-                : 'border-emerald-800/40 bg-emerald-950/5 hover:bg-emerald-950/10'
+                ? 'border-emerald-600'
+                : 'border-transparent hover:border-emerald-600/40'
             }`}
           >
             <div className="flex items-center justify-between">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_6px_#22c55e]" />
-              <span className="font-serif text-2xl font-bold text-emerald-800">{counts.ESTABLISHED}</span>
+              <span className="w-2 h-2 rounded-full bg-emerald-500" />
+              <span className="font-serif text-3xl font-bold text-emerald-800">{counts.ESTABLISHED}</span>
             </div>
             <span className="font-mono text-xs uppercase font-bold text-emerald-900 block mt-1">
               Established
@@ -94,15 +94,15 @@ export const EpistemicMatrix: React.FC<EpistemicMatrixProps> = ({ onSelectRecord
           <button
             type="button"
             onClick={() => setSelectedLevel(selectedLevel === 'SUPPORTED' ? 'ALL' : 'SUPPORTED')}
-            className={`p-3.5 border text-left transition-all cursor-pointer ${
+            className={`pt-3 text-left transition-all cursor-pointer border-t-2 ${
               selectedLevel === 'SUPPORTED'
-                ? 'border-sky-700 bg-sky-950/20 shadow-md ring-2 ring-sky-600'
-                : 'border-sky-800/40 bg-sky-950/5 hover:bg-sky-950/10'
+                ? 'border-sky-600'
+                : 'border-transparent hover:border-sky-600/40'
             }`}
           >
             <div className="flex items-center justify-between">
-              <span className="w-2.5 h-2.5 rounded-full bg-sky-400 shadow-[0_0_6px_#38bdf8]" />
-              <span className="font-serif text-2xl font-bold text-sky-800">{counts.SUPPORTED}</span>
+              <span className="w-2 h-2 rounded-full bg-sky-500" />
+              <span className="font-serif text-3xl font-bold text-sky-800">{counts.SUPPORTED}</span>
             </div>
             <span className="font-mono text-xs uppercase font-bold text-sky-900 block mt-1">
               Supported
@@ -113,15 +113,15 @@ export const EpistemicMatrix: React.FC<EpistemicMatrixProps> = ({ onSelectRecord
           <button
             type="button"
             onClick={() => setSelectedLevel(selectedLevel === 'DEBATED' ? 'ALL' : 'DEBATED')}
-            className={`p-3.5 border text-left transition-all cursor-pointer ${
+            className={`pt-3 text-left transition-all cursor-pointer border-t-2 ${
               selectedLevel === 'DEBATED'
-                ? 'border-amber-700 bg-amber-950/20 shadow-md ring-2 ring-amber-600'
-                : 'border-amber-800/40 bg-amber-950/5 hover:bg-amber-950/10'
+                ? 'border-amber-600'
+                : 'border-transparent hover:border-amber-600/40'
             }`}
           >
             <div className="flex items-center justify-between">
-              <span className="w-2.5 h-2.5 rounded-full bg-amber-400 shadow-[0_0_6px_#eab308]" />
-              <span className="font-serif text-2xl font-bold text-amber-800">{counts.DEBATED}</span>
+              <span className="w-2 h-2 rounded-full bg-amber-500" />
+              <span className="font-serif text-3xl font-bold text-amber-800">{counts.DEBATED}</span>
             </div>
             <span className="font-mono text-xs uppercase font-bold text-amber-900 block mt-1">
               Debated
@@ -132,15 +132,15 @@ export const EpistemicMatrix: React.FC<EpistemicMatrixProps> = ({ onSelectRecord
           <button
             type="button"
             onClick={() => setSelectedLevel(selectedLevel === 'SPECULATIVE' ? 'ALL' : 'SPECULATIVE')}
-            className={`p-3.5 border text-left transition-all cursor-pointer ${
+            className={`pt-3 text-left transition-all cursor-pointer border-t-2 ${
               selectedLevel === 'SPECULATIVE'
-                ? 'border-rose-700 bg-rose-950/20 shadow-md ring-2 ring-rose-600'
-                : 'border-rose-800/40 bg-rose-950/5 hover:bg-rose-950/10'
+                ? 'border-rose-600'
+                : 'border-transparent hover:border-rose-600/40'
             }`}
           >
             <div className="flex items-center justify-between">
-              <span className="w-2.5 h-2.5 rounded-full bg-rose-500 shadow-[0_0_6px_#ef4444]" />
-              <span className="font-serif text-2xl font-bold text-rose-800">{counts.SPECULATIVE}</span>
+              <span className="w-2 h-2 rounded-full bg-rose-500" />
+              <span className="font-serif text-3xl font-bold text-rose-800">{counts.SPECULATIVE}</span>
             </div>
             <span className="font-mono text-xs uppercase font-bold text-rose-900 block mt-1">
               Speculative
@@ -151,15 +151,15 @@ export const EpistemicMatrix: React.FC<EpistemicMatrixProps> = ({ onSelectRecord
           <button
             type="button"
             onClick={() => setSelectedLevel(selectedLevel === 'UNKNOWN' ? 'ALL' : 'UNKNOWN')}
-            className={`p-3.5 border text-left transition-all cursor-pointer ${
+            className={`pt-3 text-left transition-all cursor-pointer border-t-2 ${
               selectedLevel === 'UNKNOWN'
-                ? 'border-stone-700 bg-stone-900/20 shadow-md ring-2 ring-stone-600'
-                : 'border-stone-600/40 bg-stone-900/5 hover:bg-stone-900/10'
+                ? 'border-stone-600'
+                : 'border-transparent hover:border-stone-600/40'
             }`}
           >
             <div className="flex items-center justify-between">
-              <span className="w-2.5 h-2.5 rounded-full bg-stone-400 shadow-[0_0_6px_#a8a29e]" />
-              <span className="font-serif text-2xl font-bold text-stone-700">{counts.UNKNOWN}</span>
+              <span className="w-2 h-2 rounded-full bg-stone-500" />
+              <span className="font-serif text-3xl font-bold text-stone-700">{counts.UNKNOWN}</span>
             </div>
             <span className="font-mono text-xs uppercase font-bold text-stone-800 block mt-1">
               Unknown
@@ -168,17 +168,17 @@ export const EpistemicMatrix: React.FC<EpistemicMatrixProps> = ({ onSelectRecord
           </button>
         </div>
 
-        {/* Search & Category Filter Bar */}
-        <div className="flex flex-col md:flex-row gap-3 mb-6 bg-[#EFE7DA] p-3.5 border border-[#D8C7A3]">
+        {/* Search & Category Filter Bar (Open Clean Layout) */}
+        <div className="flex flex-col sm:flex-row gap-4 mb-8 pb-4 border-b border-[#D8C7A3]">
           {/* Search Input */}
           <div className="relative flex-1">
-            <Search className="w-4 h-4 absolute left-3 top-3 text-[#8A4F3D]" />
+            <Search className="w-4 h-4 absolute left-0 top-2.5 text-[#8A4F3D]" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search claims, evidence, or keywords..."
-              className="w-full pl-9 pr-4 py-2 bg-[#F4EFE5] border border-[#D8C7A3] text-xs font-mono text-[#171513] placeholder-[#171513]/50 focus:outline-none focus:border-[#8A4F3D]"
+              className="w-full pl-6 pr-4 py-2 bg-transparent border-b border-[#D8C7A3] text-xs font-mono text-[#171513] placeholder-[#171513]/40 focus:outline-none focus:border-[#8A4F3D]"
             />
           </div>
 
@@ -190,26 +190,26 @@ export const EpistemicMatrix: React.FC<EpistemicMatrixProps> = ({ onSelectRecord
             <select
               value={selectedTopic}
               onChange={(e) => setSelectedTopic(e.target.value)}
-              className="px-3 py-2 bg-[#F4EFE5] border border-[#D8C7A3] text-xs font-mono text-[#171513] focus:outline-none focus:border-[#8A4F3D]"
+              className="py-2 bg-transparent border-b border-[#D8C7A3] text-xs font-mono text-[#171513] focus:outline-none focus:border-[#8A4F3D] cursor-pointer"
             >
               {topics.map((t) => (
-                <option key={t} value={t}>{t}</option>
+                <option key={t} value={t} className="bg-[#F4EFE5]">{t}</option>
               ))}
             </select>
           </div>
         </div>
 
-        {/* Claims Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+        {/* Claims Cards Grid (Open Border-T Rail) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
           {filteredRecords.map((record) => (
             <div
               key={record.id}
               onClick={() => onSelectRecord(record)}
-              className="bg-[#EFE7DA] border border-[#B49A72] p-5 flex flex-col justify-between hover:border-[#8A4F3D] hover:shadow-md transition-all cursor-pointer group"
+              className="border-t border-[#D8C7A3] pt-4 flex flex-col justify-between cursor-pointer group hover:border-[#8A4F3D] transition-colors"
             >
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <span className="font-mono text-[10px] text-[#8A4F3D] uppercase font-bold">
+                  <span className="font-mono text-[10px] text-[#8A4F3D] uppercase font-bold tracking-wider">
                     {record.topic}
                   </span>
                   <EvidenceBadge level={record.level} size="sm" />
@@ -217,12 +217,12 @@ export const EpistemicMatrix: React.FC<EpistemicMatrixProps> = ({ onSelectRecord
                 <h4 className="font-serif font-bold text-base text-[#2B211B] group-hover:text-[#8A4F3D] transition-colors mb-2">
                   {record.claim}
                 </h4>
-                <p className="text-xs text-[#171513]/80 leading-relaxed mb-4 line-clamp-3">
+                <p className="text-xs text-[#171513]/75 leading-relaxed mb-4 line-clamp-3">
                   {record.summary}
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-[#D8C7A3] flex items-center justify-between text-[11px] font-mono text-[#8A4F3D]">
+              <div className="pt-3 border-t border-[#D8C7A3]/40 flex items-center justify-between text-[11px] font-mono text-[#8A4F3D]">
                 <span>Inspect Evidence Sources →</span>
                 <span className="text-[#2B211B]/60">{record.primaryEvidence.length} primary proofs</span>
               </div>
@@ -231,7 +231,7 @@ export const EpistemicMatrix: React.FC<EpistemicMatrixProps> = ({ onSelectRecord
         </div>
 
         {filteredRecords.length === 0 && (
-          <div className="text-center py-12 bg-[#EFE7DA] border border-[#D8C7A3] font-mono text-xs text-[#2B211B]">
+          <div className="text-center py-12 font-mono text-xs text-[#2B211B]/70 border-t border-[#D8C7A3]">
             No claims matched your search criteria. Reset filters to view all entries.
           </div>
         )}
