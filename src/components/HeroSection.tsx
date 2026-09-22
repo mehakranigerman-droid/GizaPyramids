@@ -3,21 +3,23 @@ import {
   ArrowDown, 
   ShieldAlert, 
   Eye, 
-  Camera, 
   Compass, 
   Sparkles, 
   Moon, 
   Sun, 
   ChevronRight,
-  MapPin
+  MapPin,
+  Layers,
+  History
 } from 'lucide-react';
 import { IMAGES } from '../assets/images';
-import { CinematicMonumentBackground } from './CinematicMonumentBackground';
 
 interface HeroSectionProps {
   onBeginExploring: () => void;
   onOpenLegend: () => void;
 }
+
+export type EpochMode = 'golden' | 'ancient' | 'celestial';
 
 interface Hotspot {
   id: string;
@@ -32,7 +34,7 @@ interface Hotspot {
   chapterLabel: string;
 }
 
-const HOTSPOTS: Hotspot[] = [
+const GOLDEN_HOTSPOTS: Hotspot[] = [
   {
     id: 'khufu',
     title: 'The Great Pyramid',
@@ -95,11 +97,114 @@ const HOTSPOTS: Hotspot[] = [
   },
 ];
 
-export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOpenLegend }) => {
-  const [activeHotspotId, setActiveHotspotId] = useState<string | null>('khufu');
-  const [viewMode, setViewMode] = useState<'dusk' | 'celestial'>('dusk');
+const ANCIENT_HOTSPOTS: Hotspot[] = [
+  {
+    id: 'electrum_capstone',
+    title: 'Electrum Pyramidion (Benbenet)',
+    ancientName: 'Benbenet',
+    translation: 'The Primal Mound of Creation',
+    pharaoh: 'Khufu • 4th Dynasty',
+    x: 62,
+    y: 28,
+    keyFact: 'Solid electrum (gold-silver alloy) capstone that caught the first rays of dawn, acting as a beacon visible for 30 km down the Nile valley.',
+    targetSectionId: 'pyramids',
+    chapterLabel: 'Chapter 01: Khufu Apex Anatomy',
+  },
+  {
+    id: 'tura_casing',
+    title: 'Polished Tura Limestone Envelope',
+    ancientName: 'Inbu-Hedj',
+    translation: 'The White Wall Facade',
+    pharaoh: 'Royal Quarrymen at Tura',
+    x: 52,
+    y: 52,
+    keyFact: 'Over 115,000 precision-cut white casing blocks fitted with joint clearances under 0.2mm, polished to a mirror finish that reflected solar heat.',
+    targetSectionId: 'building',
+    chapterLabel: 'Chapter 03: Precision Masonry',
+  },
+  {
+    id: 'nile_ahramat',
+    title: 'Ahramat Branch & Royal Port',
+    ancientName: 'Iteru Ahramat',
+    translation: 'The River of the Pyramids',
+    pharaoh: 'Old Kingdom Navigation Fleet',
+    x: 78,
+    y: 72,
+    keyFact: 'A 64-kilometer navigable waterway passing directly alongside the pyramid plateau, carrying tens of thousands of tons of high-grade stone.',
+    targetSectionId: 'landscape',
+    chapterLabel: 'Chapter 04: The Lost Riverway',
+  },
+  {
+    id: 'causeway_khafre',
+    title: 'Khafre Causeway & Harbor Temple',
+    ancientName: 'Wat-Netjer',
+    translation: 'The Sacred Way',
+    pharaoh: 'Khafre • c. 2540 BCE',
+    x: 35,
+    y: 65,
+    keyFact: 'A 494m covered limestone processional causeway connecting the monumental Valley Temple to the Upper Mortuary Sanctuary.',
+    targetSectionId: 'sphinx',
+    chapterLabel: 'Chapter 05: Valley Complex',
+  },
+];
 
-  const activeHotspot = HOTSPOTS.find((h) => h.id === activeHotspotId) || HOTSPOTS[0];
+const CELESTIAL_HOTSPOTS: Hotspot[] = [
+  {
+    id: 'north_meridian',
+    title: 'True Astronomical North Meridian',
+    ancientName: 'Ikhemu-sek',
+    translation: 'The Indestructible Circumpolar Stars',
+    pharaoh: 'Aligned using Kochab & Mizar',
+    x: 64,
+    y: 35,
+    keyFact: 'Aligned with True North to within 3 minutes and 38 seconds of arc (1/15th of a degree), an accuracy exceeding modern architectural tolerances.',
+    targetSectionId: 'astronomy',
+    chapterLabel: 'Chapter 06: Archaeoastronomy',
+  },
+  {
+    id: 'orion_correlation',
+    title: 'Orion Belt Meridian Transit',
+    ancientName: 'Sah',
+    translation: 'The Celestial Embodiment of Osiris',
+    pharaoh: 'Bauwals Archaeoastronomy Theory',
+    x: 38,
+    y: 22,
+    keyFact: 'The three pyramids align along a diagonal vector mirroring the relative angles and minor offset of Mintaka in Orion’s Belt.',
+    targetSectionId: 'astronomy',
+    chapterLabel: 'Chapter 07: Orion Correlation',
+  },
+  {
+    id: 'seked_slope',
+    title: 'The Golden Seked (51° 50′ 40″)',
+    ancientName: 'Seked 5½ Palms',
+    translation: 'The Sacred Rise-to-Run Ratio',
+    pharaoh: 'Rhind Mathematical Papyrus',
+    x: 55,
+    y: 56,
+    keyFact: 'A rise of 1 cubit (28 digits) for every 22 digits run, producing a perimeter-to-height ratio equal to 2π with remarkable mathematical harmony.',
+    targetSectionId: 'pyramids',
+    chapterLabel: 'Chapter 01: Geometric Proofs',
+  },
+];
+
+export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOpenLegend }) => {
+  const [epoch, setEpoch] = useState<EpochMode>('golden');
+  const [activeHotspotId, setActiveHotspotId] = useState<string | null>('khufu');
+  const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
+
+  const currentHotspots = 
+    epoch === 'ancient' ? ANCIENT_HOTSPOTS :
+    epoch === 'celestial' ? CELESTIAL_HOTSPOTS :
+    GOLDEN_HOTSPOTS;
+
+  const activeHotspot = currentHotspots.find((h) => h.id === activeHotspotId) || currentHotspots[0];
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const nx = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+    const ny = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+    setMouseOffset({ x: nx * 6, y: ny * 4 });
+  };
 
   const scrollToSection = (sectionId: string) => {
     const el = document.getElementById(sectionId);
@@ -111,95 +216,198 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOp
   return (
     <section 
       id="hero" 
-      className="relative min-h-[98vh] flex flex-col justify-between bg-[#100D0B] text-[#F4EFE5] overflow-hidden pt-10 sm:pt-14 pb-12 border-b-2 border-[#8A4F3D]/50"
+      onMouseMove={handleMouseMove}
+      className="relative min-h-[98vh] flex flex-col justify-between bg-[#15110E] text-[#F4EFE5] overflow-hidden pt-10 sm:pt-14 pb-12 border-b-2 border-[#8A4F3D]/50"
     >
-      {/* Cinematic Monument Animated Background — "Light, Time & Shadow" */}
-      <CinematicMonumentBackground />
+      {/* ================= POWERFUL FULL-BLEED MONUMENTAL BACKGROUND ================= */}
+      <div 
+        className="absolute inset-0 pointer-events-none overflow-hidden select-none"
+        style={{
+          transform: `translate3d(${mouseOffset.x}px, ${mouseOffset.y}px, 0) scale(1.05)`,
+          transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+        }}
+      >
+        {/* State 1: Present Day Golden Hour Majesty */}
+        <div 
+          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            epoch === 'golden' ? 'opacity-85' : 'opacity-0'
+          }`}
+        >
+          <img
+            src={IMAGES.monumentGoldenHour}
+            alt=""
+            className="w-full h-full object-cover object-[center_35%]"
+            referrerPolicy="no-referrer"
+          />
+          {/* Warm Amber Desert Vignette & Contrast Gradients */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#15110E] via-[#15110E]/60 to-[#15110E]/80" />
+          <div className="absolute inset-0 bg-radial-gradient from-transparent via-[#15110E]/40 to-[#15110E]" />
+        </div>
+
+        {/* State 2: 2560 BCE Old Kingdom Reconstruction (Tura Limestone & Electrum Pyramidion) */}
+        <div 
+          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            epoch === 'ancient' ? 'opacity-90' : 'opacity-0'
+          }`}
+        >
+          <img
+            src={IMAGES.ancientReconstruction}
+            alt=""
+            className="w-full h-full object-cover object-[center_35%]"
+            referrerPolicy="no-referrer"
+          />
+          {/* Dawn Radiance & Atmospheric Scrim */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#15110E] via-[#15110E]/50 to-[#15110E]/75" />
+          <div className="absolute inset-0 bg-radial-gradient from-transparent via-[#15110E]/35 to-[#15110E]" />
+          
+          {/* Subtle Radiant Glimmer over the Khufu Apex */}
+          <div className="absolute top-[32%] left-[63%] -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-[#E2D2B4]/25 rounded-full blur-2xl pointer-events-none" />
+        </div>
+
+        {/* State 3: Sah Midnight Celestial Horizon (Orion & Milky Way) */}
+        <div 
+          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            epoch === 'celestial' ? 'opacity-90' : 'opacity-0'
+          }`}
+        >
+          <img
+            src={IMAGES.nightCelestial}
+            alt=""
+            className="w-full h-full object-cover object-[center_30%]"
+            referrerPolicy="no-referrer"
+          />
+          {/* Deep Indigo Night Scrim */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#15110E] via-[#15110E]/60 to-[#15110E]/85" />
+          <div className="absolute inset-0 bg-radial-gradient from-transparent via-[#0B0907]/45 to-[#15110E]" />
+        </div>
+
+        {/* High-Precision Archaeological Surveyor Grid Overlay */}
+        <div className="absolute inset-0 bg-surveyor-grid-dark opacity-35 mix-blend-overlay pointer-events-none" />
+      </div>
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 z-10 w-full">
         {/* Top Survey Header Coordinates */}
-        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#B49A72]/20 pb-3 mb-8 text-[11px] font-mono tracking-widest text-[#D8C7A3]/70">
+        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#B49A72]/20 pb-3 mb-6 text-[11px] font-mono tracking-widest text-[#D8C7A3]/75 backdrop-blur-xs">
           <div className="flex items-center gap-2">
             <Compass className="w-3.5 h-3.5 text-[#8A4F3D]" />
             <span>GIZA NECROPOLIS // 29°58′45″N 31°08′03″E</span>
           </div>
           <div className="flex items-center gap-4 text-[#D8C7A3]/60">
-            <span>4TH DYNASTY OLD KINGDOM</span>
+            <span className="text-[#E2D2B4]">
+              EPOCH: {epoch === 'ancient' ? '2560 BCE OLD KINGDOM' : epoch === 'celestial' ? 'VERNAL MERIDIAN TRANSIT' : 'PRESENT SURVEY'}
+            </span>
             <span className="hidden sm:inline-block">DATUM: C. 2570 BCE</span>
           </div>
         </div>
 
         {/* Monumental Headline */}
-        <div className="text-center max-w-4xl mx-auto mb-5">
-          <span className="text-xs font-mono tracking-[0.25em] text-[#8A4F3D] uppercase font-bold block mb-2">
+        <div className="text-center max-w-4xl mx-auto mb-4">
+          <span className="text-xs font-mono tracking-[0.28em] text-[#8A4F3D] uppercase font-bold block mb-2 drop-shadow-sm">
             An Interactive Archaeological Investigation
           </span>
-          <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tight text-[#F4EFE5] uppercase leading-none mb-3">
+          <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tight text-[#F4EFE5] uppercase leading-none mb-3 drop-shadow-md">
             Giza Pyramids
           </h1>
-          <p className="font-serif text-lg sm:text-xl md:text-2xl text-[#D8C7A3] font-light tracking-wide">
+          <p className="font-serif text-lg sm:text-xl md:text-2xl text-[#E2D2B4] font-light tracking-wide drop-shadow-sm">
             Three monuments. One sacred landscape. 4,500 years of inquiry.
           </p>
         </div>
 
-        {/* Thematic Axiom Block in Cormorant Garamond */}
-        <div className="max-w-3xl mx-auto mb-8 text-center px-4">
+        {/* Thematic Axiom Block */}
+        <div className="max-w-3xl mx-auto mb-6 text-center px-4">
           <p className="font-serif-text text-sm sm:text-base text-[#D8C7A3]/90 italic leading-relaxed">
             "Giza is not simply a collection of three enormous pyramids. It is a complex landscape where architecture, engineering, logistics, astronomy, landscape, belief and unanswered questions intersect."
           </p>
         </div>
 
-        {/* Interactive Living Panorama (Cover Centerpiece) */}
-        <div className="relative max-w-5xl mx-auto mb-8">
-          {/* Panorama View Controls Bar */}
-          <div className="flex items-center justify-end border-b border-[#B49A72]/30 pb-2 mb-2 text-xs font-mono">
-            {/* Mode Switcher: Sunset Survey vs. Celestial Meridian */}
-            <div className="flex items-center gap-1 bg-[#241B16] p-0.5 border border-[#B49A72]/30">
-              <button
-                type="button"
-                onClick={() => setViewMode('dusk')}
-                className={`px-2.5 py-1 flex items-center gap-1.5 transition-colors cursor-pointer text-[11px] ${
-                  viewMode === 'dusk' 
-                    ? 'bg-[#8A4F3D] text-[#F4EFE5] font-bold' 
-                    : 'text-[#D8C7A3]/70 hover:text-[#F4EFE5]'
-                }`}
-              >
-                <Sun className="w-3 h-3" />
-                <span>Sunset Survey</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => setViewMode('celestial')}
-                className={`px-2.5 py-1 flex items-center gap-1.5 transition-colors cursor-pointer text-[11px] ${
-                  viewMode === 'celestial' 
-                    ? 'bg-[#8A4F3D] text-[#F4EFE5] font-bold' 
-                    : 'text-[#D8C7A3]/70 hover:text-[#F4EFE5]'
-                }`}
-              >
-                <Moon className="w-3 h-3" />
-                <span>Midnight Meridian</span>
-              </button>
-            </div>
+        {/* ================= ORIGINAL EPOCH HORIZON CONTROLLER ================= */}
+        <div className="flex flex-col items-center justify-center mb-8">
+          <div className="flex flex-wrap items-center justify-center gap-1.5 p-1 bg-[#1C1613]/90 border border-[#B49A72]/40 rounded-none shadow-2xl backdrop-blur-md">
+            <button
+              type="button"
+              onClick={() => {
+                setEpoch('golden');
+                setActiveHotspotId('khufu');
+              }}
+              className={`px-3 py-1.5 flex items-center gap-2 text-xs font-mono tracking-wider uppercase transition-all cursor-pointer ${
+                epoch === 'golden'
+                  ? 'bg-[#8A4F3D] text-[#F4EFE5] font-bold shadow-md'
+                  : 'text-[#D8C7A3]/75 hover:text-[#F4EFE5] hover:bg-[#281F1A]'
+              }`}
+            >
+              <Sun className="w-3.5 h-3.5 text-[#E2D2B4]" />
+              <span>Golden Hour // Present</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                setEpoch('ancient');
+                setActiveHotspotId('electrum_capstone');
+              }}
+              className={`px-3 py-1.5 flex items-center gap-2 text-xs font-mono tracking-wider uppercase transition-all cursor-pointer ${
+                epoch === 'ancient'
+                  ? 'bg-[#8A4F3D] text-[#F4EFE5] font-bold shadow-md'
+                  : 'text-[#D8C7A3]/75 hover:text-[#F4EFE5] hover:bg-[#281F1A]'
+              }`}
+            >
+              <Sparkles className="w-3.5 h-3.5 text-[#E2D2B4]" />
+              <span>2560 BCE // Khufu Horizon</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                setEpoch('celestial');
+                setActiveHotspotId('north_meridian');
+              }}
+              className={`px-3 py-1.5 flex items-center gap-2 text-xs font-mono tracking-wider uppercase transition-all cursor-pointer ${
+                epoch === 'celestial'
+                  ? 'bg-[#8A4F3D] text-[#F4EFE5] font-bold shadow-md'
+                  : 'text-[#D8C7A3]/75 hover:text-[#F4EFE5] hover:bg-[#281F1A]'
+              }`}
+            >
+              <Moon className="w-3.5 h-3.5 text-[#E2D2B4]" />
+              <span>Sah Midnight // Orion</span>
+            </button>
           </div>
 
+          {/* Epoch Archaeology Subtitle Badge */}
+          <div className="mt-2 text-[11px] font-mono text-[#D8C7A3]/85 tracking-wide text-center px-4">
+            {epoch === 'golden' && (
+              <span>SURVEY MODE: 4,500-year weathered limestone megaliths under raking equinox desert sunlight</span>
+            )}
+            {epoch === 'ancient' && (
+              <span>RECONSTRUCTION: Mirror-polished white Tura casing stones with a solid electrum pyramidion</span>
+            )}
+            {epoch === 'celestial' && (
+              <span>ASTRONOMY: Orion belt alignment & Kochab-Mizar polar transit (True North dev. 3′ 38″)</span>
+            )}
+          </div>
+        </div>
+
+        {/* ================= INTERACTIVE LIVING PANORAMA (SYNCHRONIZED STAGE) ================= */}
+        <div className="relative max-w-5xl mx-auto mb-8 shadow-2xl">
           {/* Panoramic Stage Container */}
-          <div className="relative aspect-[21/10] sm:aspect-[2.3/1] overflow-hidden bg-[#171513] border border-[#B49A72]/30 group">
-            {/* Photographic Layer */}
+          <div className="relative aspect-[21/10] sm:aspect-[2.3/1] overflow-hidden bg-[#171513] border border-[#B49A72]/40 group">
+            {/* Photographic Layer Synchronized to Selected Epoch */}
             <img
-              src={IMAGES.heroPlateau}
+              src={
+                epoch === 'ancient'
+                  ? IMAGES.ancientReconstruction
+                  : epoch === 'celestial'
+                  ? IMAGES.nightCelestial
+                  : IMAGES.monumentGoldenHour
+              }
               alt="Panoramic survey of the Giza Plateau"
-              className={`w-full h-full object-cover object-center transition-all duration-700 ${
-                viewMode === 'celestial' 
-                  ? 'brightness-40 contrast-125 saturate-50 hue-rotate-15' 
-                  : 'brightness-95 contrast-105'
-              }`}
+              className="w-full h-full object-cover object-center transition-all duration-700 brightness-95 contrast-105"
               referrerPolicy="no-referrer"
             />
 
             {/* Celestial Meridian Overlay (When in Celestial View) */}
-            {viewMode === 'celestial' && (
+            {epoch === 'celestial' && (
               <div className="absolute inset-0 pointer-events-none">
-                {/* Simulated Starfield */}
+                {/* Simulated Starfield vignette */}
                 <div className="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-[#0e0b09]/80" />
                 
                 {/* SVG Astronomical Alignment Vectors */}
@@ -244,8 +452,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOp
             {/* Gradient Mask for Vignette & Depth */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#171513]/90 via-transparent to-transparent pointer-events-none" />
 
-            {/* Interactive Story Hotspots */}
-            {HOTSPOTS.map((hotspot) => {
+            {/* Interactive Story Hotspots on Stage */}
+            {currentHotspots.map((hotspot) => {
               const isSelected = activeHotspotId === hotspot.id;
               return (
                 <button
@@ -278,7 +486,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOp
 
                   {/* Hover/Active Tooltip Tag */}
                   <span 
-                    className={`absolute left-1/2 -translate-x-1/2 bottom-7 whitespace-nowrap px-2 py-0.5 font-mono text-[10px] tracking-wider uppercase pointer-events-none transition-all duration-200 ${
+                    className={`absolute left-1/2 -translate-x-1/2 bottom-7 whitespace-nowrap px-2 py-0.5 font-mono text-[10px] tracking-wider uppercase pointer-events-none transition-all duration-200 shadow-md ${
                       isSelected 
                         ? 'bg-[#1C1613] text-[#F4EFE5] border border-[#B49A72] opacity-100' 
                         : 'bg-[#1C1613]/80 text-[#D8C7A3] border border-[#B49A72]/30 opacity-0 group-hover/pin:opacity-100'
@@ -291,20 +499,20 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOp
             })}
 
             {/* Bottom Status Bar on Photo */}
-            <div className="absolute bottom-2.5 left-4 right-4 flex items-center justify-between text-[11px] font-mono text-[#D8C7A3]/80 pointer-events-none">
+            <div className="absolute bottom-2.5 left-4 right-4 flex items-center justify-between text-[11px] font-mono text-[#D8C7A3]/90 pointer-events-none">
               <span className="flex items-center gap-1.5 drop-shadow">
                 <MapPin className="w-3 h-3 text-[#8A4F3D]" />
-                Select any landmark pin to inspect historical record
+                Select any landmark pin to inspect archaeological datum
               </span>
-              <span className="hidden sm:inline-block text-[#B49A72]/80">
-                5 Active Archaeological Sectors
+              <span className="hidden sm:inline-block text-[#B49A72]/90">
+                {currentHotspots.length} Sighting Points Available
               </span>
             </div>
           </div>
 
           {/* Active Hotspot Story Dossier (Open Minimal Drawer) */}
           {activeHotspot && (
-            <div className="mt-3 bg-[#241B16] border-t-2 border-[#8A4F3D] p-4 sm:p-5 text-[#F4EFE5] transition-all">
+            <div className="mt-2 bg-[#201814] border-t-2 border-[#8A4F3D] p-4 sm:p-5 text-[#F4EFE5] transition-all">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 {/* Identity & Historical Epithet */}
                 <div className="flex-1">
@@ -312,7 +520,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOp
                     <span className="text-xs font-mono font-bold text-[#8A4F3D] uppercase tracking-wider">
                       {activeHotspot.ancientName}
                     </span>
-                    <span className="text-xs text-[#D8C7A3]/60 font-serif-text italic">
+                    <span className="text-xs text-[#D8C7A3]/70 font-serif-text italic">
                       — "{activeHotspot.translation}"
                     </span>
                     <span className="text-[10px] font-mono text-[#B49A72] border border-[#B49A72]/30 px-1.5 py-0.5">
@@ -334,7 +542,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOp
                   <button
                     type="button"
                     onClick={() => scrollToSection(activeHotspot.targetSectionId)}
-                    className="px-4 py-2 bg-[#8A4F3D] hover:bg-[#a15e4a] text-[#F4EFE5] text-xs font-mono uppercase tracking-wider flex items-center gap-2 transition-colors cursor-pointer group"
+                    className="px-4 py-2 bg-[#8A4F3D] hover:bg-[#a15e4a] text-[#F4EFE5] text-xs font-mono uppercase tracking-wider flex items-center gap-2 transition-colors cursor-pointer group shadow"
                   >
                     <span>{activeHotspot.chapterLabel}</span>
                     <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -351,7 +559,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOp
             id="hero-begin-exploring-btn"
             type="button"
             onClick={onBeginExploring}
-            className="w-full sm:w-auto px-8 py-3.5 bg-[#8A4F3D] hover:bg-[#a15e4a] text-[#F4EFE5] font-mono text-xs tracking-widest uppercase transition-colors flex items-center justify-center gap-2 cursor-pointer group"
+            className="w-full sm:w-auto px-8 py-3.5 bg-[#8A4F3D] hover:bg-[#a15e4a] text-[#F4EFE5] font-mono text-xs tracking-widest uppercase transition-colors flex items-center justify-center gap-2 cursor-pointer group shadow-lg"
           >
             <span>Begin The Investigation</span>
             <ArrowDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
@@ -361,7 +569,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOp
             id="hero-evidence-key-btn"
             type="button"
             onClick={onOpenLegend}
-            className="w-full sm:w-auto px-6 py-3.5 text-[#D8C7A3] hover:text-[#F4EFE5] border border-[#B49A72]/40 hover:border-[#B49A72] font-mono text-xs tracking-widest uppercase transition-colors flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full sm:w-auto px-6 py-3.5 text-[#D8C7A3] hover:text-[#F4EFE5] border border-[#B49A72]/40 hover:border-[#B49A72] font-mono text-xs tracking-widest uppercase transition-colors flex items-center justify-center gap-2 cursor-pointer backdrop-blur-xs"
           >
             <ShieldAlert className="w-3.5 h-3.5 text-[#8A4F3D]" />
             <span>The Evidence System</span>
@@ -397,4 +605,5 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOp
     </section>
   );
 };
+export default HeroSection;
 
