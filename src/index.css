@@ -2,6 +2,7 @@
 
 @theme {
   --font-serif: 'Cinzel', serif;
+  --font-serif-text: 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 

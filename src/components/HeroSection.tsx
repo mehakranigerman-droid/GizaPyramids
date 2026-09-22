@@ -39,7 +39,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOp
 
         {/* Thematic Axiom Block */}
         <div className="max-w-2xl mx-auto mb-8 text-center">
-          <p className="font-serif text-base sm:text-lg text-[#D8C7A3]/90 italic leading-relaxed">
+          <p className="font-serif-text text-sm sm:text-base text-[#D8C7A3]/90 italic leading-relaxed">
             "Giza is not simply a collection of three enormous pyramids. It is a complex landscape where architecture, engineering, logistics, astronomy, landscape, belief and unanswered questions intersect."
           </p>
         </div>
