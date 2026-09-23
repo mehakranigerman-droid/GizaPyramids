@@ -32,18 +32,45 @@ interface Hotspot {
   keyFact: string;
   targetSectionId: string;
   chapterLabel: string;
+  isSpecialHighlight?: boolean;
+  extraStats?: { label: string; value: string }[];
+  extendedDetails?: string[];
 }
 
 const GOLDEN_HOTSPOTS: Hotspot[] = [
   {
+    id: 'sphinx',
+    title: 'The Great Sphinx of Giza',
+    ancientName: 'Hor-em-akhet // Abu al-Hol',
+    translation: 'Horus on the Horizon // Father of Dread',
+    pharaoh: 'Attributed to Pharaoh Khafre • c. 2540 BCE (4th Dynasty)',
+    x: 76,
+    y: 68,
+    keyFact: 'A colossal 73-meter-long monolith carved in situ directly from living limestone bedrock. Positioned facing precisely 90° True East toward the equinox sunrise, flanked by the 18th-Dynasty Dream Stele of Thutmose IV resting between its lion paws.',
+    targetSectionId: 'sphinx',
+    chapterLabel: 'Chapter 05: The Great Sphinx & Weathering',
+    isSpecialHighlight: true,
+    extraStats: [
+      { label: 'Total Dimensions', value: '73m length × 20m height (240 × 66 ft)' },
+      { label: 'Astronomical Alignment', value: '90° True East (Equinoctial Sunrise)' },
+      { label: 'Geological Layer', value: 'Mokattam Formation Member II (Limestone)' },
+      { label: 'Votive Monument', value: 'Dream Stele of Thutmose IV (c. 1401 BCE)' },
+    ],
+    extendedDetails: [
+      'Sculpted directly in situ from a natural bedrock knoll surrounded by an excavated U-shaped quarry trench, providing the megalithic core blocks for the adjacent Sphinx Temple.',
+      'Constructed as an integral part of Khafre’s monumental complex, connecting via a 494m covered causeway to the Valley Temple and upper Mortuary Sanctuary.',
+      'Center of the intense geo-archaeological weathering debate: Dr. Robert Schoch’s precipitation runoff hypothesis vs. established consensus of salt haloclasty and episodic desert flash floods.',
+    ],
+  },
+  {
     id: 'khufu',
-    title: 'The Great Pyramid',
+    title: 'The Great Pyramid of Khufu',
     ancientName: 'Akhet Khufu',
     translation: 'The Horizon of Khufu',
     pharaoh: 'Khufu (Cheops) • c. 2570 BCE',
-    x: 64,
-    y: 40,
-    keyFact: '146.6m original height built from 2.3 million dressed blocks, leveled within 1.5 cm across 13 acres.',
+    x: 59,
+    y: 35,
+    keyFact: '146.6m original height built from 2.3 million dressed blocks, leveled within 1.5 cm across 13 acres with four cardinal faces oriented to within 3 minutes of True North.',
     targetSectionId: 'pyramids',
     chapterLabel: 'Chapter 01: The Three Giants',
   },
@@ -53,35 +80,35 @@ const GOLDEN_HOTSPOTS: Hotspot[] = [
     ancientName: 'Wr-Khafre',
     translation: 'Great is Khafre',
     pharaoh: 'Khafre (Chephren) • c. 2540 BCE',
-    x: 40,
-    y: 36,
-    keyFact: 'Built on a 10m bedrock rise with a steeper 53° slope, retaining its polished Tura casing stones at the apex.',
+    x: 38,
+    y: 40,
+    keyFact: 'Built on a 10m bedrock rise with a steeper 53° slope, retaining its gleaming polished Tura casing stones at the apex and aligned with the Sphinx causeway.',
     targetSectionId: 'pyramids',
     chapterLabel: 'Chapter 01: Scale & Geometry',
   },
   {
     id: 'menkaure',
-    title: 'Pyramid of Menkaure',
+    title: 'Pyramid of Menkaure (The Third Pyramid)',
     ancientName: 'Netjer-er-Menkaure',
     translation: 'Divine is Menkaure',
-    pharaoh: 'Menkaure (Mykerinos) • c. 2510 BCE',
-    x: 18,
-    y: 50,
-    keyFact: 'Standing 65m tall with lower courses sheathed in costly pink Aswan granite transported 800 km down the Nile.',
+    pharaoh: 'Menkaure (Mykerinos) • c. 2510 BCE (4th Dynasty)',
+    x: 17,
+    y: 52,
+    keyFact: 'Standing 65m tall (1/10th the volume of Khufu), Menkaure completes the sacred triad of Giza. Visible here on the southwest rise, uniquely sheathed in its lower 16 courses with costly red Aswan granite brought 800 km downstream.',
     targetSectionId: 'pyramids',
     chapterLabel: 'Chapter 02: Dynastic Succession',
-  },
-  {
-    id: 'sphinx',
-    title: 'The Great Sphinx',
-    ancientName: 'Hor-em-akhet',
-    translation: 'Horus on the Horizon',
-    pharaoh: 'Attributed to Khafre • 4th Dynasty',
-    x: 82,
-    y: 68,
-    keyFact: '73m long colossus sculpted directly from living limestone bedrock within the lower member of the Mokattam Formation.',
-    targetSectionId: 'sphinx',
-    chapterLabel: 'Chapter 05: The Great Sphinx',
+    isSpecialHighlight: true,
+    extraStats: [
+      { label: 'Original Height', value: '65.5m (215 ft)' },
+      { label: 'Base Dimensions', value: '102.2 × 104.6 meters' },
+      { label: 'Slope Angle', value: '51° 20′ 25″' },
+      { label: 'Granite Casing', value: 'Lower 16 courses pink Aswan granite' },
+    ],
+    extendedDetails: [
+      'Positioned distinctly on the southwest plateau ridge, purposefully offset from the Khufu-Khafre diagonal line, matching the minor offset of Mintaka in Orion’s belt.',
+      'Constructed with unprecedented speed and cost, leaving several granite casing blocks partially unpolished (bossed) upon the Pharaoh’s early death.',
+      'Sarcophagus discovered in 1837 by Howard Vyse; tragically lost off the coast of Spain when the schooner Beatrice sank in 1838.',
+    ],
   },
   {
     id: 'harbor',
@@ -90,8 +117,8 @@ const GOLDEN_HOTSPOTS: Hotspot[] = [
     translation: 'Harbor of the Horizon',
     pharaoh: 'Extinct Ahramat Branch of the Nile',
     x: 32,
-    y: 78,
-    keyFact: 'Where Inspector Merer moored his 30-ton limestone barges, confirmed by 2024 radar satellite discoveries.',
+    y: 82,
+    keyFact: 'Where Inspector Merer moored his 30-ton limestone transport barges, confirmed by 2024 radar satellite discoveries of the lost Ahramat river branch.',
     targetSectionId: 'landscape',
     chapterLabel: 'Chapter 04: The Lost Riverway',
   },
@@ -189,7 +216,7 @@ const CELESTIAL_HOTSPOTS: Hotspot[] = [
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOpenLegend }) => {
   const [epoch, setEpoch] = useState<EpochMode>('golden');
-  const [activeHotspotId, setActiveHotspotId] = useState<string | null>('khufu');
+  const [activeHotspotId, setActiveHotspotId] = useState<string | null>('sphinx');
   const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
 
   const currentHotspots = 
@@ -230,18 +257,19 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOp
         {/* State 1: Present Day Golden Hour Majesty */}
         <div 
           className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-            epoch === 'golden' ? 'opacity-85' : 'opacity-0'
+            epoch === 'golden' ? 'opacity-95' : 'opacity-0'
           }`}
         >
           <img
             src={IMAGES.monumentGoldenHour}
-            alt=""
-            className="w-full h-full object-cover object-[center_35%]"
+            alt="The Great Sphinx and Giza Pyramids bathed in radiant golden hour desert sunset"
+            className="w-full h-full object-cover object-[center_36%] filter brightness-[0.98] contrast-[1.08] saturate-[1.12]"
             referrerPolicy="no-referrer"
           />
-          {/* Warm Amber Desert Vignette & Contrast Gradients */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#15110E] via-[#15110E]/60 to-[#15110E]/80" />
-          <div className="absolute inset-0 bg-radial-gradient from-transparent via-[#15110E]/40 to-[#15110E]" />
+          {/* Luminous Warm Amber Sun Radiance & Golden Desert Atmospheric Scrim */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_55%_35%,rgba(245,158,11,0.22)_0%,rgba(138,79,61,0.08)_50%,transparent_80%)]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#15110E] via-[#15110E]/50 to-[#15110E]/75" />
+          <div className="absolute inset-0 bg-radial-gradient from-transparent via-[#15110E]/30 to-[#15110E]" />
         </div>
 
         {/* State 2: 2560 BCE Old Kingdom Reconstruction (Tura Limestone & Electrum Pyramidion) */}
@@ -375,7 +403,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOp
           {/* Epoch Archaeology Subtitle Badge */}
           <div className="mt-2 text-[11px] font-mono text-[#D8C7A3]/85 tracking-wide text-center px-4">
             {epoch === 'golden' && (
-              <span>SURVEY MODE: 4,500-year weathered limestone megaliths under raking equinox desert sunlight</span>
+              <span className="flex items-center justify-center gap-2 flex-wrap">
+                <span className="text-amber-400 font-bold">GOLDEN HOUR SURVEY:</span>
+                <span>The Great Sphinx & three 4,500-year limestone giants under raking equinox desert sunlight</span>
+              </span>
             )}
             {epoch === 'ancient' && (
               <span>RECONSTRUCTION: Mirror-polished white Tura casing stones with a solid electrum pyramidion</span>
@@ -384,6 +415,38 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOp
               <span>ASTRONOMY: Orion belt alignment & Kochab-Mizar polar transit (True North dev. 3′ 38″)</span>
             )}
           </div>
+
+          {/* Quick Landmark Sighting Focus (Especially featuring the Great Sphinx) */}
+          {epoch === 'golden' && (
+            <div className="flex flex-wrap items-center justify-center gap-1.5 mt-3">
+              <span className="text-[10px] font-mono tracking-wider text-[#B49A72] uppercase mr-1 flex items-center gap-1">
+                <Eye className="w-3 h-3 text-[#8A4F3D]" /> Sighting Focus:
+              </span>
+              {GOLDEN_HOTSPOTS.map((spot) => {
+                const isActive = activeHotspotId === spot.id;
+                const isSphinx = spot.id === 'sphinx';
+                return (
+                  <button
+                    key={spot.id}
+                    type="button"
+                    onClick={() => setActiveHotspotId(spot.id)}
+                    className={`px-2.5 py-1 text-[11px] font-mono tracking-wider uppercase transition-all cursor-pointer flex items-center gap-1.5 border ${
+                      isActive
+                        ? isSphinx
+                          ? 'bg-[#B49A72] text-[#15110E] border-[#F4EFE5] font-bold shadow-lg ring-1 ring-[#F4EFE5]'
+                          : 'bg-[#8A4F3D] text-[#F4EFE5] border-[#E2D2B4] font-bold shadow-md'
+                        : isSphinx
+                        ? 'bg-[#281C15]/90 text-amber-300 border-amber-500/60 hover:bg-[#38261C] font-semibold'
+                        : 'bg-[#1C1613]/80 text-[#D8C7A3]/75 border-[#B49A72]/25 hover:text-[#F4EFE5] hover:bg-[#281F1A]'
+                    }`}
+                  >
+                    {isSphinx && <Sparkles className="w-3 h-3 text-amber-300" />}
+                    <span>{isSphinx ? 'The Great Sphinx' : spot.title.replace('The Great Pyramid of Khufu', 'Khufu').replace('Pyramid of ', '')}</span>
+                  </button>
+                );
+              })}
+            </div>
+          )}
         </div>
 
         {/* ================= INTERACTIVE LIVING PANORAMA (SYNCHRONIZED STAGE) ================= */}
@@ -399,10 +462,28 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOp
                   ? IMAGES.nightCelestial
                   : IMAGES.monumentGoldenHour
               }
-              alt="Panoramic survey of the Giza Plateau"
-              className="w-full h-full object-cover object-center transition-all duration-700 brightness-95 contrast-105"
+              alt="Panoramic survey of the Giza Plateau and Great Sphinx"
+              className="w-full h-full object-cover object-center transition-all duration-700 brightness-[1.02] contrast-[1.06] saturate-[1.08]"
               referrerPolicy="no-referrer"
             />
+
+            {/* Direct Quick Spotlight Badge for the Great Sphinx */}
+            <button
+              type="button"
+              onClick={() => {
+                setEpoch('golden');
+                setActiveHotspotId('sphinx');
+              }}
+              className={`absolute top-3 right-3 z-20 flex items-center gap-2 px-3 py-1.5 text-[11px] font-mono uppercase tracking-wider cursor-pointer backdrop-blur-md transition-all shadow-xl border ${
+                activeHotspotId === 'sphinx' && epoch === 'golden'
+                  ? 'bg-[#B49A72] text-[#15110E] border-[#F4EFE5] font-bold ring-2 ring-amber-400'
+                  : 'bg-[#171513]/90 hover:bg-[#2A1D16] text-[#E2D2B4] border-[#B49A72]/50 hover:border-amber-400'
+              }`}
+            >
+              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              <span className="font-bold text-amber-300">Spotlight:</span>
+              <span>The Great Sphinx</span>
+            </button>
 
             {/* Celestial Meridian Overlay (When in Celestial View) */}
             {epoch === 'celestial' && (
@@ -455,6 +536,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOp
             {/* Interactive Story Hotspots on Stage */}
             {currentHotspots.map((hotspot) => {
               const isSelected = activeHotspotId === hotspot.id;
+              const isSphinx = hotspot.id === 'sphinx';
               return (
                 <button
                   key={hotspot.id}
@@ -466,33 +548,49 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOp
                 >
                   {/* Outer Pulsing Ring */}
                   <span 
-                    className={`absolute inset-0 -m-1.5 rounded-full border transition-transform duration-300 ${
+                    className={`absolute inset-0 rounded-full border transition-transform duration-300 ${
                       isSelected 
-                        ? 'border-[#F4EFE5] scale-150 animate-ping opacity-75' 
-                        : 'border-[#8A4F3D] group-hover/pin:scale-125 opacity-60'
+                        ? isSphinx 
+                          ? 'border-amber-300 scale-150 animate-ping opacity-90 -m-2' 
+                          : 'border-[#F4EFE5] scale-150 animate-ping opacity-75 -m-1.5' 
+                        : isSphinx
+                        ? 'border-amber-400/80 scale-125 animate-pulse opacity-85 -m-2'
+                        : 'border-[#8A4F3D] group-hover/pin:scale-125 opacity-60 -m-1.5'
                     }`} 
                   />
                   
                   {/* Hotspot Core Pin */}
                   <span 
-                    className={`relative flex items-center justify-center w-6 h-6 rounded-full font-mono text-[10px] font-bold transition-all shadow-lg ${
+                    className={`relative flex items-center justify-center rounded-full font-mono text-[10px] font-bold transition-all shadow-lg ${
+                      isSphinx ? 'w-7 h-7' : 'w-6 h-6'
+                    } ${
                       isSelected 
-                        ? 'bg-[#8A4F3D] text-[#F4EFE5] ring-2 ring-[#F4EFE5]' 
+                        ? isSphinx
+                          ? 'bg-[#B49A72] text-[#15110E] ring-2 ring-amber-300'
+                          : 'bg-[#8A4F3D] text-[#F4EFE5] ring-2 ring-[#F4EFE5]' 
+                        : isSphinx
+                        ? 'bg-[#2A1D16] text-amber-300 border-2 border-amber-400 group-hover/pin:bg-amber-500 group-hover/pin:text-black'
                         : 'bg-[#1C1613]/90 text-[#D8C7A3] border border-[#B49A72]/60 group-hover/pin:bg-[#8A4F3D] group-hover/pin:text-[#F4EFE5]'
                     }`}
                   >
-                    +
+                    {isSphinx ? '★' : '+'}
                   </span>
 
                   {/* Hover/Active Tooltip Tag */}
                   <span 
-                    className={`absolute left-1/2 -translate-x-1/2 bottom-7 whitespace-nowrap px-2 py-0.5 font-mono text-[10px] tracking-wider uppercase pointer-events-none transition-all duration-200 shadow-md ${
+                    className={`absolute left-1/2 -translate-x-1/2 bottom-8 whitespace-nowrap px-2 py-0.5 sm:px-2.5 sm:py-1 font-mono text-[9px] sm:text-[10px] tracking-wider uppercase pointer-events-none transition-all duration-200 shadow-xl border ${
                       isSelected 
-                        ? 'bg-[#1C1613] text-[#F4EFE5] border border-[#B49A72] opacity-100' 
-                        : 'bg-[#1C1613]/80 text-[#D8C7A3] border border-[#B49A72]/30 opacity-0 group-hover/pin:opacity-100'
+                        ? isSphinx
+                          ? 'bg-[#251A13] text-amber-200 border-amber-400 opacity-100 ring-1 ring-amber-400/50 scale-105'
+                          : 'bg-[#1C1613] text-[#F4EFE5] border-[#B49A72] opacity-100 scale-105' 
+                        : isSphinx
+                        ? 'bg-[#1C1613]/95 text-amber-300 border-amber-500/60 opacity-100'
+                        : hotspot.id === 'menkaure'
+                        ? 'bg-[#1C1613]/90 text-amber-200 border-[#8A4F3D]/80 opacity-95 group-hover/pin:opacity-100'
+                        : 'bg-[#1C1613]/85 text-[#D8C7A3] border border-[#B49A72]/40 opacity-80 sm:opacity-95 group-hover/pin:opacity-100'
                     }`}
                   >
-                    {hotspot.title}
+                    {isSphinx ? 'The Great Sphinx' : hotspot.id === 'menkaure' ? 'Menkaure (3rd Pyramid)' : hotspot.title.replace('The Great Pyramid of Khufu', 'Khufu').replace('Pyramid of ', '')}
                   </span>
                 </button>
               );
@@ -510,43 +608,84 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOp
             </div>
           </div>
 
-          {/* Active Hotspot Story Dossier (Open Minimal Drawer) */}
+          {/* Active Hotspot Story Dossier */}
           {activeHotspot && (
-            <div className="mt-2 bg-[#201814] border-t-2 border-[#8A4F3D] p-4 sm:p-5 text-[#F4EFE5] transition-all">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                {/* Identity & Historical Epithet */}
+            <div className="mt-2 bg-[#201814] border-t-2 border-[#8A4F3D] p-4 sm:p-6 text-[#F4EFE5] transition-all shadow-2xl">
+              <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6">
+                {/* Identity & Historical Overview */}
                 <div className="flex-1">
-                  <div className="flex flex-wrap items-center gap-2 mb-1">
+                  <div className="flex flex-wrap items-center gap-2 mb-1.5">
                     <span className="text-xs font-mono font-bold text-[#8A4F3D] uppercase tracking-wider">
                       {activeHotspot.ancientName}
                     </span>
                     <span className="text-xs text-[#D8C7A3]/70 font-serif-text italic">
                       — "{activeHotspot.translation}"
                     </span>
-                    <span className="text-[10px] font-mono text-[#B49A72] border border-[#B49A72]/30 px-1.5 py-0.5">
+                    <span className="text-[10px] font-mono text-[#B49A72] border border-[#B49A72]/40 px-2 py-0.5 bg-[#17120F]">
                       {activeHotspot.pharaoh}
                     </span>
+                    {activeHotspot.isSpecialHighlight && (
+                      <span className="text-[10px] font-mono text-amber-300 border border-amber-500/60 px-2 py-0.5 bg-amber-950/40 uppercase font-bold flex items-center gap-1">
+                        <Sparkles className="w-2.5 h-2.5" /> Featured Monument
+                      </span>
+                    )}
                   </div>
 
-                  <h3 className="font-serif text-lg sm:text-xl font-bold text-[#F4EFE5] mb-1.5">
-                    {activeHotspot.title}
+                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#F4EFE5] mb-2 flex items-center gap-2">
+                    <span>{activeHotspot.title}</span>
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-[#D8C7A3] leading-relaxed max-w-3xl">
+                  <p className="text-xs sm:text-sm text-[#D8C7A3] leading-relaxed max-w-3xl mb-4 font-serif-text">
                     {activeHotspot.keyFact}
                   </p>
+
+                  {/* Extra Archaeological Metrics Grid if present */}
+                  {activeHotspot.extraStats && (
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4 p-3 bg-[#17120F] border border-[#B49A72]/30">
+                      {activeHotspot.extraStats.map((stat) => (
+                        <div key={stat.label} className="border-l-2 border-[#8A4F3D] pl-2 py-0.5">
+                          <div className="text-[10px] font-mono uppercase text-[#B49A72] tracking-wider">
+                            {stat.label}
+                          </div>
+                          <div className="text-xs font-mono font-semibold text-[#F4EFE5]">
+                            {stat.value}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Extended Bullet Insights if present */}
+                  {activeHotspot.extendedDetails && (
+                    <div className="space-y-1.5 border-t border-[#B49A72]/20 pt-3">
+                      <div className="text-[10px] font-mono uppercase tracking-widest text-[#B49A72] mb-1">
+                        Archaeological & Geological Notes:
+                      </div>
+                      <ul className="space-y-1 text-xs text-[#D8C7A3]/90 font-serif-text">
+                        {activeHotspot.extendedDetails.map((detail, idx) => (
+                          <li key={idx} className="flex items-start gap-2">
+                            <span className="text-[#8A4F3D] font-mono font-bold mt-0.5">›</span>
+                            <span>{detail}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
 
-                {/* Direct Chapter Link Button */}
-                <div className="shrink-0 flex items-center gap-2">
+                {/* Direct Chapter Link CTA */}
+                <div className="shrink-0 flex flex-col sm:flex-row lg:flex-col items-start sm:items-center lg:items-end gap-2">
                   <button
                     type="button"
                     onClick={() => scrollToSection(activeHotspot.targetSectionId)}
-                    className="px-4 py-2 bg-[#8A4F3D] hover:bg-[#a15e4a] text-[#F4EFE5] text-xs font-mono uppercase tracking-wider flex items-center gap-2 transition-colors cursor-pointer group shadow"
+                    className="px-5 py-3 bg-[#8A4F3D] hover:bg-[#a15e4a] text-[#F4EFE5] text-xs font-mono uppercase tracking-wider flex items-center gap-2 transition-colors cursor-pointer group shadow-lg"
                   >
                     <span>{activeHotspot.chapterLabel}</span>
-                    <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </button>
+                  <span className="text-[10px] font-mono text-[#D8C7A3]/60 tracking-wider">
+                    JUMP TO FIELD REPORT ↓
+                  </span>
                 </div>
               </div>
             </div>
