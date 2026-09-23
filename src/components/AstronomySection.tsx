@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { EvidenceBadge } from './EvidenceBadge';
-import { Compass, Star, Eye, Moon, AlertTriangle, CheckCircle2 } from 'lucide-react';
 
 interface AstronomySectionProps {
   onSelectEvidence: (claimId: string) => void;
@@ -85,12 +84,14 @@ export const AstronomySection: React.FC<AstronomySectionProps> = ({ onSelectEvid
                 How Did Egyptian Priests Find True North?
               </h3>
             </div>
-            <div className="flex flex-wrap gap-6 border-b border-[#B49A72]/20 sm:border-0">
+            <div className="flex flex-wrap gap-2 p-1 bg-[#1C1613] border border-[#B49A72]/30 shadow-xs">
               <button
                 type="button"
                 onClick={() => setAlignmentMethod('spence')}
-                className={`pb-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border-b-2 -mb-px ${
-                  alignmentMethod === 'spence' ? 'border-[#8A4F3D] text-[#F4EFE5] font-bold' : 'border-transparent text-[#D8C7A3]/60 hover:text-[#F4EFE5]'
+                className={`px-3.5 py-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border ${
+                  alignmentMethod === 'spence'
+                    ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#8A4F3D] font-bold shadow-xs scale-102 ring-1 ring-[#8A4F3D]'
+                    : 'bg-transparent text-[#D8C7A3] border-transparent hover:border-[#8A4F3D]/50 hover:bg-white/5'
                 }`}
               >
                 Stellar Simultaneous Transit (Spence)
@@ -98,8 +99,10 @@ export const AstronomySection: React.FC<AstronomySectionProps> = ({ onSelectEvid
               <button
                 type="button"
                 onClick={() => setAlignmentMethod('dash')}
-                className={`pb-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border-b-2 -mb-px ${
-                  alignmentMethod === 'dash' ? 'border-[#8A4F3D] text-[#F4EFE5] font-bold' : 'border-transparent text-[#D8C7A3]/60 hover:text-[#F4EFE5]'
+                className={`px-3.5 py-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border ${
+                  alignmentMethod === 'dash'
+                    ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#8A4F3D] font-bold shadow-xs scale-102 ring-1 ring-[#8A4F3D]'
+                    : 'bg-transparent text-[#D8C7A3] border-transparent hover:border-[#8A4F3D]/50 hover:bg-white/5'
                 }`}
               >
                 Solar Gnomon Method (Dash)
@@ -110,8 +113,8 @@ export const AstronomySection: React.FC<AstronomySectionProps> = ({ onSelectEvid
           {alignmentMethod === 'spence' ? (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center animate-fadeIn">
               <div className="space-y-4 text-sm text-[#D8C7A3] leading-relaxed">
-                <span className="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-400">
-                  <Star className="w-3.5 h-3.5" /> Published in Nature (2000) by Dr. Kate Spence (Cambridge)
+                <span className="inline-block text-xs font-mono text-emerald-400 font-semibold uppercase tracking-wider">
+                  Published in Nature (2000) · Dr. Kate Spence (Cambridge)
                 </span>
                 <h4 className="font-serif text-2xl font-bold text-[#F4EFE5]">
                   The Kochab & Mizar Vertical Transit
@@ -154,7 +157,7 @@ export const AstronomySection: React.FC<AstronomySectionProps> = ({ onSelectEvid
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center animate-fadeIn">
               <div className="space-y-4 text-sm text-[#D8C7A3] leading-relaxed">
                 <span className="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-400">
-                  <Compass className="w-3.5 h-3.5" /> Published in Journal of Egyptian Archaeology (2017) by Glen Dash
+                  Published in Journal of Egyptian Archaeology (2017) by Glen Dash
                 </span>
                 <h4 className="font-serif text-2xl font-bold text-[#F4EFE5]">
                   The Indian Circle / Autumnal Equinox Method
@@ -220,8 +223,8 @@ export const AstronomySection: React.FC<AstronomySectionProps> = ({ onSelectEvid
 
             {/* The Rigorous Astronomical & Textual Critique */}
             <div>
-              <span className="font-mono text-xs text-amber-400 uppercase font-bold tracking-wider block mb-2 flex items-center gap-1.5">
-                <AlertTriangle className="w-4 h-4 text-amber-400" /> Scientific & Egyptological Critiques
+              <span className="font-mono text-xs text-amber-400 uppercase font-bold tracking-wider block mb-2">
+                Scientific & Egyptological Critiques
               </span>
               <div className="space-y-4 text-xs text-[#D8C7A3] leading-relaxed">
                 <div>

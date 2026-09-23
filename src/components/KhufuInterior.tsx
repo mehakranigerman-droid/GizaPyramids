@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { KHUFU_CHAMBERS } from '../data/khufuInteriorData';
 import { ChamberItem } from '../types';
 import { EvidenceBadge } from './EvidenceBadge';
-import { Eye, Info, Layers, Compass, HelpCircle, Camera } from 'lucide-react';
 import { IMAGES } from '../assets/images';
 
 interface KhufuInteriorProps {
@@ -47,51 +46,87 @@ export const KhufuInterior: React.FC<KhufuInteriorProps> = ({ onSelectEvidence }
           </p>
         </div>
 
-        {/* Filter Toolbar (Clean Underline Tabs) */}
-        <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-[#2B211B]/15 pb-3 mb-8">
-          <div className="flex flex-wrap items-baseline gap-6">
-            <span className="text-xs font-mono font-bold text-[#8A4F3D] uppercase tracking-wider">Highlight:</span>
-            <button
-              type="button"
-              onClick={() => setFilterType('all')}
-              className={`pb-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border-b-2 -mb-3.5 ${
-                filterType === 'all' ? 'border-[#8A4F3D] text-[#2B211B] font-bold' : 'border-transparent text-[#2B211B]/60 hover:text-[#2B211B]'
-              }`}
-            >
-              All Features (14)
-            </button>
-            <button
-              type="button"
-              onClick={() => setFilterType('known')}
-              className={`pb-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border-b-2 -mb-3.5 ${
-                filterType === 'known' ? 'border-[#8A4F3D] text-[#2B211B] font-bold' : 'border-transparent text-[#2B211B]/60 hover:text-[#2B211B]'
-              }`}
-            >
-              Known Chambers
-            </button>
-            <button
-              type="button"
-              onClick={() => setFilterType('detected')}
-              className={`pb-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border-b-2 -mb-3.5 ${
-                filterType === 'detected' ? 'border-[#8A4F3D] text-[#2B211B] font-bold' : 'border-transparent text-[#2B211B]/60 hover:text-[#2B211B]'
-              }`}
-            >
-              ScanPyramids Voids
-            </button>
-            <button
-              type="button"
-              onClick={() => setFilterType('shafts')}
-              className={`pb-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border-b-2 -mb-3.5 ${
-                filterType === 'shafts' ? 'border-[#8A4F3D] text-[#2B211B] font-bold' : 'border-transparent text-[#2B211B]/60 hover:text-[#2B211B]'
-              }`}
-            >
-              Passages & Shafts
-            </button>
+        {/* Filter Toolbar (Segmented Buttons) */}
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#2B211B]/15 pb-4 mb-6">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-xs font-mono font-bold text-[#8A4F3D] uppercase tracking-wider px-1">
+              Filter By Type:
+            </span>
+            <div className="flex flex-wrap items-center gap-1.5 bg-[#2B211B]/5 p-1 border border-[#2B211B]/15">
+              <button
+                type="button"
+                onClick={() => setFilterType('all')}
+                className={`px-3 py-1.5 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border ${
+                  filterType === 'all'
+                    ? 'bg-[#2B211B] text-[#F4EFE5] border-[#2B211B] font-bold shadow-xs'
+                    : 'bg-white/50 text-[#2B211B] border-transparent hover:border-[#2B211B]/30 hover:bg-white'
+                }`}
+              >
+                All Features (14)
+              </button>
+              <button
+                type="button"
+                onClick={() => setFilterType('known')}
+                className={`px-3 py-1.5 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border ${
+                  filterType === 'known'
+                    ? 'bg-[#2B211B] text-[#F4EFE5] border-[#2B211B] font-bold shadow-xs'
+                    : 'bg-white/50 text-[#2B211B] border-transparent hover:border-[#2B211B]/30 hover:bg-white'
+                }`}
+              >
+                Known Chambers
+              </button>
+              <button
+                type="button"
+                onClick={() => setFilterType('detected')}
+                className={`px-3 py-1.5 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border ${
+                  filterType === 'detected'
+                    ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#8A4F3D] font-bold shadow-xs'
+                    : 'bg-white/50 text-[#2B211B] border-transparent hover:border-[#8A4F3D]/50 hover:bg-white'
+                }`}
+              >
+                ScanPyramids Voids
+              </button>
+              <button
+                type="button"
+                onClick={() => setFilterType('shafts')}
+                className={`px-3 py-1.5 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border ${
+                  filterType === 'shafts'
+                    ? 'bg-[#2B211B] text-[#F4EFE5] border-[#2B211B] font-bold shadow-xs'
+                    : 'bg-white/50 text-[#2B211B] border-transparent hover:border-[#2B211B]/30 hover:bg-white'
+                }`}
+              >
+                Passages & Shafts
+              </button>
+            </div>
           </div>
 
-          <div className="text-xs font-mono text-[#8A4F3D] flex items-center gap-1.5">
-            <HelpCircle className="w-3.5 h-3.5" /> Interactive Hotspots Active
+          <div className="text-xs font-mono text-[#8A4F3D] font-bold">
+            Select Feature or Hotspot to Inspect
           </div>
+        </div>
+
+        {/* Quick Select Chamber Ribbon (Prominent Clickable Buttons) */}
+        <div className="flex flex-wrap items-center gap-2 mb-8 p-3 bg-white/70 border border-[#D8C7A3] shadow-xs">
+          <span className="text-xs font-mono uppercase text-[#8A4F3D] font-bold mr-1">
+            SELECT CHAMBER:
+          </span>
+          {filteredChambers.map((c) => {
+            const isSelected = c.id === selectedChamberId;
+            return (
+              <button
+                key={c.id}
+                type="button"
+                onClick={() => setSelectedChamberId(c.id)}
+                className={`px-2.5 py-1.5 text-xs font-mono tracking-wider uppercase transition-all cursor-pointer border ${
+                  isSelected
+                    ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#8A4F3D] font-bold shadow-xs scale-105 ring-1 ring-[#8A4F3D]'
+                    : 'bg-white text-[#2B211B] border-[#D8C7A3] hover:border-[#8A4F3D] hover:bg-[#F4EFE5]'
+                }`}
+              >
+                {c.name}
+              </button>
+            );
+          })}
         </div>
 
         {/* Interactive Architectural Cutaway Stage (Open Layout) */}
@@ -293,8 +328,8 @@ export const KhufuInterior: React.FC<KhufuInteriorProps> = ({ onSelectEvidence }
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#171513]/90 via-transparent to-transparent pointer-events-none" />
                 <div className="absolute bottom-2 left-3 right-3 flex items-center justify-between text-[11px] font-mono text-[#D8C7A3]">
-                  <span className="bg-[#171513]/90 px-2 py-0.5 flex items-center gap-1.5">
-                    <Camera className="w-3 h-3 text-[#8A4F3D]" /> Grand Gallery Corbelled Vault (8.6m)
+                  <span className="bg-[#171513]/90 px-2 py-0.5">
+                    Grand Gallery Corbelled Vault (8.6m)
                   </span>
                   <span className="text-[#D8C7A3]/90 bg-[#171513]/80 px-2 py-0.5">
                     26° Ascending Slope

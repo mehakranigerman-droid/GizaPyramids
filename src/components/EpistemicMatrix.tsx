@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { EVIDENCE_RECORDS, EVIDENCE_LEVELS } from '../data/evidenceData';
 import { EvidenceRecord, EvidenceLevel } from '../types';
 import { EvidenceBadge } from './EvidenceBadge';
-import { Search, Filter, ShieldCheck, HelpCircle, Layers, CheckCircle2 } from 'lucide-react';
 
 interface EpistemicMatrixProps {
   onSelectRecord: (record: EvidenceRecord) => void;
@@ -70,101 +69,111 @@ export const EpistemicMatrix: React.FC<EpistemicMatrixProps> = ({ onSelectRecord
           </p>
         </div>
 
-        {/* Epistemic Distribution Counters (Open Metric Bars) */}
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-6 border-b border-[#D8C7A3] pb-8 mb-8">
+        {/* Epistemic Distribution Counters (Interactive Cards) */}
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 border-b border-[#D8C7A3] pb-8 mb-8">
           <button
             type="button"
             onClick={() => setSelectedLevel(selectedLevel === 'ESTABLISHED' ? 'ALL' : 'ESTABLISHED')}
-            className={`pt-3 text-left transition-all cursor-pointer border-t-2 ${
+            className={`p-3.5 text-left transition-all cursor-pointer border-2 shadow-xs ${
               selectedLevel === 'ESTABLISHED'
-                ? 'border-emerald-600'
-                : 'border-transparent hover:border-emerald-600/40'
+                ? 'bg-white border-emerald-700 ring-2 ring-emerald-700/20 shadow-sm scale-102'
+                : 'bg-white/60 border-[#D8C7A3] hover:border-emerald-700 hover:bg-white hover:-translate-y-0.5'
             }`}
           >
-            <div className="flex items-center gap-2 mb-1">
+            <div className="flex items-center justify-between mb-1">
               <span className="font-serif text-3xl font-bold text-emerald-800 leading-none">{counts.ESTABLISHED}</span>
-              <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
+              <span className="w-2.5 h-2.5 bg-emerald-700 shrink-0" />
             </div>
-            <span className="font-mono text-xs uppercase font-bold text-emerald-900 block">
+            <span className="font-mono text-xs uppercase font-bold text-emerald-950 block">
               Established
             </span>
-            <span className="text-[10px] font-mono text-[#2B211B]/60 block truncate">Direct physical proof</span>
+            <span className="text-[10px] font-mono text-[#2B211B]/70 block truncate mt-0.5">
+              {selectedLevel === 'ESTABLISHED' ? 'Filtering active' : 'Direct physical proof'}
+            </span>
           </button>
 
           <button
             type="button"
             onClick={() => setSelectedLevel(selectedLevel === 'SUPPORTED' ? 'ALL' : 'SUPPORTED')}
-            className={`pt-3 text-left transition-all cursor-pointer border-t-2 ${
+            className={`p-3.5 text-left transition-all cursor-pointer border-2 shadow-xs ${
               selectedLevel === 'SUPPORTED'
-                ? 'border-sky-600'
-                : 'border-transparent hover:border-sky-600/40'
+                ? 'bg-white border-sky-700 ring-2 ring-sky-700/20 shadow-sm scale-102'
+                : 'bg-white/60 border-[#D8C7A3] hover:border-sky-700 hover:bg-white hover:-translate-y-0.5'
             }`}
           >
-            <div className="flex items-center gap-2 mb-1">
+            <div className="flex items-center justify-between mb-1">
               <span className="font-serif text-3xl font-bold text-sky-800 leading-none">{counts.SUPPORTED}</span>
-              <span className="w-2 h-2 rounded-full bg-sky-500 shrink-0" />
+              <span className="w-2.5 h-2.5 bg-sky-700 shrink-0" />
             </div>
-            <span className="font-mono text-xs uppercase font-bold text-sky-900 block">
+            <span className="font-mono text-xs uppercase font-bold text-sky-950 block">
               Supported
             </span>
-            <span className="text-[10px] font-mono text-[#2B211B]/60 block truncate">Strong consensus</span>
+            <span className="text-[10px] font-mono text-[#2B211B]/70 block truncate mt-0.5">
+              {selectedLevel === 'SUPPORTED' ? 'Filtering active' : 'Strong consensus'}
+            </span>
           </button>
 
           <button
             type="button"
             onClick={() => setSelectedLevel(selectedLevel === 'DEBATED' ? 'ALL' : 'DEBATED')}
-            className={`pt-3 text-left transition-all cursor-pointer border-t-2 ${
+            className={`p-3.5 text-left transition-all cursor-pointer border-2 shadow-xs ${
               selectedLevel === 'DEBATED'
-                ? 'border-amber-600'
-                : 'border-transparent hover:border-amber-600/40'
+                ? 'bg-white border-amber-700 ring-2 ring-amber-700/20 shadow-sm scale-102'
+                : 'bg-white/60 border-[#D8C7A3] hover:border-amber-700 hover:bg-white hover:-translate-y-0.5'
             }`}
           >
-            <div className="flex items-center gap-2 mb-1">
+            <div className="flex items-center justify-between mb-1">
               <span className="font-serif text-3xl font-bold text-amber-800 leading-none">{counts.DEBATED}</span>
-              <span className="w-2 h-2 rounded-full bg-amber-500 shrink-0" />
+              <span className="w-2.5 h-2.5 bg-amber-700 shrink-0" />
             </div>
-            <span className="font-mono text-xs uppercase font-bold text-amber-900 block">
+            <span className="font-mono text-xs uppercase font-bold text-amber-950 block">
               Debated
             </span>
-            <span className="text-[10px] font-mono text-[#2B211B]/60 block truncate">Competing models</span>
+            <span className="text-[10px] font-mono text-[#2B211B]/70 block truncate mt-0.5">
+              {selectedLevel === 'DEBATED' ? 'Filtering active' : 'Competing models'}
+            </span>
           </button>
 
           <button
             type="button"
             onClick={() => setSelectedLevel(selectedLevel === 'SPECULATIVE' ? 'ALL' : 'SPECULATIVE')}
-            className={`pt-3 text-left transition-all cursor-pointer border-t-2 ${
+            className={`p-3.5 text-left transition-all cursor-pointer border-2 shadow-xs ${
               selectedLevel === 'SPECULATIVE'
-                ? 'border-rose-600'
-                : 'border-transparent hover:border-rose-600/40'
+                ? 'bg-white border-rose-700 ring-2 ring-rose-700/20 shadow-sm scale-102'
+                : 'bg-white/60 border-[#D8C7A3] hover:border-rose-700 hover:bg-white hover:-translate-y-0.5'
             }`}
           >
-            <div className="flex items-center gap-2 mb-1">
+            <div className="flex items-center justify-between mb-1">
               <span className="font-serif text-3xl font-bold text-rose-800 leading-none">{counts.SPECULATIVE}</span>
-              <span className="w-2 h-2 rounded-full bg-rose-500 shrink-0" />
+              <span className="w-2.5 h-2.5 bg-rose-700 shrink-0" />
             </div>
-            <span className="font-mono text-xs uppercase font-bold text-rose-900 block">
+            <span className="font-mono text-xs uppercase font-bold text-rose-950 block">
               Speculative
             </span>
-            <span className="text-[10px] font-mono text-[#2B211B]/60 block truncate">Lacks proof / refuted</span>
+            <span className="text-[10px] font-mono text-[#2B211B]/70 block truncate mt-0.5">
+              {selectedLevel === 'SPECULATIVE' ? 'Filtering active' : 'Lacks proof / refuted'}
+            </span>
           </button>
 
           <button
             type="button"
             onClick={() => setSelectedLevel(selectedLevel === 'UNKNOWN' ? 'ALL' : 'UNKNOWN')}
-            className={`pt-3 text-left transition-all cursor-pointer border-t-2 ${
+            className={`p-3.5 text-left transition-all cursor-pointer border-2 shadow-xs ${
               selectedLevel === 'UNKNOWN'
-                ? 'border-stone-600'
-                : 'border-transparent hover:border-stone-600/40'
+                ? 'bg-white border-stone-700 ring-2 ring-stone-700/20 shadow-sm scale-102'
+                : 'bg-white/60 border-[#D8C7A3] hover:border-stone-700 hover:bg-white hover:-translate-y-0.5'
             }`}
           >
-            <div className="flex items-center gap-2 mb-1">
+            <div className="flex items-center justify-between mb-1">
               <span className="font-serif text-3xl font-bold text-stone-700 leading-none">{counts.UNKNOWN}</span>
-              <span className="w-2 h-2 rounded-full bg-stone-500 shrink-0" />
+              <span className="w-2.5 h-2.5 bg-stone-700 shrink-0" />
             </div>
-            <span className="font-mono text-xs uppercase font-bold text-stone-800 block">
+            <span className="font-mono text-xs uppercase font-bold text-stone-900 block">
               Unknown
             </span>
-            <span className="text-[10px] font-mono text-[#2B211B]/60 block truncate">Awaiting discovery</span>
+            <span className="text-[10px] font-mono text-[#2B211B]/70 block truncate mt-0.5">
+              {selectedLevel === 'UNKNOWN' ? 'Filtering active' : 'Awaiting discovery'}
+            </span>
           </button>
         </div>
 
@@ -172,25 +181,27 @@ export const EpistemicMatrix: React.FC<EpistemicMatrixProps> = ({ onSelectRecord
         <div className="flex flex-col sm:flex-row gap-4 mb-8 pb-4 border-b border-[#D8C7A3]">
           {/* Search Input */}
           <div className="relative flex-1">
-            <Search className="w-4 h-4 absolute left-0 top-2.5 text-[#8A4F3D]" />
+            <span className="text-xs font-mono text-[#8A4F3D] absolute left-0 top-2.5 uppercase font-bold">
+              SEARCH:
+            </span>
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search claims, evidence, or keywords..."
-              className="w-full pl-6 pr-4 py-2 bg-transparent border-b border-[#D8C7A3] text-xs font-mono text-[#171513] placeholder-[#171513]/40 focus:outline-none focus:border-[#8A4F3D]"
+              className="w-full pl-18 pr-4 py-2 bg-transparent border-b border-[#D8C7A3] text-xs font-mono text-[#171513] placeholder-[#171513]/40 focus:outline-none focus:border-[#8A4F3D]"
             />
           </div>
 
           {/* Topic Dropdown */}
           <div className="flex items-center gap-2">
-            <span className="text-xs font-mono text-[#8A4F3D] uppercase font-bold flex items-center gap-1">
-              <Filter className="w-3.5 h-3.5" /> Topic:
+            <span className="text-xs font-mono text-[#8A4F3D] uppercase font-bold">
+              TOPIC:
             </span>
             <select
               value={selectedTopic}
               onChange={(e) => setSelectedTopic(e.target.value)}
-              className="py-2 bg-transparent border-b border-[#D8C7A3] text-xs font-mono text-[#171513] focus:outline-none focus:border-[#8A4F3D] cursor-pointer"
+              className="py-2 bg-transparent border-b border-[#D8C7A3] text-xs font-mono text-[#171513] focus:outline-none focus:border-[#8A4F3D] cursor-pointer uppercase font-semibold"
             >
               {topics.map((t) => (
                 <option key={t} value={t} className="bg-[#F4EFE5]">{t}</option>
@@ -199,22 +210,22 @@ export const EpistemicMatrix: React.FC<EpistemicMatrixProps> = ({ onSelectRecord
           </div>
         </div>
 
-        {/* Claims Cards Grid (Open Border-T Rail) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
+        {/* Claims Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
           {filteredRecords.map((record) => (
             <div
               key={record.id}
               onClick={() => onSelectRecord(record)}
-              className="border-t border-[#D8C7A3] pt-4 flex flex-col justify-between cursor-pointer group hover:border-[#8A4F3D] transition-colors"
+              className="p-5 bg-white border-2 border-[#D8C7A3] hover:border-[#8A4F3D] hover:shadow-md hover:-translate-y-1 transition-all cursor-pointer group flex flex-col justify-between relative shadow-xs"
             >
               <div>
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center justify-between mb-3">
                   <span className="font-mono text-[10px] text-[#8A4F3D] uppercase font-bold tracking-wider">
                     {record.topic}
                   </span>
-                  <EvidenceBadge level={record.level} size="sm" />
+                  <EvidenceBadge level={record.level} size="sm" as="span" />
                 </div>
-                <h4 className="font-serif font-bold text-base text-[#2B211B] group-hover:text-[#8A4F3D] transition-colors mb-2">
+                <h4 className="font-serif font-bold text-base sm:text-lg text-[#2B211B] group-hover:text-[#8A4F3D] transition-colors mb-2 leading-snug">
                   {record.claim}
                 </h4>
                 <p className="text-xs text-[#171513]/75 leading-relaxed mb-4 line-clamp-3">
@@ -222,9 +233,11 @@ export const EpistemicMatrix: React.FC<EpistemicMatrixProps> = ({ onSelectRecord
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-[#D8C7A3]/40 flex items-center justify-between text-[11px] font-mono text-[#8A4F3D]">
-                <span>Inspect Evidence Sources →</span>
-                <span className="text-[#2B211B]/60">{record.primaryEvidence.length} primary proofs</span>
+              <div className="pt-3 border-t border-[#D8C7A3]/60 flex items-center justify-between text-xs font-mono text-[#8A4F3D] font-bold">
+                <span className="group-hover:translate-x-0.5 transition-transform">
+                  Inspect Archival Dossier →
+                </span>
+                <span className="text-[#2B211B]/60 text-[10px] font-normal">{record.primaryEvidence.length} citations</span>
               </div>
             </div>
           ))}

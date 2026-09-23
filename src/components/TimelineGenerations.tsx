@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { DYNASTY_CHRONOLOGY } from '../data/pyramidsData';
 import { EvidenceBadge } from './EvidenceBadge';
-import { History, ArrowRight, MapPin, Calendar, BookOpen } from 'lucide-react';
 
 interface TimelineGenerationsProps {
   onSelectEvidence: (claimId: string) => void;
@@ -31,14 +30,20 @@ export const TimelineGenerations: React.FC<TimelineGenerationsProps> = ({ onSele
               <EvidenceBadge level="ESTABLISHED" onClick={() => onSelectEvidence('khufu-authorship')} />
             </div>
           </div>
-          <p className="text-base text-[#2B211B]/80 max-w-3xl mt-3 leading-relaxed">
-            Alternative theories often presume Giza was designed as a single synchronized masterplan. Archaeological reality reveals an evolving family succession of independent rulers across more than eight decades, with monarchs moving their burial locations across the Memphite landscape.
+          <p className="text-sm sm:text-base text-[#2B211B]/80 max-w-3xl mt-2 leading-relaxed">
+            An evolving family succession spanning over eight decades, shifting royal burial sites across the Memphite necropolis rather than adhering to a single masterplan.
           </p>
         </div>
 
-        {/* Interactive Succession Stepper Bar (Clean Horizontal Timeline Track) */}
-        <div className="border-b border-[#2B211B]/15 pb-6 mb-8">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        {/* Interactive Succession Stepper Bar (Chronological Sequence Cards) */}
+        <div className="mb-8">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#8A4F3D] animate-ping" />
+            <span className="text-xs font-mono uppercase tracking-wider text-[#8A4F3D] font-bold">
+              Select 4th Dynasty Pharaoh to Inspect Reign & Monument:
+            </span>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
             {DYNASTY_CHRONOLOGY.map((gen, idx) => {
               const isSelected = selectedGenIdx === idx;
               return (
@@ -46,21 +51,28 @@ export const TimelineGenerations: React.FC<TimelineGenerationsProps> = ({ onSele
                   key={gen.pharaoh}
                   type="button"
                   onClick={() => setSelectedGenIdx(idx)}
-                  className={`py-3 px-2 text-left cursor-pointer transition-all border-b-2 -mb-[25px] pb-4 ${
+                  className={`p-3 text-left cursor-pointer transition-all border-2 relative group shadow-xs ${
                     isSelected
-                      ? 'border-[#8A4F3D] text-[#2B211B]'
-                      : 'border-transparent text-[#2B211B]/50 hover:text-[#2B211B]'
+                      ? 'bg-white border-[#8A4F3D] ring-2 ring-[#8A4F3D]/25 shadow-md -translate-y-1'
+                      : 'bg-white/60 hover:bg-white border-[#2B211B]/15 hover:border-[#8A4F3D]/60 hover:-translate-y-0.5'
                   }`}
                 >
-                  <span className="font-mono text-[10px] text-[#8A4F3D] uppercase tracking-wider block font-bold">
-                    0{idx + 1} // {gen.reign.split(' ')[0]}
-                  </span>
-                  <h4 className="font-serif font-bold text-base sm:text-lg mt-0.5">
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-[10px] text-[#8A4F3D] uppercase tracking-wider font-bold">
+                      0{idx + 1}
+                    </span>
+                    <span className={`w-1.5 h-1.5 rounded-full ${isSelected ? 'bg-[#8A4F3D]' : 'bg-transparent'}`} />
+                  </div>
+                  <h4 className="font-serif font-bold text-base mt-1 text-[#2B211B] group-hover:text-[#8A4F3D] transition-colors">
                     {gen.pharaoh}
                   </h4>
-                  <p className="text-[11px] font-mono mt-0.5 truncate text-[#2B211B]/60">
-                    {gen.location}
+                  <p className="text-[10px] font-mono mt-0.5 truncate text-[#2B211B]/70 font-semibold">
+                    {gen.reign.split(' ')[0]}
                   </p>
+                  <div className="mt-2 pt-1.5 border-t border-[#2B211B]/10 flex items-center justify-between text-[9px] font-mono text-[#8A4F3D]">
+                    <span className="font-bold">{isSelected ? '● Active' : 'Inspect'}</span>
+                    <span className="group-hover:translate-x-0.5 transition-transform text-xs">›</span>
+                  </div>
                 </button>
               );
             })}
@@ -86,8 +98,8 @@ export const TimelineGenerations: React.FC<TimelineGenerationsProps> = ({ onSele
               <span className="font-serif text-xl font-bold text-[#2B211B] block">
                 {currentGen.monument}
               </span>
-              <span className="font-mono text-xs text-[#8A4F3D] flex items-center gap-1 sm:justify-end mt-0.5">
-                <MapPin className="w-3.5 h-3.5" /> {currentGen.location}
+              <span className="font-mono text-xs text-[#8A4F3D] sm:text-right block mt-0.5">
+                Site: {currentGen.location}
               </span>
             </div>
           </div>
@@ -95,31 +107,31 @@ export const TimelineGenerations: React.FC<TimelineGenerationsProps> = ({ onSele
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
             {/* Historical Significance */}
             <div>
-              <h4 className="font-mono text-xs font-bold text-[#8A4F3D] uppercase tracking-wider mb-2 flex items-center gap-2">
-                <History className="w-4 h-4 text-[#8A4F3D]" /> Architectural Significance & Evolution
+              <h4 className="font-mono text-xs font-bold text-[#8A4F3D] uppercase tracking-wider mb-2">
+                I. ARCHITECTURAL SIGNIFICANCE & EVOLUTION
               </h4>
-              <p className="text-sm text-[#171513]/90 leading-relaxed">
+              <p className="text-sm text-[#171513]/90 leading-relaxed font-serif-text text-base">
                 {currentGen.significance}
               </p>
             </div>
 
             {/* Direct Archaeological Proof */}
             <div>
-              <h4 className="font-mono text-xs font-bold text-[#8A4F3D] uppercase tracking-wider mb-2 flex items-center gap-2">
-                <BookOpen className="w-4 h-4 text-[#8A4F3D]" /> Epigraphic & Material Evidence
+              <h4 className="font-mono text-xs font-bold text-[#8A4F3D] uppercase tracking-wider mb-2">
+                II. EPIGRAPHIC & MATERIAL EVIDENCE
               </h4>
-              <p className="text-sm text-[#171513]/90 leading-relaxed">
+              <p className="text-sm text-[#171513]/90 leading-relaxed font-serif-text text-base">
                 {currentGen.evidence}
               </p>
             </div>
           </div>
 
           {/* Chronological Breakdown Callout */}
-          <div className="p-5 bg-[#2B211B] text-[#F4EFE5] text-xs font-mono leading-relaxed rounded-xs">
+          <div className="p-4 bg-[#2B211B] text-[#F4EFE5] text-xs font-mono leading-relaxed rounded-xs">
             <span className="text-[#D8C7A3] font-bold uppercase tracking-wider block mb-1">
-              Archaeological Takeaway: The Djedefre & Shepseskaf Anomalies
+              Archaeological Takeaway
             </span>
-            Khufu’s direct son and immediate successor, <strong className="text-[#D8C7A3]">Djedefre</strong>, did not build at Giza at all—he chose Abu Rawash, 8 kilometers to the north. Later, Menkaure’s successor <strong className="text-[#D8C7A3]">Shepseskaf</strong> entirely abandoned Giza and rejected the pyramid form, constructing a giant sarcophagus-mastaba at South Saqqara. This geographical oscillation decisively refutes hypotheses claiming Giza was built as an inviolable tripartite astrological masterplan.
+            Khufu’s son <strong className="text-[#D8C7A3]">Djedefre</strong> built at Abu Rawash (8 km north), while Menkaure’s successor <strong className="text-[#D8C7A3]">Shepseskaf</strong> built a mastaba at South Saqqara. This geographical shift directly refutes a synchronized tripartite masterplan.
           </div>
         </div>
 

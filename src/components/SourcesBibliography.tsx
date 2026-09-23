@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { SOURCES_REGISTRY } from '../data/sourcesData';
 import { SourceItem } from '../types';
-import { BookOpen, ExternalLink, GraduationCap, Search, CheckCircle2, ShieldCheck } from 'lucide-react';
 
 export const SourcesBibliography: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('ALL');
@@ -34,8 +33,8 @@ export const SourcesBibliography: React.FC = () => {
         <div className="border-b border-[#B49A72]/40 pb-6 mb-10">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
-              <span className="text-xs font-mono uppercase tracking-widest text-[#8A4F3D] font-bold flex items-center gap-1.5">
-                <GraduationCap className="w-4 h-4 text-[#8A4F3D]" /> Academic Registry // Research Package
+              <span className="text-xs font-mono uppercase tracking-widest text-[#8A4F3D] font-bold">
+                Academic Registry · Research Corpus
               </span>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#F4EFE5] mt-1">
                 Sources & Scholarly Bibliography
@@ -53,13 +52,15 @@ export const SourcesBibliography: React.FC = () => {
         {/* Filter & Search Toolbar (Open Clean Layout) */}
         <div className="flex flex-col sm:flex-row gap-4 mb-10 pb-4 border-b border-[#B49A72]/20">
           <div className="relative flex-1">
-            <Search className="w-4 h-4 absolute left-0 top-2.5 text-[#8A4F3D]" />
+            <span className="text-xs font-mono text-[#8A4F3D] absolute left-0 top-2.5 uppercase font-bold">
+              SEARCH:
+            </span>
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by author (e.g. Lehner, Tallet, Spence) or title..."
-              className="w-full pl-6 pr-4 py-2 bg-transparent border-b border-[#B49A72]/30 text-xs font-mono text-[#F4EFE5] placeholder-[#D8C7A3]/40 focus:outline-none focus:border-[#8A4F3D]"
+              className="w-full pl-18 pr-4 py-2 bg-transparent border-b border-[#B49A72]/30 text-xs font-mono text-[#F4EFE5] placeholder-[#D8C7A3]/40 focus:outline-none focus:border-[#8A4F3D]"
             />
           </div>
 
@@ -115,8 +116,7 @@ export const SourcesBibliography: React.FC = () => {
 
         {/* Academic Colophon / Student Master's Statement (Open Layout) */}
         <div className="border-t border-[#B49A72]/30 pt-10">
-          <div className="flex items-center gap-3 border-b border-[#B49A72]/20 pb-4 mb-6">
-            <GraduationCap className="w-6 h-6 text-[#8A4F3D]" />
+          <div className="border-b border-[#B49A72]/20 pb-4 mb-6">
             <div>
               <h3 className="font-serif text-2xl font-bold text-[#F4EFE5]">
                 Academic Colophon & Methodological Statement

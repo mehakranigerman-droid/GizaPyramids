@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { THEORIES_DOSSIER } from '../data/theoriesData';
 import { TheoryItem, EvidenceLevel } from '../types';
 import { EvidenceBadge } from './EvidenceBadge';
-import { AlertOctagon, HelpCircle, CheckCircle2, ShieldAlert, Sparkles, Filter } from 'lucide-react';
 
 interface TheoriesSectionProps {
   onSelectEvidence: (claimId: string) => void;
@@ -46,8 +45,8 @@ export const TheoriesSection: React.FC<TheoriesSectionProps> = ({ onSelectEviden
 
         {/* Filter Bar (Clean Underline Tabs) */}
         <div className="flex flex-wrap items-baseline gap-6 border-b border-[#2B211B]/15 pb-3 mb-8">
-          <span className="text-xs font-mono font-bold text-[#8A4F3D] flex items-center gap-1.5 uppercase tracking-wider">
-            <Filter className="w-3.5 h-3.5" /> Filter Claims:
+          <span className="text-xs font-mono font-bold text-[#8A4F3D] uppercase tracking-wider">
+            FILTER CLAIMS:
           </span>
           <button
             type="button"
@@ -156,8 +155,8 @@ export const TheoriesSection: React.FC<TheoriesSectionProps> = ({ onSelectEviden
 
           {/* Scientific Counter-Evidence */}
           <div className="border-t border-[#2B211B]/15 pt-6 mb-8">
-            <h5 className="font-mono text-xs font-bold text-rose-900 uppercase tracking-wider mb-3 flex items-center gap-1.5">
-              <AlertOctagon className="w-4 h-4 text-rose-800" /> Scientific & Archaeological Refutation
+            <h5 className="font-mono text-xs font-bold text-rose-900 uppercase tracking-wider mb-3">
+              Scientific & Archaeological Refutation
             </h5>
             <ul className="space-y-2 text-sm text-[#171513]/85 leading-relaxed">
               {selectedTheory.scientificCritique.map((crit, idx) => (
@@ -171,8 +170,8 @@ export const TheoriesSection: React.FC<TheoriesSectionProps> = ({ onSelectEviden
 
           {/* Status Summary */}
           <div className="border-t border-[#2B211B]/15 pt-6">
-            <h5 className="font-mono text-xs font-bold text-[#8A4F3D] uppercase tracking-wider mb-2 flex items-center gap-1.5">
-              <ShieldAlert className="w-4 h-4 text-[#8A4F3D]" /> Academic Consensus & Status Summary
+            <h5 className="font-mono text-xs font-bold text-[#8A4F3D] uppercase tracking-wider mb-2">
+              Academic Consensus & Status Summary
             </h5>
             <p className="text-sm text-[#2B211B] font-mono leading-relaxed mb-3">
               {selectedTheory.statusSummary}

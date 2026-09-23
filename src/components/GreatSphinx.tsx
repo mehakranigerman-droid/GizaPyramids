@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { EvidenceBadge } from './EvidenceBadge';
-import { Layers, Mountain, AlertCircle, HelpCircle, CheckCircle2, ShieldAlert, Camera } from 'lucide-react';
 import { IMAGES } from '../assets/images';
 
 interface GreatSphinxProps {
@@ -94,8 +93,8 @@ export const GreatSphinx: React.FC<GreatSphinxProps> = ({ onSelectEvidence }) =>
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1C1613]/90 via-transparent to-transparent pointer-events-none" />
           <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs font-mono text-[#D8C7A3]">
-            <span className="flex items-center gap-2 drop-shadow">
-              <Camera className="w-3.5 h-3.5 text-[#8A4F3D]" /> The Great Sphinx of Giza // In-Situ Yardang Carved from Member I, II, & III Mokattam Limestone
+            <span className="drop-shadow">
+              The Great Sphinx of Giza · In-Situ Yardang Carved from Member I, II, & III Mokattam Limestone
             </span>
             <span className="hidden sm:inline-block text-[#B49A72] drop-shadow">
               East-Facing Cardinal Orientation (089.5°)
@@ -105,16 +104,53 @@ export const GreatSphinx: React.FC<GreatSphinxProps> = ({ onSelectEvidence }) =>
 
         {/* Geological Stratigraphy Visualizer */}
         <div className="border-t border-[#2B211B]/15 pt-8 mb-16">
-          <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-[#2B211B]/15 pb-4 mb-8">
+          <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-[#2B211B]/15 pb-4 mb-6">
             <div>
-              <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold tracking-widest flex items-center gap-2">
-                <Mountain className="w-4 h-4 text-[#8A4F3D]" /> Geological Stratigraphy // Giza Mokattam Formation
+              <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold tracking-widest">
+                Geological Stratigraphy · Giza Mokattam Formation
               </span>
               <h3 className="text-3xl sm:text-4xl font-serif font-bold text-[#2B211B] mt-1">
                 The Three Members of the Sphinx Bedrock
               </h3>
             </div>
-            <span className="text-xs font-mono text-[#2B211B]/60">Select Stratum in SVG to Inspect</span>
+            <span className="text-xs font-mono text-[#8A4F3D] font-bold">Select Strata Horizon To Inspect</span>
+          </div>
+
+          {/* Quick-Select Strata Buttons */}
+          <div className="flex flex-wrap gap-2.5 mb-6 p-2 bg-[#2B211B]/5 border border-[#2B211B]/15">
+            <button
+              type="button"
+              onClick={() => setActiveStratum('m3')}
+              className={`px-3 py-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border ${
+                activeStratum === 'm3'
+                  ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#8A4F3D] font-bold shadow-xs scale-102 ring-1 ring-[#8A4F3D]'
+                  : 'bg-white/70 text-[#2B211B] border-transparent hover:border-[#8A4F3D]/50 hover:bg-white'
+              }`}
+            >
+              Member III: Mokattam Head (Durable)
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveStratum('m2')}
+              className={`px-3 py-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border ${
+                activeStratum === 'm2'
+                  ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#8A4F3D] font-bold shadow-xs scale-102 ring-1 ring-[#8A4F3D]'
+                  : 'bg-white/70 text-[#2B211B] border-transparent hover:border-[#8A4F3D]/50 hover:bg-white'
+              }`}
+            >
+              Member II: Soft Marl & Body (Severe Erosion)
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveStratum('m1')}
+              className={`px-3 py-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border ${
+                activeStratum === 'm1'
+                  ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#8A4F3D] font-bold shadow-xs scale-102 ring-1 ring-[#8A4F3D]'
+                  : 'bg-white/70 text-[#2B211B] border-transparent hover:border-[#8A4F3D]/50 hover:bg-white'
+              }`}
+            >
+              Member I: Ditch Floor & Paws (Dense)
+            </button>
           </div>
 
           {/* Interactive Stratigraphy Layer Stack */}
@@ -216,14 +252,14 @@ export const GreatSphinx: React.FC<GreatSphinxProps> = ({ onSelectEvidence }) =>
             <EvidenceBadge level="DEBATED" onClick={() => onSelectEvidence('sphinx-water-erosion')} />
           </div>
 
-          <div className="flex flex-wrap gap-6 sm:gap-10 border-b border-[#2B211B]/15 mb-8">
+          <div className="flex flex-wrap gap-2 p-1.5 bg-[#2B211B]/10 border border-[#2B211B]/20 mb-8 shadow-xs">
             <button
               type="button"
               onClick={() => setDebateSide('mainstream')}
-              className={`pb-3 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border-b-2 -mb-px ${
+              className={`px-4 py-2.5 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border flex-1 text-center ${
                 debateSide === 'mainstream'
-                  ? 'border-[#8A4F3D] text-[#2B211B] font-bold'
-                  : 'border-transparent text-[#2B211B]/60 hover:text-[#2B211B]'
+                  ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#8A4F3D] font-bold shadow-xs scale-102 ring-1 ring-[#8A4F3D]'
+                  : 'bg-white/60 text-[#2B211B] border-transparent hover:border-[#8A4F3D]/50 hover:bg-white'
               }`}
             >
               Mainstream Archaeological Consensus (c. 2540 BCE)
@@ -231,10 +267,10 @@ export const GreatSphinx: React.FC<GreatSphinxProps> = ({ onSelectEvidence }) =>
             <button
               type="button"
               onClick={() => setDebateSide('waterHypothesis')}
-              className={`pb-3 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border-b-2 -mb-px ${
+              className={`px-4 py-2.5 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border flex-1 text-center ${
                 debateSide === 'waterHypothesis'
-                  ? 'border-[#8A4F3D] text-[#2B211B] font-bold'
-                  : 'border-transparent text-[#2B211B]/60 hover:text-[#2B211B]'
+                  ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#8A4F3D] font-bold shadow-xs scale-102 ring-1 ring-[#8A4F3D]'
+                  : 'bg-white/60 text-[#2B211B] border-transparent hover:border-[#8A4F3D]/50 hover:bg-white'
               }`}
             >
               Water Erosion Hypothesis (5000–9000+ BCE)

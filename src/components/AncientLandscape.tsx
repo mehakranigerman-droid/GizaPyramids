@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { EvidenceBadge } from './EvidenceBadge';
-import { Waves, Calendar, FileText, ArrowRight, Anchor, Navigation, Image as ImageIcon } from 'lucide-react';
 import { IMAGES } from '../assets/images';
 
 interface AncientLandscapeProps {
@@ -60,8 +59,8 @@ export const AncientLandscape: React.FC<AncientLandscapeProps> = ({ onSelectEvid
               <EvidenceBadge level="ESTABLISHED" onClick={() => onSelectEvidence('ahramat-waterway')} />
             </div>
           </div>
-          <p className="text-base text-[#2B211B]/80 max-w-3xl mt-3 leading-relaxed">
-            Today, the Giza plateau towers over dry desert sand several kilometers west of the modern Nile. But four thousand five hundred years ago, a massive natural branch of the Nile flowed directly against the foot of the plateau.
+          <p className="text-sm sm:text-base text-[#2B211B]/80 max-w-3xl mt-2 leading-relaxed">
+            4,500 years ago, a major branch of the Nile flowed directly against the base of the Giza Plateau, enabling deep-water delivery of megalithic stones.
           </p>
         </div>
 
@@ -69,8 +68,8 @@ export const AncientLandscape: React.FC<AncientLandscapeProps> = ({ onSelectEvid
         <div className="mb-16">
           <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-[#2B211B]/15 pb-4 mb-6">
             <div>
-              <span className="font-mono text-xs uppercase tracking-widest text-emerald-800 font-bold flex items-center gap-1.5">
-                <Waves className="w-4 h-4 text-emerald-700" /> 2024 Geophysical Breakthrough // Nature Communications
+              <span className="font-mono text-xs uppercase tracking-widest text-emerald-800 font-bold">
+                2024 Geophysical Survey · Nature Communications
               </span>
               <h3 className="text-3xl sm:text-4xl font-serif font-bold text-[#2B211B] mt-1">
                 The Ahramat ("Pyramids") Branch
@@ -89,25 +88,22 @@ export const AncientLandscape: React.FC<AncientLandscapeProps> = ({ onSelectEvid
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#1C1613]/90 via-transparent to-transparent pointer-events-none" />
             <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs font-mono text-[#D8C7A3]">
-              <span className="flex items-center gap-2 drop-shadow">
-                <ImageIcon className="w-3.5 h-3.5 text-[#8A4F3D]" /> Historical Landscape // The Ahramat Branch & Giza Plateau Harbours (c. 2550 BCE)
+              <span className="drop-shadow">
+                Historical Landscape · The Ahramat Branch & Giza Plateau Harbours (c. 2550 BCE)
               </span>
               <span className="hidden sm:inline-block text-[#B49A72] drop-shadow">
-                Confirmed May 2024 // Radar Satellite & Deep Sediment Cores
+                Confirmed May 2024 · Radar Satellite & Deep Sediment Cores
               </span>
             </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-            <div className="lg:col-span-2 text-sm text-[#171513]/85 space-y-4 leading-relaxed">
+            <div className="lg:col-span-2 text-sm text-[#171513]/85 space-y-3 leading-relaxed">
               <p>
-                In May 2024, a team of geoscientists led by Dr. Eman Ghoneim published radar satellite imagery and deep sediment cores establishing the existence of a <strong className="text-[#2B211B]">64-kilometer extinct river branch</strong> running from Lisht to Giza.
-              </p>
-              <p>
-                During Dynasty 4, this branch had a width ranging from <strong className="text-[#2B211B]">200 to 700 meters</strong> and a depth exceeding 5 meters during the annual inundation (Akhet). It flowed immediately alongside the western desert margins, directly bordering the 31 pyramids of the Old and Middle Kingdoms.
+                In May 2024, radar satellite surveys and deep sediment cores published in <em>Nature Communications</em> confirmed a <strong className="text-[#2B211B]">64-kilometer extinct river branch</strong> running directly beside the 31 Old and Middle Kingdom pyramid sites.
               </p>
               <p className="border-t border-b border-[#2B211B]/15 py-3 text-xs font-mono text-[#8A4F3D]">
-                The terminal ends of Giza’s causeways and valley temples are not random dead-ends; they were water-gate harbours and quays where boats docked directly at the foot of the desert plateau.
+                Giza's valley temples served as functional harbor quays where heavy transport barges docked directly against the plateau base during annual floods.
               </p>
             </div>
 
@@ -144,8 +140,8 @@ export const AncientLandscape: React.FC<AncientLandscapeProps> = ({ onSelectEvid
         <div className="border-t border-[#2B211B]/15 pt-10">
           <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-[#2B211B]/15 pb-4 mb-6">
             <div>
-              <span className="font-mono text-xs text-[#8A4F3D] uppercase tracking-widest font-bold flex items-center gap-2">
-                <FileText className="w-4 h-4 text-[#8A4F3D]" /> The World's Oldest Written Papyrus // Discovered 2013
+              <span className="font-mono text-xs text-[#8A4F3D] uppercase tracking-widest font-bold">
+                The World's Oldest Written Papyrus · Discovered 2013
               </span>
               <h3 className="text-3xl sm:text-4xl font-serif font-bold text-[#2B211B] mt-1">
                 The Diary of Inspector Merer (Papyrus Jarf)
@@ -161,34 +157,52 @@ export const AncientLandscape: React.FC<AncientLandscapeProps> = ({ onSelectEvid
             In 2013, French archaeologist Pierre Tallet uncovered rolls of hieratic papyri in the Red Sea port of Wadi al-Jarf. Dating to <strong className="text-[#2B211B]">Year 26 of Khufu’s reign</strong>, they contain the personal daily operations log of Inspector Merer, an official commanding a team of 40 boatmen delivering Tura limestone casing to Khufu's pyramid.
           </p>
 
-          {/* Interactive Logbook Day Selector (Clean Underline Tabs) */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 border-b border-[#2B211B]/15 mb-6">
-            {mererLogEntries.map((entry, idx) => (
-              <button
-                key={idx}
-                type="button"
-                onClick={() => setActiveLogDay(idx)}
-                className={`py-3 px-2 text-left cursor-pointer transition-all border-b-2 -mb-px ${
-                  activeLogDay === idx
-                    ? 'border-[#8A4F3D] text-[#2B211B]'
-                    : 'border-transparent text-[#2B211B]/60 hover:text-[#2B211B]'
-                }`}
-              >
-                <span className="font-mono text-[10px] text-[#8A4F3D] block uppercase font-bold">
-                  Stage 0{idx + 1}
-                </span>
-                <span className="font-serif text-sm font-bold block mt-0.5">
-                  {entry.day}
-                </span>
-              </button>
-            ))}
+          {/* Interactive Logbook Day Selector (Prominent Step Cards) */}
+          <div className="mb-6">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="w-1.5 h-1.5 bg-[#8A4F3D]" />
+              <span className="text-xs font-mono uppercase tracking-wider text-[#8A4F3D] font-bold">
+                Select 4-Day Journey Logbook Stage:
+              </span>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {mererLogEntries.map((entry, idx) => {
+                const isSelected = activeLogDay === idx;
+                return (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setActiveLogDay(idx)}
+                    className={`p-3.5 text-left cursor-pointer transition-all border-2 relative group shadow-xs ${
+                      isSelected
+                        ? 'bg-white border-[#8A4F3D] ring-2 ring-[#8A4F3D]/25 shadow-md -translate-y-0.5'
+                        : 'bg-white/60 hover:bg-white border-[#2B211B]/15 hover:border-[#8A4F3D]/60 hover:-translate-y-0.5'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="font-mono text-[10px] text-[#8A4F3D] block uppercase font-bold tracking-wider">
+                        Stage 0{idx + 1}
+                      </span>
+                      <span className={`w-1.5 h-1.5 rounded-full ${isSelected ? 'bg-[#8A4F3D]' : 'bg-transparent'}`} />
+                    </div>
+                    <span className="font-serif text-sm sm:text-base font-bold block text-[#2B211B] group-hover:text-[#8A4F3D] transition-colors">
+                      {entry.day}
+                    </span>
+                    <div className="mt-2 pt-1 border-t border-[#2B211B]/10 flex items-center justify-between text-[10px] font-mono text-[#8A4F3D]">
+                      <span>{isSelected ? 'Reading' : 'Open Entry'}</span>
+                      <span className="group-hover:translate-x-0.5 transition-transform">→</span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
           {/* Active Day Dossier (Clean Editorial Reading Layout) */}
           <div className="py-2">
             <div className="flex flex-wrap items-baseline justify-between border-b border-[#2B211B]/10 pb-3 mb-4 gap-2">
-              <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold flex items-center gap-1.5">
-                <Navigation className="w-3.5 h-3.5 text-[#8A4F3D]" /> {mererLogEntries[activeLogDay].action}
+              <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold">
+                {mererLogEntries[activeLogDay].action}
               </span>
               <span className="font-mono text-xs text-[#2B211B]/60">
                 Location: {mererLogEntries[activeLogDay].location}

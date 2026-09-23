@@ -1,17 +1,4 @@
 import React, { useState } from 'react';
-import { 
-  ArrowDown, 
-  ShieldAlert, 
-  Eye, 
-  Compass, 
-  Sparkles, 
-  Moon, 
-  Sun, 
-  ChevronRight,
-  MapPin,
-  Layers,
-  History
-} from 'lucide-react';
 import { IMAGES } from '../assets/images';
 
 interface HeroSectionProps {
@@ -94,20 +81,20 @@ const GOLDEN_HOTSPOTS: Hotspot[] = [
     pharaoh: 'Menkaure (Mykerinos) • c. 2510 BCE (4th Dynasty)',
     x: 17,
     y: 52,
-    keyFact: 'Standing 65m tall (1/10th the volume of Khufu), Menkaure completes the sacred triad of Giza. Visible here on the southwest rise, uniquely sheathed in its lower 16 courses with costly red Aswan granite brought 800 km downstream.',
+    keyFact: 'Standing 65m tall, Menkaure completes the Giza triad on the southwest ridge, uniquely sheathed in 16 courses of red Aswan granite.',
     targetSectionId: 'pyramids',
     chapterLabel: 'Chapter 02: Dynastic Succession',
     isSpecialHighlight: true,
     extraStats: [
       { label: 'Original Height', value: '65.5m (215 ft)' },
-      { label: 'Base Dimensions', value: '102.2 × 104.6 meters' },
+      { label: 'Base Dimensions', value: '102.2 × 104.6 m' },
       { label: 'Slope Angle', value: '51° 20′ 25″' },
-      { label: 'Granite Casing', value: 'Lower 16 courses pink Aswan granite' },
+      { label: 'Granite Casing', value: '16 courses Aswan granite' },
     ],
     extendedDetails: [
-      'Positioned distinctly on the southwest plateau ridge, purposefully offset from the Khufu-Khafre diagonal line, matching the minor offset of Mintaka in Orion’s belt.',
-      'Constructed with unprecedented speed and cost, leaving several granite casing blocks partially unpolished (bossed) upon the Pharaoh’s early death.',
-      'Sarcophagus discovered in 1837 by Howard Vyse; tragically lost off the coast of Spain when the schooner Beatrice sank in 1838.',
+      'Offset southwest from the Khufu-Khafre diagonal line, completing the triad layout.',
+      'Constructed with exceptional speed; some granite blocks left unfinished upon the pharaoh\'s death.',
+      'Basalt sarcophagus discovered in 1837; lost at sea off Spain aboard the Beatrice in 1838.',
     ],
   },
   {
@@ -317,7 +304,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOp
         {/* Top Survey Header Coordinates */}
         <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#B49A72]/20 pb-3 mb-6 text-[11px] font-mono tracking-widest text-[#D8C7A3]/75 backdrop-blur-xs">
           <div className="flex items-center gap-2">
-            <Compass className="w-3.5 h-3.5 text-[#8A4F3D]" />
+            <span className="w-2 h-2 bg-[#8A4F3D] inline-block" />
             <span>GIZA NECROPOLIS // 29°58′45″N 31°08′03″E</span>
           </div>
           <div className="flex items-center gap-4 text-[#D8C7A3]/60">
@@ -341,30 +328,26 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOp
           </p>
         </div>
 
-        {/* Thematic Axiom Block */}
-        <div className="max-w-3xl mx-auto mb-6 text-center px-4">
-          <p className="font-serif-text text-sm sm:text-base text-[#D8C7A3]/90 italic leading-relaxed">
-            "Giza is not simply a collection of three enormous pyramids. It is a complex landscape where architecture, engineering, logistics, astronomy, landscape, belief and unanswered questions intersect."
-          </p>
-        </div>
-
         {/* ================= ORIGINAL EPOCH HORIZON CONTROLLER ================= */}
         <div className="flex flex-col items-center justify-center mb-8">
-          <div className="flex flex-wrap items-center justify-center gap-1.5 p-1 bg-[#1C1613]/90 border border-[#B49A72]/40 rounded-none shadow-2xl backdrop-blur-md">
+          <div className="flex items-center gap-2 mb-2 text-xs font-mono text-[#D8C7A3]/80 uppercase tracking-widest">
+            <span className="w-1.5 h-1.5 bg-[#8A4F3D]" />
+            <span>Plateau Horizon Reconstruction:</span>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-2 p-1.5 bg-[#1C1613]/95 border-2 border-[#B49A72]/50 shadow-2xl backdrop-blur-md">
             <button
               type="button"
               onClick={() => {
                 setEpoch('golden');
-                setActiveHotspotId('khufu');
+                setActiveHotspotId('sphinx');
               }}
-              className={`px-3 py-1.5 flex items-center gap-2 text-xs font-mono tracking-wider uppercase transition-all cursor-pointer ${
+              className={`px-4 py-2 text-xs font-mono tracking-wider uppercase transition-all cursor-pointer border ${
                 epoch === 'golden'
-                  ? 'bg-[#8A4F3D] text-[#F4EFE5] font-bold shadow-md'
-                  : 'text-[#D8C7A3]/75 hover:text-[#F4EFE5] hover:bg-[#281F1A]'
+                  ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#F4EFE5]/40 font-bold shadow-lg scale-102 ring-1 ring-[#8A4F3D]'
+                  : 'bg-[#15110E]/80 text-[#D8C7A3] border-[#B49A72]/30 hover:border-[#D8C7A3] hover:text-[#F4EFE5] hover:bg-[#281F1A]'
               }`}
             >
-              <Sun className="w-3.5 h-3.5 text-[#E2D2B4]" />
-              <span>Golden Hour // Present</span>
+              Present Survey · Golden Hour
             </button>
 
             <button
@@ -373,14 +356,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOp
                 setEpoch('ancient');
                 setActiveHotspotId('electrum_capstone');
               }}
-              className={`px-3 py-1.5 flex items-center gap-2 text-xs font-mono tracking-wider uppercase transition-all cursor-pointer ${
+              className={`px-4 py-2 text-xs font-mono tracking-wider uppercase transition-all cursor-pointer border ${
                 epoch === 'ancient'
-                  ? 'bg-[#8A4F3D] text-[#F4EFE5] font-bold shadow-md'
-                  : 'text-[#D8C7A3]/75 hover:text-[#F4EFE5] hover:bg-[#281F1A]'
+                  ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#F4EFE5]/40 font-bold shadow-lg scale-102 ring-1 ring-[#8A4F3D]'
+                  : 'bg-[#15110E]/80 text-[#D8C7A3] border-[#B49A72]/30 hover:border-[#D8C7A3] hover:text-[#F4EFE5] hover:bg-[#281F1A]'
               }`}
             >
-              <Sparkles className="w-3.5 h-3.5 text-[#E2D2B4]" />
-              <span>2560 BCE // Khufu Horizon</span>
+              2560 BCE · Khufu's Horizon
             </button>
 
             <button
@@ -389,38 +371,21 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOp
                 setEpoch('celestial');
                 setActiveHotspotId('north_meridian');
               }}
-              className={`px-3 py-1.5 flex items-center gap-2 text-xs font-mono tracking-wider uppercase transition-all cursor-pointer ${
+              className={`px-4 py-2 text-xs font-mono tracking-wider uppercase transition-all cursor-pointer border ${
                 epoch === 'celestial'
-                  ? 'bg-[#8A4F3D] text-[#F4EFE5] font-bold shadow-md'
-                  : 'text-[#D8C7A3]/75 hover:text-[#F4EFE5] hover:bg-[#281F1A]'
+                  ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#F4EFE5]/40 font-bold shadow-lg scale-102 ring-1 ring-[#8A4F3D]'
+                  : 'bg-[#15110E]/80 text-[#D8C7A3] border-[#B49A72]/30 hover:border-[#D8C7A3] hover:text-[#F4EFE5] hover:bg-[#281F1A]'
               }`}
             >
-              <Moon className="w-3.5 h-3.5 text-[#E2D2B4]" />
-              <span>Sah Midnight // Orion</span>
+              Sah Midnight · Orion Transit
             </button>
-          </div>
-
-          {/* Epoch Archaeology Subtitle Badge */}
-          <div className="mt-2 text-[11px] font-mono text-[#D8C7A3]/85 tracking-wide text-center px-4">
-            {epoch === 'golden' && (
-              <span className="flex items-center justify-center gap-2 flex-wrap">
-                <span className="text-amber-400 font-bold">GOLDEN HOUR SURVEY:</span>
-                <span>The Great Sphinx & three 4,500-year limestone giants under raking equinox desert sunlight</span>
-              </span>
-            )}
-            {epoch === 'ancient' && (
-              <span>RECONSTRUCTION: Mirror-polished white Tura casing stones with a solid electrum pyramidion</span>
-            )}
-            {epoch === 'celestial' && (
-              <span>ASTRONOMY: Orion belt alignment & Kochab-Mizar polar transit (True North dev. 3′ 38″)</span>
-            )}
           </div>
 
           {/* Quick Landmark Sighting Focus (Especially featuring the Great Sphinx) */}
           {epoch === 'golden' && (
-            <div className="flex flex-wrap items-center justify-center gap-1.5 mt-3">
-              <span className="text-[10px] font-mono tracking-wider text-[#B49A72] uppercase mr-1 flex items-center gap-1">
-                <Eye className="w-3 h-3 text-[#8A4F3D]" /> Sighting Focus:
+            <div className="flex flex-wrap items-center justify-center gap-2 mt-3.5 p-1.5 bg-[#171310]/80 border border-[#B49A72]/30">
+              <span className="text-[11px] font-mono tracking-wider text-[#B49A72] uppercase px-1 font-semibold">
+                SELECT LANDMARK:
               </span>
               {GOLDEN_HOTSPOTS.map((spot) => {
                 const isActive = activeHotspotId === spot.id;
@@ -430,17 +395,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOp
                     key={spot.id}
                     type="button"
                     onClick={() => setActiveHotspotId(spot.id)}
-                    className={`px-2.5 py-1 text-[11px] font-mono tracking-wider uppercase transition-all cursor-pointer flex items-center gap-1.5 border ${
+                    className={`px-3 py-1.5 text-xs font-mono tracking-wider uppercase transition-all cursor-pointer border-2 ${
                       isActive
                         ? isSphinx
-                          ? 'bg-[#B49A72] text-[#15110E] border-[#F4EFE5] font-bold shadow-lg ring-1 ring-[#F4EFE5]'
-                          : 'bg-[#8A4F3D] text-[#F4EFE5] border-[#E2D2B4] font-bold shadow-md'
+                          ? 'bg-[#B49A72] text-[#15110E] border-[#F4EFE5] font-bold shadow-lg ring-2 ring-amber-300 scale-105'
+                          : 'bg-[#8A4F3D] text-[#F4EFE5] border-[#E2D2B4] font-bold shadow-md scale-105'
                         : isSphinx
-                        ? 'bg-[#281C15]/90 text-amber-300 border-amber-500/60 hover:bg-[#38261C] font-semibold'
-                        : 'bg-[#1C1613]/80 text-[#D8C7A3]/75 border-[#B49A72]/25 hover:text-[#F4EFE5] hover:bg-[#281F1A]'
+                        ? 'bg-[#281C15] text-amber-300 border-amber-500/80 hover:border-amber-400 hover:bg-[#38261C] font-semibold'
+                        : 'bg-[#1C1613] text-[#D8C7A3] border-[#B49A72]/40 hover:border-[#D8C7A3] hover:text-[#F4EFE5] hover:bg-[#281F1A]'
                     }`}
                   >
-                    {isSphinx && <Sparkles className="w-3 h-3 text-amber-300" />}
                     <span>{isSphinx ? 'The Great Sphinx' : spot.title.replace('The Great Pyramid of Khufu', 'Khufu').replace('Pyramid of ', '')}</span>
                   </button>
                 );
@@ -480,7 +444,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOp
                   : 'bg-[#171513]/90 hover:bg-[#2A1D16] text-[#E2D2B4] border-[#B49A72]/50 hover:border-amber-400'
               }`}
             >
-              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              <span className="w-2 h-2 bg-amber-400 inline-block" />
               <span className="font-bold text-amber-300">Spotlight:</span>
               <span>The Great Sphinx</span>
             </button>
@@ -599,7 +563,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOp
             {/* Bottom Status Bar on Photo */}
             <div className="absolute bottom-2.5 left-4 right-4 flex items-center justify-between text-[11px] font-mono text-[#D8C7A3]/90 pointer-events-none">
               <span className="flex items-center gap-1.5 drop-shadow">
-                <MapPin className="w-3 h-3 text-[#8A4F3D]" />
+                <span className="text-[#8A4F3D] font-bold">●</span>
                 Select any landmark pin to inspect archaeological datum
               </span>
               <span className="hidden sm:inline-block text-[#B49A72]/90">
@@ -625,14 +589,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOp
                       {activeHotspot.pharaoh}
                     </span>
                     {activeHotspot.isSpecialHighlight && (
-                      <span className="text-[10px] font-mono text-amber-300 border border-amber-500/60 px-2 py-0.5 bg-amber-950/40 uppercase font-bold flex items-center gap-1">
-                        <Sparkles className="w-2.5 h-2.5" /> Featured Monument
+                      <span className="text-[10px] font-mono text-amber-300 border border-amber-500/60 px-2 py-0.5 bg-amber-950/40 uppercase font-bold">
+                        Featured Monument
                       </span>
                     )}
                   </div>
 
-                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#F4EFE5] mb-2 flex items-center gap-2">
-                    <span>{activeHotspot.title}</span>
+                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#F4EFE5] mb-2">
+                    {activeHotspot.title}
                   </h3>
 
                   <p className="text-xs sm:text-sm text-[#D8C7A3] leading-relaxed max-w-3xl mb-4 font-serif-text">
@@ -664,7 +628,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOp
                       <ul className="space-y-1 text-xs text-[#D8C7A3]/90 font-serif-text">
                         {activeHotspot.extendedDetails.map((detail, idx) => (
                           <li key={idx} className="flex items-start gap-2">
-                            <span className="text-[#8A4F3D] font-mono font-bold mt-0.5">›</span>
+                            <span className="text-[#8A4F3D] font-mono font-bold mt-0.5">—</span>
                             <span>{detail}</span>
                           </li>
                         ))}
@@ -678,13 +642,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOp
                   <button
                     type="button"
                     onClick={() => scrollToSection(activeHotspot.targetSectionId)}
-                    className="px-5 py-3 bg-[#8A4F3D] hover:bg-[#a15e4a] text-[#F4EFE5] text-xs font-mono uppercase tracking-wider flex items-center gap-2 transition-colors cursor-pointer group shadow-lg"
+                    className="px-6 py-3.5 bg-[#8A4F3D] hover:bg-[#a15e4a] text-[#F4EFE5] text-xs font-mono uppercase tracking-wider flex items-center gap-2.5 transition-all cursor-pointer group shadow-xl border border-[#F4EFE5]/30 hover:scale-102 active:scale-98"
                   >
-                    <span>{activeHotspot.chapterLabel}</span>
-                    <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <span className="font-bold">{activeHotspot.chapterLabel}</span>
+                    <span className="text-[#E2D2B4] group-hover:translate-x-1 transition-transform">→</span>
                   </button>
-                  <span className="text-[10px] font-mono text-[#D8C7A3]/60 tracking-wider">
-                    JUMP TO FIELD REPORT ↓
+                  <span className="text-[10px] font-mono text-[#E2D2B4]/80 tracking-wider font-semibold">
+                    EXPLORE FIELD REPORT ↓
                   </span>
                 </div>
               </div>
@@ -698,46 +662,72 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onBeginExploring, onOp
             id="hero-begin-exploring-btn"
             type="button"
             onClick={onBeginExploring}
-            className="w-full sm:w-auto px-8 py-3.5 bg-[#8A4F3D] hover:bg-[#a15e4a] text-[#F4EFE5] font-mono text-xs tracking-widest uppercase transition-colors flex items-center justify-center gap-2 cursor-pointer group shadow-lg"
+            className="w-full sm:w-auto px-8 py-4 bg-[#8A4F3D] hover:bg-[#9c5844] text-[#F4EFE5] font-mono text-xs tracking-widest uppercase transition-all flex items-center justify-center gap-3 cursor-pointer group shadow-2xl border-2 border-[#D8C7A3]/40 hover:border-[#F4EFE5] hover:scale-102 active:scale-98"
           >
-            <span>Begin The Investigation</span>
-            <ArrowDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
+            <span className="font-bold">Begin The Investigation</span>
+            <span className="text-amber-300 group-hover:translate-y-0.5 transition-transform">↓</span>
           </button>
 
           <button
             id="hero-evidence-key-btn"
             type="button"
             onClick={onOpenLegend}
-            className="w-full sm:w-auto px-6 py-3.5 text-[#D8C7A3] hover:text-[#F4EFE5] border border-[#B49A72]/40 hover:border-[#B49A72] font-mono text-xs tracking-widest uppercase transition-colors flex items-center justify-center gap-2 cursor-pointer backdrop-blur-xs"
+            className="w-full sm:w-auto px-7 py-4 text-[#F4EFE5] bg-[#1E1713]/90 hover:bg-[#2B211B] border-2 border-[#B49A72]/60 hover:border-[#D8C7A3] font-mono text-xs tracking-widest uppercase transition-all flex items-center justify-center gap-2.5 cursor-pointer backdrop-blur-md shadow-xl hover:scale-102 active:scale-98"
           >
-            <ShieldAlert className="w-3.5 h-3.5 text-[#8A4F3D]" />
-            <span>The Evidence System</span>
+            <span className="font-semibold">Evidence Classification Standard</span>
+            <span className="text-amber-400 text-xs">→</span>
           </button>
         </div>
       </div>
 
-      {/* Epistemic Spectrum Baseline at Bottom of Hero */}
-      <div className="relative max-w-5xl mx-auto w-full px-4 z-10 border-t border-[#B49A72]/20 pt-4">
+      {/* Epistemic Spectrum Baseline at Bottom of Hero (Clickable to open Evidence Key) */}
+      <div className="relative max-w-5xl mx-auto w-full px-4 z-10 border-t border-[#B49A72]/30 pt-4">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs font-mono">
-          <span className="text-[#B49A72] uppercase tracking-wider flex items-center gap-2">
-            <Eye className="w-3.5 h-3.5 text-[#8A4F3D]" /> Scientific Classification Standard:
-          </span>
-          <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-[#D8C7A3]">
-            <span className="inline-flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-emerald-400" /> Established
-            </span>
-            <span className="inline-flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-sky-400" /> Supported
-            </span>
-            <span className="inline-flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-amber-400" /> Debated
-            </span>
-            <span className="inline-flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-rose-400" /> Speculative
-            </span>
-            <span className="inline-flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-stone-400" /> Unknown
-            </span>
+          <button
+            type="button"
+            onClick={onOpenLegend}
+            className="text-[#B49A72] hover:text-[#F4EFE5] uppercase tracking-wider flex items-center gap-2 cursor-pointer transition-colors group text-left"
+            title="Click to view scientific evidence key"
+          >
+            <span className="font-semibold underline underline-offset-4 decoration-[#8A4F3D]">Scientific Classification Standard:</span>
+            <span className="text-[10px] text-[#D8C7A3]/70 group-hover:text-amber-300">(Click to view key)</span>
+          </button>
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-[#D8C7A3]">
+            <button
+              type="button"
+              onClick={onOpenLegend}
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 border border-emerald-500/40 hover:border-emerald-400 bg-emerald-950/30 hover:bg-emerald-950/60 cursor-pointer transition-all uppercase text-[11px]"
+            >
+              <span className="w-1.5 h-1.5 bg-emerald-400" /> Established
+            </button>
+            <button
+              type="button"
+              onClick={onOpenLegend}
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 border border-sky-500/40 hover:border-sky-400 bg-sky-950/30 hover:bg-sky-950/60 cursor-pointer transition-all uppercase text-[11px]"
+            >
+              <span className="w-1.5 h-1.5 bg-sky-400" /> Supported
+            </button>
+            <button
+              type="button"
+              onClick={onOpenLegend}
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 border border-amber-500/40 hover:border-amber-400 bg-amber-950/30 hover:bg-amber-950/60 cursor-pointer transition-all uppercase text-[11px]"
+            >
+              <span className="w-1.5 h-1.5 bg-amber-400" /> Debated
+            </button>
+            <button
+              type="button"
+              onClick={onOpenLegend}
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 border border-rose-500/40 hover:border-rose-400 bg-rose-950/30 hover:bg-rose-950/60 cursor-pointer transition-all uppercase text-[11px]"
+            >
+              <span className="w-1.5 h-1.5 bg-rose-400" /> Speculative
+            </button>
+            <button
+              type="button"
+              onClick={onOpenLegend}
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 border border-stone-500/40 hover:border-stone-400 bg-stone-900/40 hover:bg-stone-900/70 cursor-pointer transition-all uppercase text-[11px]"
+            >
+              <span className="w-1.5 h-1.5 bg-stone-400" /> Unknown
+            </button>
           </div>
         </div>
       </div>

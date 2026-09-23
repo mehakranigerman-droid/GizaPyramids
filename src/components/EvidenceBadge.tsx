@@ -22,9 +22,9 @@ export const EvidenceBadge: React.FC<EvidenceBadgeProps> = ({
   const info = EVIDENCE_LEVELS[level] || EVIDENCE_LEVELS.UNKNOWN;
 
   const sizeClasses = {
-    sm: 'text-xs px-2 py-0.5 gap-1.5',
-    md: 'text-xs px-2.5 py-1 gap-2',
-    lg: 'text-sm px-3 py-1.5 gap-2.5'
+    sm: 'text-[10px] px-2 py-0.5 tracking-wider',
+    md: 'text-xs px-2.5 py-1 tracking-wider',
+    lg: 'text-xs sm:text-sm px-3 py-1.5 tracking-widest'
   }[size];
 
   const isButton = as === 'button' || (as !== 'span' && Boolean(onClick));
@@ -32,19 +32,19 @@ export const EvidenceBadge: React.FC<EvidenceBadgeProps> = ({
   const content = (
     <>
       <span
-        className="inline-block rounded-full animate-pulse"
-        style={{
-          width: size === 'sm' ? 6 : size === 'md' ? 8 : 10,
-          height: size === 'sm' ? 6 : size === 'md' ? 8 : 10,
-          backgroundColor: info.dotColor,
-          boxShadow: `0 0 8px ${info.dotColor}80`
-        }}
+        className="inline-block w-1.5 h-1.5 shrink-0"
+        style={{ backgroundColor: info.dotColor }}
       />
-      {showLabel && <span>{info.label}</span>}
+      {showLabel && <span className="font-semibold">{info.label}</span>}
+      {isButton && (
+        <span className="text-[10px] opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-transform">
+          →
+        </span>
+      )}
     </>
   );
 
-  const baseClasses = `inline-flex items-center rounded-full font-mono font-medium tracking-wide uppercase transition-all duration-200 border select-none ${info.badgeBg} ${info.badgeBorder} ${info.badgeText} ${sizeClasses} ${className}`;
+  const baseClasses = `inline-flex items-center gap-1.5 border font-mono uppercase transition-all duration-200 select-none ${info.badgeBg} ${info.badgeBorder} ${info.badgeText} ${sizeClasses} ${className}`;
 
   if (isButton) {
     return (
@@ -52,8 +52,8 @@ export const EvidenceBadge: React.FC<EvidenceBadgeProps> = ({
         type="button"
         id={`evidence-badge-${level.toLowerCase()}`}
         onClick={onClick}
-        title={`${info.label}: ${info.description} (Click to inspect evidence)`}
-        className={`${baseClasses} cursor-pointer hover:brightness-125 focus:outline-none focus:ring-2 focus:ring-[#8A4F3D]/50`}
+        title={`${info.label}: ${info.description} (Click to inspect evidence dossier)`}
+        className={`${baseClasses} group cursor-pointer hover:brightness-105 active:scale-98 shadow-xs focus:outline-none`}
       >
         {content}
       </button>
@@ -70,3 +70,4 @@ export const EvidenceBadge: React.FC<EvidenceBadgeProps> = ({
     </span>
   );
 };
+

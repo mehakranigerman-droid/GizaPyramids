@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
 
 export interface ChapterItem {
   id: string;
@@ -107,7 +106,7 @@ export const LeftSidebarNav: React.FC<LeftSidebarNavProps> = ({ onOpenLegend }) 
           onClick={() => setMobileDrawerOpen(true)}
           className="flex items-center gap-2 text-xs font-mono tracking-wider uppercase text-[#D8C7A3] hover:text-[#F4EFE5] cursor-pointer"
         >
-          <Menu className="w-4 h-4 text-[#8A4F3D]" />
+          <span className="text-[#8A4F3D] font-bold">☰</span>
           <span>Index</span>
           <span className="text-[#8A4F3D] font-bold">({activeChapterData.number})</span>
         </button>
@@ -147,10 +146,10 @@ export const LeftSidebarNav: React.FC<LeftSidebarNavProps> = ({ onOpenLegend }) 
               <button
                 type="button"
                 onClick={() => setMobileDrawerOpen(false)}
-                className="text-[#D8C7A3]/70 hover:text-[#F4EFE5] p-1"
+                className="text-[#D8C7A3]/70 hover:text-[#F4EFE5] p-1 font-mono text-base"
                 aria-label="Close index"
               >
-                <X className="w-4 h-4" />
+                ✕
               </button>
             </div>
 
@@ -242,30 +241,33 @@ export const LeftSidebarNav: React.FC<LeftSidebarNavProps> = ({ onOpenLegend }) 
                 key={ch.id}
                 type="button"
                 onClick={() => scrollToChapter(ch.id)}
-                className={`w-full flex items-center py-2 px-3 text-left transition-all cursor-pointer ${
+                className={`w-full flex items-center justify-between py-2 px-3 text-left transition-all cursor-pointer rounded-xs ${
                   isActive
-                    ? 'border-l-2 border-[#8A4F3D] text-[#F4EFE5] font-semibold bg-white/[0.04]'
-                    : 'border-l-2 border-transparent text-[#D8C7A3]/65 hover:text-[#F4EFE5] hover:bg-white/[0.02]'
+                    ? 'border-l-2 border-[#8A4F3D] text-[#F4EFE5] font-semibold bg-white/[0.08] shadow-xs'
+                    : 'border-l-2 border-transparent text-[#D8C7A3]/75 hover:text-[#F4EFE5] hover:bg-white/[0.04] hover:border-[#8A4F3D]/50'
                 }`}
               >
-                <span className="font-mono text-xs text-[#B49A72]/70 w-7 shrink-0">
-                  {ch.number}
-                </span>
-                <span className="font-serif text-xs tracking-wide truncate">
-                  {ch.title}
-                </span>
+                <div className="flex items-center gap-2 truncate">
+                  <span className="font-mono text-xs text-[#B49A72] w-6 shrink-0 font-semibold">
+                    {ch.number}
+                  </span>
+                  <span className="font-serif text-xs tracking-wide truncate">
+                    {ch.title}
+                  </span>
+                </div>
+                {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[#8A4F3D] shrink-0" />}
               </button>
             );
           })}
         </nav>
 
         {/* Clean, Understated Footer */}
-        <div className="px-5 py-4 border-t border-[#B49A72]/15 flex items-center justify-between text-xs font-mono text-[#D8C7A3]/70">
+        <div className="px-4 py-4 border-t border-[#B49A72]/15 flex items-center justify-between text-xs font-mono text-[#D8C7A3]">
           <button
             type="button"
             onClick={goToPrevious}
             disabled={currentIndex <= 0}
-            className="hover:text-[#F4EFE5] disabled:opacity-20 cursor-pointer transition-colors"
+            className="px-2 py-1 border border-[#B49A72]/20 hover:border-[#B49A72]/50 hover:bg-white/5 hover:text-[#F4EFE5] disabled:opacity-20 cursor-pointer transition-all rounded-xs"
           >
             ← Prev
           </button>
@@ -273,7 +275,7 @@ export const LeftSidebarNav: React.FC<LeftSidebarNavProps> = ({ onOpenLegend }) 
           <button
             type="button"
             onClick={onOpenLegend}
-            className="hover:text-[#F4EFE5] text-[#B49A72] cursor-pointer transition-colors"
+            className="px-2.5 py-1 text-xs font-mono uppercase bg-[#8A4F3D] hover:bg-[#a15e4a] text-[#F4EFE5] border border-[#8A4F3D] rounded-xs transition-all shadow-xs cursor-pointer font-semibold"
           >
             Evidence Key
           </button>
@@ -282,7 +284,7 @@ export const LeftSidebarNav: React.FC<LeftSidebarNavProps> = ({ onOpenLegend }) 
             type="button"
             onClick={goToNext}
             disabled={currentIndex >= CHAPTERS.length - 1}
-            className="hover:text-[#F4EFE5] disabled:opacity-20 cursor-pointer transition-colors"
+            className="px-2 py-1 border border-[#B49A72]/20 hover:border-[#B49A72]/50 hover:bg-white/5 hover:text-[#F4EFE5] disabled:opacity-20 cursor-pointer transition-all rounded-xs"
           >
             Next →
           </button>

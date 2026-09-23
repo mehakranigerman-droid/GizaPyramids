@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { EvidenceBadge } from './EvidenceBadge';
-import { Sparkles, Camera, ShieldCheck, HelpCircle, CheckCircle2, AlertCircle } from 'lucide-react';
 
 interface TheVoidSectionProps {
   onSelectEvidence: (claimId: string) => void;
@@ -79,12 +78,14 @@ export const TheVoidSection: React.FC<TheVoidSectionProps> = ({ onSelectEvidence
               </h3>
             </div>
             
-            <div className="flex flex-wrap gap-6 border-b border-[#B49A72]/20 sm:border-0">
+            <div className="flex flex-wrap gap-2 p-1 bg-[#1C1613] border border-[#B49A72]/30 shadow-xs">
               <button
                 type="button"
                 onClick={() => setSimulationStep('cosmic')}
-                className={`pb-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border-b-2 -mb-px ${
-                  simulationStep === 'cosmic' ? 'border-[#8A4F3D] text-[#F4EFE5] font-bold' : 'border-transparent text-[#D8C7A3]/60 hover:text-[#F4EFE5]'
+                className={`px-3 py-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border ${
+                  simulationStep === 'cosmic'
+                    ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#8A4F3D] font-bold shadow-xs scale-102 ring-1 ring-[#8A4F3D]'
+                    : 'bg-transparent text-[#D8C7A3] border-transparent hover:border-[#8A4F3D]/50 hover:bg-white/5'
                 }`}
               >
                 1. Cosmic Flux
@@ -92,8 +93,10 @@ export const TheVoidSection: React.FC<TheVoidSectionProps> = ({ onSelectEvidence
               <button
                 type="button"
                 onClick={() => setSimulationStep('detector')}
-                className={`pb-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border-b-2 -mb-px ${
-                  simulationStep === 'detector' ? 'border-[#8A4F3D] text-[#F4EFE5] font-bold' : 'border-transparent text-[#D8C7A3]/60 hover:text-[#F4EFE5]'
+                className={`px-3 py-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border ${
+                  simulationStep === 'detector'
+                    ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#8A4F3D] font-bold shadow-xs scale-102 ring-1 ring-[#8A4F3D]'
+                    : 'bg-transparent text-[#D8C7A3] border-transparent hover:border-[#8A4F3D]/50 hover:bg-white/5'
                 }`}
               >
                 2. Density Absorption
@@ -101,8 +104,10 @@ export const TheVoidSection: React.FC<TheVoidSectionProps> = ({ onSelectEvidence
               <button
                 type="button"
                 onClick={() => setSimulationStep('discovery')}
-                className={`pb-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border-b-2 -mb-px ${
-                  simulationStep === 'discovery' ? 'border-[#8A4F3D] text-[#F4EFE5] font-bold' : 'border-transparent text-[#D8C7A3]/60 hover:text-[#F4EFE5]'
+                className={`px-3 py-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border ${
+                  simulationStep === 'discovery'
+                    ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#8A4F3D] font-bold shadow-xs scale-102 ring-1 ring-[#8A4F3D]'
+                    : 'bg-transparent text-[#D8C7A3] border-transparent hover:border-[#8A4F3D]/50 hover:bg-white/5'
                 }`}
               >
                 3. The Big Void Detected

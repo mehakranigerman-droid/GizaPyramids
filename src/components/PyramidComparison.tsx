@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { PYRAMIDS } from '../data/pyramidsData';
 import { PyramidData } from '../types';
 import { EvidenceBadge } from './EvidenceBadge';
-import { Scale, Maximize2, Layers, CheckCircle2, Camera } from 'lucide-react';
 import { IMAGES } from '../assets/images';
 
 interface PyramidComparisonProps {
@@ -42,24 +41,24 @@ export const PyramidComparison: React.FC<PyramidComparisonProps> = ({ onSelectEv
               <EvidenceBadge level="ESTABLISHED" onClick={() => onSelectEvidence('khufu-authorship')} />
             </div>
           </div>
-          <p className="text-base text-[#2B211B]/80 max-w-3xl mt-3 leading-relaxed">
-            Popular perception imagines three identical pyramids built simultaneously. In reality, Khufu, Khafre, and Menkaure represent three distinct generational projects of wildly differing dimensions, internal complexities, and materials.
+          <p className="text-sm sm:text-base text-[#2B211B]/80 max-w-3xl mt-2 leading-relaxed">
+            Three distinct Old Kingdom projects of differing scale, geometry, and internal architecture built across multiple generations.
           </p>
         </div>
 
         {/* View Mode & Unit Controls */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-8 border-b border-[#2B211B]/15 pb-4">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-xs font-mono uppercase text-[#8A4F3D] font-bold flex items-center gap-1.5 mr-2">
-              <Scale className="w-3.5 h-3.5" /> View:
+          <div className="flex flex-wrap items-center gap-1.5 bg-[#2B211B]/5 p-1 border border-[#2B211B]/15">
+            <span className="text-xs font-mono uppercase text-[#8A4F3D] font-bold px-2">
+              PERSPECTIVE:
             </span>
             <button
               type="button"
               onClick={() => setViewMode('sideBySide')}
-              className={`px-3 py-1.5 text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer rounded-xs ${
+              className={`px-3 py-1.5 text-xs font-mono uppercase tracking-wider transition-all cursor-pointer border ${
                 viewMode === 'sideBySide'
-                  ? 'bg-[#2B211B] text-[#F4EFE5] font-bold'
-                  : 'text-[#2B211B]/70 hover:text-[#2B211B] hover:bg-[#2B211B]/5'
+                  ? 'bg-[#2B211B] text-[#F4EFE5] border-[#2B211B] font-bold shadow-xs scale-102'
+                  : 'bg-white/50 text-[#2B211B] border-transparent hover:border-[#2B211B]/30 hover:bg-white'
               }`}
             >
               Side-by-Side Scale
@@ -67,10 +66,10 @@ export const PyramidComparison: React.FC<PyramidComparisonProps> = ({ onSelectEv
             <button
               type="button"
               onClick={() => setViewMode('overlay')}
-              className={`px-3 py-1.5 text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer rounded-xs ${
+              className={`px-3 py-1.5 text-xs font-mono uppercase tracking-wider transition-all cursor-pointer border ${
                 viewMode === 'overlay'
-                  ? 'bg-[#2B211B] text-[#F4EFE5] font-bold'
-                  : 'text-[#2B211B]/70 hover:text-[#2B211B] hover:bg-[#2B211B]/5'
+                  ? 'bg-[#2B211B] text-[#F4EFE5] border-[#2B211B] font-bold shadow-xs scale-102'
+                  : 'bg-white/50 text-[#2B211B] border-transparent hover:border-[#2B211B]/30 hover:bg-white'
               }`}
             >
               Silhouette Overlay
@@ -78,10 +77,10 @@ export const PyramidComparison: React.FC<PyramidComparisonProps> = ({ onSelectEv
             <button
               type="button"
               onClick={() => setViewMode('dataBars')}
-              className={`px-3 py-1.5 text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer rounded-xs ${
+              className={`px-3 py-1.5 text-xs font-mono uppercase tracking-wider transition-all cursor-pointer border ${
                 viewMode === 'dataBars'
-                  ? 'bg-[#2B211B] text-[#F4EFE5] font-bold'
-                  : 'text-[#2B211B]/70 hover:text-[#2B211B] hover:bg-[#2B211B]/5'
+                  ? 'bg-[#2B211B] text-[#F4EFE5] border-[#2B211B] font-bold shadow-xs scale-102'
+                  : 'bg-white/50 text-[#2B211B] border-transparent hover:border-[#2B211B]/30 hover:bg-white'
               }`}
             >
               Volume & Weight
@@ -89,33 +88,36 @@ export const PyramidComparison: React.FC<PyramidComparisonProps> = ({ onSelectEv
             <button
               type="button"
               onClick={() => setViewMode('photo')}
-              className={`px-3 py-1.5 text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer flex items-center gap-1.5 rounded-xs ${
+              className={`px-3 py-1.5 text-xs font-mono uppercase tracking-wider transition-all cursor-pointer border ${
                 viewMode === 'photo'
-                  ? 'bg-[#8A4F3D] text-[#F4EFE5] font-bold'
-                  : 'text-[#2B211B]/70 hover:text-[#2B211B] hover:bg-[#2B211B]/5'
+                  ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#8A4F3D] font-bold shadow-xs scale-102'
+                  : 'bg-white/50 text-[#2B211B] border-transparent hover:border-[#8A4F3D]/50 hover:bg-white'
               }`}
             >
-              <Camera className="w-3.5 h-3.5" /> Field Photography
+              Field Photography
             </button>
           </div>
 
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-mono text-[#2B211B]/60">Units:</span>
+          <div className="flex items-center gap-1.5 bg-[#2B211B]/5 p-1 border border-[#2B211B]/15">
+            <span className="text-xs font-mono text-[#2B211B]/70 px-1 font-semibold">Units:</span>
             <button
               type="button"
               onClick={() => setMetricUnit('meters')}
-              className={`px-2 py-1 text-xs font-mono cursor-pointer transition-colors ${
-                metricUnit === 'meters' ? 'text-[#8A4F3D] font-bold underline underline-offset-4' : 'text-[#2B211B]/60 hover:text-[#2B211B]'
+              className={`px-2.5 py-1 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border ${
+                metricUnit === 'meters'
+                  ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#8A4F3D] font-bold shadow-xs'
+                  : 'bg-white/50 text-[#2B211B]/80 border-transparent hover:text-[#2B211B] hover:bg-white'
               }`}
             >
               Metric (m)
             </button>
-            <span className="text-[#2B211B]/30 font-mono">/</span>
             <button
               type="button"
               onClick={() => setMetricUnit('feet')}
-              className={`px-2 py-1 text-xs font-mono cursor-pointer transition-colors ${
-                metricUnit === 'feet' ? 'text-[#8A4F3D] font-bold underline underline-offset-4' : 'text-[#2B211B]/60 hover:text-[#2B211B]'
+              className={`px-2.5 py-1 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border ${
+                metricUnit === 'feet'
+                  ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#8A4F3D] font-bold shadow-xs'
+                  : 'bg-white/50 text-[#2B211B]/80 border-transparent hover:text-[#2B211B] hover:bg-white'
               }`}
             >
               Imperial (ft)
@@ -395,40 +397,58 @@ export const PyramidComparison: React.FC<PyramidComparisonProps> = ({ onSelectEv
               </div>
 
               {/* Photo Legend */}
-              <div className="absolute top-2 right-2 bg-[#171513]/80 border border-[#B49A72]/40 px-2.5 py-1 text-[11px] font-mono text-[#D8C7A3] flex items-center gap-1.5">
-                <Camera className="w-3 h-3 text-[#8A4F3D]" /> Click tag to inspect dossier
+              <div className="absolute top-2 right-2 bg-[#171513]/85 border border-[#B49A72]/40 px-2.5 py-1 text-[11px] font-mono text-[#D8C7A3]">
+                ARCHIVAL SURVEY · SELECT MONUMENT TO INSPECT
               </div>
             </div>
           )}
         </div>
 
-        {/* Interactive Selector Tabs (Minimal Underline Bar) */}
-        <div className="grid grid-cols-3 border-b border-[#2B211B]/15 mb-8">
-          {PYRAMIDS.map((p) => {
-            const isSelected = selectedPyramidId === p.id;
-            return (
-              <button
-                key={p.id}
-                type="button"
-                onClick={() => setSelectedPyramidId(p.id)}
-                className={`py-3 sm:py-4 px-2 text-left cursor-pointer transition-all border-b-2 -mb-px ${
-                  isSelected
-                    ? 'border-[#8A4F3D] text-[#2B211B]'
-                    : 'border-transparent text-[#2B211B]/60 hover:text-[#2B211B]'
-                }`}
-              >
-                <span className="font-serif font-bold text-base sm:text-xl block">
-                  {p.pharaoh}
-                </span>
-                <span className="font-mono text-[11px] text-[#8A4F3D] block mt-0.5">
-                  {p.estimatedBCE}
-                </span>
-                <span className="font-mono text-xs text-[#2B211B]/60 block mt-0.5">
-                  {metricUnit === 'meters' ? `${p.originalHeightM}m` : `${mToFt(p.originalHeightM)}ft`}
-                </span>
-              </button>
-            );
-          })}
+        {/* Interactive Selector Tabs (Clear Interactive Cards) */}
+        <div className="mb-8">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="w-1.5 h-1.5 bg-[#8A4F3D]" />
+            <span className="text-xs font-mono uppercase tracking-wider text-[#8A4F3D] font-bold">
+              Select Pyramid Architectural Profile:
+            </span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {PYRAMIDS.map((p) => {
+              const isSelected = selectedPyramidId === p.id;
+              return (
+                <button
+                  key={p.id}
+                  type="button"
+                  onClick={() => setSelectedPyramidId(p.id)}
+                  className={`p-4 text-left cursor-pointer transition-all border-2 relative group shadow-xs ${
+                    isSelected
+                      ? 'bg-white border-[#8A4F3D] ring-2 ring-[#8A4F3D]/20 shadow-md -translate-y-0.5'
+                      : 'bg-[#F4EFE5]/70 hover:bg-white border-[#2B211B]/20 hover:border-[#8A4F3D]/60 hover:-translate-y-0.5'
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="font-mono text-[11px] text-[#8A4F3D] font-bold tracking-wider uppercase">
+                      {p.estimatedBCE}
+                    </span>
+                    <span className={`text-[10px] font-mono px-2 py-0.5 border ${
+                      isSelected
+                        ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#8A4F3D] font-bold'
+                        : 'bg-white/80 text-[#2B211B]/70 border-[#2B211B]/20 group-hover:border-[#8A4F3D]'
+                    }`}>
+                      {isSelected ? 'Active Profile' : 'Click to View →'}
+                    </span>
+                  </div>
+                  <span className="font-serif font-bold text-lg sm:text-xl block text-[#2B211B] group-hover:text-[#8A4F3D] transition-colors">
+                    {p.pharaoh}
+                  </span>
+                  <div className="flex items-center justify-between text-xs font-mono text-[#2B211B]/70 mt-1">
+                    <span>{metricUnit === 'meters' ? `${p.originalHeightM}m original height` : `${mToFt(p.originalHeightM)}ft original height`}</span>
+                    <span className="text-[#8A4F3D] font-semibold">{p.slopeAngleDeg}° slope</span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Selected Pyramid Detailed Architectural Dossier (Open Editorial Layout) */}
@@ -521,10 +541,6 @@ export const PyramidComparison: React.FC<PyramidComparisonProps> = ({ onSelectEv
               ))}
             </div>
           </div>
-
-          <p className="text-xs text-[#2B211B]/60 italic mt-4">
-            * Note on Casing: Most of Khufu and Menkaure's outer white limestone casing was stripped away by medieval builders to construct the mosques and fortresses of Cairo following the 1303 CE earthquake.
-          </p>
         </div>
 
       </div>

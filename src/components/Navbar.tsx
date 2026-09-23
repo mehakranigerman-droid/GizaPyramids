@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Compass, Layers, BookOpen, ChevronDown } from 'lucide-react';
-import { EVIDENCE_LEVELS } from '../data/evidenceData';
 
 interface NavbarProps {
   onOpenLegend: () => void;
@@ -73,7 +71,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenLegend }) => {
                 Giza Pyramids
               </span>
               <span className="block font-mono text-[10px] text-[#B49A72] tracking-widest uppercase">
-                An Interactive Data Story
+                Archaeological Data Story
               </span>
             </div>
           </a>
@@ -98,11 +96,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenLegend }) => {
               id="open-epistemic-legend-btn"
               type="button"
               onClick={onOpenLegend}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-semibold uppercase tracking-wider bg-[#8A4F3D] hover:bg-[#a15e4a] text-[#F4EFE5] transition-all shadow-sm focus:outline-none focus:ring-1 focus:ring-[#D8C7A3]"
+              className="px-3.5 py-1.5 text-xs font-mono font-semibold uppercase tracking-wider bg-[#8A4F3D] hover:bg-[#a15e4a] text-[#F4EFE5] border border-[#B49A72]/40 transition-all shadow-sm focus:outline-none cursor-pointer"
               title="Open Epistemic Evidence Scale Legend"
             >
-              <Layers className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Evidence Key</span>
+              Evidence Standard
             </button>
 
             {/* Mobile Menu Toggle */}
@@ -110,10 +107,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenLegend }) => {
               id="mobile-nav-toggle-btn"
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-[#D8C7A3] hover:text-[#F4EFE5] focus:outline-none"
+              className="lg:hidden p-2 text-[#D8C7A3] hover:text-[#F4EFE5] focus:outline-none font-mono text-xl"
               aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? '✕' : '☰'}
             </button>
           </div>
         </div>
@@ -140,9 +137,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenLegend }) => {
                   setMobileMenuOpen(false);
                   onOpenLegend();
                 }}
-                className="w-full flex items-center justify-center gap-2 py-2.5 bg-[#8A4F3D] text-[#F4EFE5] text-xs font-mono uppercase font-bold"
+                className="w-full py-2.5 bg-[#8A4F3D] text-[#F4EFE5] text-xs font-mono uppercase font-bold text-center border border-[#B49A72]/40"
               >
-                <Layers className="w-4 h-4" /> View Evidence Key
+                View Evidence Standard
               </button>
             </div>
           </div>

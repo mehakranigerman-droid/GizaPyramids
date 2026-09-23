@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { EvidenceBadge } from './EvidenceBadge';
-import { Hammer, Users, Truck, ArrowRight, ShieldCheck, CheckCircle2, Box, Info, Image as ImageIcon } from 'lucide-react';
 import { IMAGES } from '../assets/images';
 
 interface BuildingGizaProps {
@@ -13,28 +12,28 @@ export const BuildingGiza: React.FC<BuildingGizaProps> = ({ onSelectEvidence }) 
 
   const rampModels = {
     straight: {
-      name: 'Single Linear External Ramp',
+      name: 'Linear External Ramp',
       author: 'Early 20th century classical model',
       status: 'DEBATED' as const,
-      description: 'A colossal straight incline extending from the quarry to the pyramid summit.',
-      limitations: 'Mathematically impossible for upper levels. At a practical 10% slope (1:10), reaching the 146.6m summit requires a ramp 1.5 kilometers long, containing over 3 million cubic meters of material—more than the Great Pyramid itself!',
-      physicsVerdict: 'Feasible only for the lower 30–50 meters of masonry.'
+      description: 'A straight earthen incline extending from the quarry to the pyramid summit.',
+      limitations: 'At a practical 10% slope, reaching the 146m summit requires a 1.5 km ramp containing more material than the pyramid itself.',
+      physicsVerdict: 'Feasible only for the lower 30–50 meters.'
     },
     spiral: {
-      name: 'Exterior Wrap-Around Spiral Ramp',
+      name: 'Exterior Wrap-Around Spiral',
       author: 'George Goyon, Dows Dunham (1970s)',
       status: 'SUPPORTED' as const,
-      description: 'A masonry ramp wrapped continuously around the outer stepped tiers of the rising pyramid.',
-      limitations: 'Covers the four corners and exterior surfaces, preventing the master architects from using optical sighting lines to maintain the exact 51°50\' inclination and true square geometry. Turning 2.5-ton blocks at sharp 90-degree corners presents extreme mechanical friction.',
-      physicsVerdict: 'Leaves little room for maneuvering heavy Aswan 50-ton granite blocks.'
+      description: 'A masonry ramp wrapped continuously around the outer stepped tiers.',
+      limitations: 'Covers exterior sightlines needed to check slope and corners; turning multi-ton blocks at 90-degree corners creates extreme friction.',
+      physicsVerdict: 'Impractical for maneuvering 50-ton granite beams.'
     },
     internal: {
-      name: 'Internal Spiraling Ramp (Houdin Model)',
+      name: 'Internal Spiraling Ramp',
       author: 'Jean-Pierre Houdin (2006)',
       status: 'SUPPORTED' as const,
-      description: 'A steep external straight ramp was used for the lower third (70% of total stone volume). Once the base was established, an internal corridor ramp with a 7% slope was integrated directly into the core masonry, spiraling up behind the casing.',
-      limitations: 'Awaiting formal permission from the Egyptian Supreme Council of Antiquities for non-invasive endoscopic verification inside the masonry.',
-      physicsVerdict: 'Supported by 1986 Électricité de France (EDF) micro-gravimetry surveys showing a continuous spiral low-density band inside the pyramid walls, and open corner notches (the Bob Brier notch at 82m) for pivoting blocks.'
+      description: 'An external ramp for the base third, followed by an internal 7% corridor ramp spiraling behind the outer casing.',
+      limitations: 'Awaits non-invasive endoscopic verification inside the masonry.',
+      physicsVerdict: 'Supported by micro-gravimetry surveys showing internal spiral density anomalies and open corner notches.'
     }
   };
 
@@ -57,45 +56,45 @@ export const BuildingGiza: React.FC<BuildingGizaProps> = ({ onSelectEvidence }) 
               <EvidenceBadge level="ESTABLISHED" onClick={() => onSelectEvidence('labor-not-slaves')} />
             </div>
           </div>
-          <p className="text-base text-[#2B211B]/80 max-w-3xl mt-3 leading-relaxed">
-            How does an early Bronze/Copper-Age state extract, transport, and assemble over 6 million tons of stone without iron tools, wheeled vehicles, or pulleys? The answer lies in state logistics, seasonal river navigation, and disciplined human organization.
+          <p className="text-sm sm:text-base text-[#2B211B]/80 max-w-3xl mt-2 leading-relaxed">
+            Extracting, transporting, and assembling 6 million tons of stone with copper chisels, wooden sledges, annual river floods, and national state logistics.
           </p>
         </div>
 
-        {/* Tab Selector (Minimal Editorial Tabs) */}
-        <div className="flex flex-wrap gap-6 sm:gap-10 border-b border-[#2B211B]/15 mb-8">
+        {/* Tab Selector (Prominent Segmented Control) */}
+        <div className="flex flex-wrap gap-2 p-1.5 bg-[#2B211B]/10 border border-[#2B211B]/20 mb-8 shadow-xs">
           <button
             type="button"
             onClick={() => setActiveTab('labor')}
-            className={`pb-3 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border-b-2 -mb-px flex items-center gap-2 ${
+            className={`px-4 py-2.5 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border ${
               activeTab === 'labor'
-                ? 'border-[#8A4F3D] text-[#2B211B] font-bold'
-                : 'border-transparent text-[#2B211B]/60 hover:text-[#2B211B]'
+                ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#8A4F3D] font-bold shadow-xs scale-102 ring-1 ring-[#8A4F3D]'
+                : 'bg-white/60 text-[#2B211B] border-transparent hover:border-[#8A4F3D]/50 hover:bg-white'
             }`}
           >
-            <Users className="w-4 h-4 text-[#8A4F3D]" /> The Builders (Labor & Diet)
+            <span>I. Labor Force & Diet</span>
           </button>
           <button
             type="button"
             onClick={() => setActiveTab('materials')}
-            className={`pb-3 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border-b-2 -mb-px flex items-center gap-2 ${
+            className={`px-4 py-2.5 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border ${
               activeTab === 'materials'
-                ? 'border-[#8A4F3D] text-[#2B211B] font-bold'
-                : 'border-transparent text-[#2B211B]/60 hover:text-[#2B211B]'
+                ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#8A4F3D] font-bold shadow-xs scale-102 ring-1 ring-[#8A4F3D]'
+                : 'bg-white/60 text-[#2B211B] border-transparent hover:border-[#8A4F3D]/50 hover:bg-white'
             }`}
           >
-            <Box className="w-4 h-4 text-[#8A4F3D]" /> Stone Sourcing & Supply Lines
+            <span>II. Stone Sourcing & Supply Lines</span>
           </button>
           <button
             type="button"
             onClick={() => setActiveTab('ramps')}
-            className={`pb-3 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border-b-2 -mb-px flex items-center gap-2 ${
+            className={`px-4 py-2.5 text-xs font-mono uppercase tracking-wider cursor-pointer transition-all border ${
               activeTab === 'ramps'
-                ? 'border-[#8A4F3D] text-[#2B211B] font-bold'
-                : 'border-transparent text-[#2B211B]/60 hover:text-[#2B211B]'
+                ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#8A4F3D] font-bold shadow-xs scale-102 ring-1 ring-[#8A4F3D]'
+                : 'bg-white/60 text-[#2B211B] border-transparent hover:border-[#8A4F3D]/50 hover:bg-white'
             }`}
           >
-            <Hammer className="w-4 h-4 text-[#8A4F3D]" /> The Ramp Engineering Debate
+            <span>III. Ramp Engineering Hypotheses</span>
           </button>
         </div>
 
@@ -113,10 +112,10 @@ export const BuildingGiza: React.FC<BuildingGizaProps> = ({ onSelectEvidence }) 
               <div className="absolute inset-0 bg-gradient-to-t from-[#1C1613]/90 via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs font-mono text-[#D8C7A3]">
                 <span className="flex items-center gap-2 drop-shadow">
-                  <ImageIcon className="w-3.5 h-3.5 text-[#8A4F3D]" /> Quarry Reconstruction // Masons & Sledge Haulers at Giza (c. 2550 BCE)
+                  Quarry Reconstruction · Masons & Sledge Haulers at Giza (c. 2550 BCE)
                 </span>
                 <span className="hidden sm:inline-block text-[#B49A72] drop-shadow">
-                  Corvée State Draft // Heit el-Ghurab
+                  Corvée State Draft · Heit el-Ghurab
                 </span>
               </div>
             </div>
@@ -135,7 +134,7 @@ export const BuildingGiza: React.FC<BuildingGizaProps> = ({ onSelectEvidence }) 
                   100,000 Enslaved Captives Driven by Whips
                 </h4>
                 <p className="text-sm text-[#171513]/85 leading-relaxed">
-                  Popularized by Greek historian Herodotus (writing in 450 BCE, two millennia after construction) and cemented by 1950s Hollywood cinema. This narrative imagined millions of starving foreign slaves beaten into erecting monuments under tyrannical whim.
+                  Popularized by Herodotus (c. 450 BCE) and Hollywood cinema, imagining millions of foreign slaves beaten into erecting monuments under tyrannical whim.
                 </p>
               </div>
 
@@ -151,7 +150,7 @@ export const BuildingGiza: React.FC<BuildingGizaProps> = ({ onSelectEvidence }) 
                   Conscripted Nationals & Skilled Guilds
                 </h4>
                 <p className="text-sm text-[#171513]/85 leading-relaxed">
-                  Excavated by Mark Lehner and Zahi Hawass, the "Lost City of the Pyramids" proves workers were organized in patriotic rotational state drafts (corvée labor), supported by specialized stonecutters, architects, scribes, and doctors who received royal medical care.
+                  Excavations by Mark Lehner confirm an organized national labor draft (corvée), supported by skilled stonecutters, architects, and state-supplied physicians.
                 </p>
               </div>
             </div>
@@ -166,30 +165,30 @@ export const BuildingGiza: React.FC<BuildingGizaProps> = ({ onSelectEvidence }) 
                 {/* 1. Diet & Nutrition */}
                 <div>
                   <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold tracking-wider block mb-2">
-                    01 // High-Calorie Royal Rations
+                    01 // High-Protein Royal Diet
                   </span>
                   <p className="text-xs text-[#171513]/85 leading-relaxed">
-                    Zooarchaeologist Richard Redding analyzed over 175,000 animal bone fragments, revealing daily slaughter of thousands of kilos of young male cattle and sheep. This high-protein diet was luxury food in ancient Egypt, distributed by the central royal palace to fuel heavy physical labor.
+                    Over 175,000 animal bone fragments confirm daily rations of prime young cattle and sheep—a luxury diet centrally provisioned by the royal estate to fuel heavy labor.
                   </p>
                 </div>
 
                 {/* 2. Medical Care & Skeletal Pathology */}
                 <div>
                   <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold tracking-wider block mb-2">
-                    02 // Advanced Medical Treatment
+                    02 // Advanced Medical Care
                   </span>
                   <p className="text-xs text-[#171513]/85 leading-relaxed">
-                    Anthropologist Azza Sarry el-Din examined hundreds of worker skeletons in the upper cemetery. Remains show cleanly set bone fractures with splints, successful cranial trepanation, and amputations with full bone remodeling—proving patients survived and received elite surgical care.
+                    Worker skeletons reveal expertly set bone fractures, splints, and trepanations with full bone healing, demonstrating royal medical care for injured builders.
                   </p>
                 </div>
 
                 {/* 3. Social Organization & Graffiti */}
                 <div>
                   <span className="font-mono text-xs text-[#8A4F3D] uppercase font-bold tracking-wider block mb-2">
-                    03 // Crew Identity & Competition
+                    03 // Crew Identity & Honor
                   </span>
                   <p className="text-xs text-[#171513]/85 leading-relaxed">
-                    Builders were divided into phyles (approx 200 men) and zha (20 men) with proudly inscribed gang names in red ochre: "The Companions of Khufu" and "The Drunkards of Menkaure". They were buried with grave goods right in the shadow of the pyramids.
+                    Builders organized in phyles and signed stone blocks with red-ochre gang names like "Companions of Khufu," receiving tomb burials beside the royal pyramids.
                   </p>
                 </div>
               </div>
@@ -261,8 +260,8 @@ export const BuildingGiza: React.FC<BuildingGizaProps> = ({ onSelectEvidence }) 
         {/* TAB 3: THE RAMP HYPOTHESES */}
         {activeTab === 'ramps' && (
           <div className="space-y-8 animate-fadeIn pt-2">
-            {/* Minimal Underline Selector for Ramp Models */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 border-b border-[#2B211B]/15">
+            {/* Interactive Selector for Ramp Models */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
               {(['straight', 'spiral', 'internal'] as const).map((key) => {
                 const model = rampModels[key];
                 const isSelected = selectedRampId === key;
@@ -271,18 +270,21 @@ export const BuildingGiza: React.FC<BuildingGizaProps> = ({ onSelectEvidence }) 
                     key={key}
                     type="button"
                     onClick={() => setSelectedRampId(key)}
-                    className={`py-3 px-2 text-left cursor-pointer transition-all border-b-2 -mb-px ${
+                    className={`p-4 text-left cursor-pointer transition-all border-2 relative group shadow-xs ${
                       isSelected
-                        ? 'border-[#8A4F3D] text-[#2B211B]'
-                        : 'border-transparent text-[#2B211B]/60 hover:text-[#2B211B]'
+                        ? 'bg-white border-[#8A4F3D] ring-2 ring-[#8A4F3D]/25 shadow-md -translate-y-0.5'
+                        : 'bg-white/60 hover:bg-white border-[#2B211B]/15 hover:border-[#8A4F3D]/60 hover:-translate-y-0.5'
                     }`}
                   >
-                    <div className="flex items-center justify-between">
-                      <h4 className="font-serif font-bold text-base sm:text-lg text-[#2B211B]">
-                        {model.name}
-                      </h4>
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="font-mono text-[10px] text-[#8A4F3D] uppercase font-bold tracking-wider">
+                        {isSelected ? '● Active Model' : 'Click to Evaluate'}
+                      </span>
                       <EvidenceBadge level={model.status} size="sm" showLabel={false} as="span" />
                     </div>
+                    <h4 className="font-serif font-bold text-base sm:text-lg text-[#2B211B] group-hover:text-[#8A4F3D] transition-colors">
+                      {model.name}
+                    </h4>
                     <span className="font-mono text-[11px] text-[#8A4F3D] block mt-0.5">
                       {model.author}
                     </span>
@@ -325,10 +327,9 @@ export const BuildingGiza: React.FC<BuildingGizaProps> = ({ onSelectEvidence }) 
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 bg-[#2B211B] text-[#F4EFE5] p-5 rounded-xs">
-                <Info className="w-5 h-5 text-[#8A4F3D] shrink-0 mt-0.5" />
+              <div className="bg-[#2B211B] text-[#F4EFE5] p-5 border-l-4 border-[#8A4F3D]">
                 <div className="text-xs font-mono leading-relaxed">
-                  <span className="text-[#D8C7A3] font-bold uppercase block mb-1">
+                  <span className="text-[#D8C7A3] font-bold uppercase tracking-wider block mb-1">
                     Archaeological Synthesis: Mixed Multi-Ramp Strategy
                   </span>
                   Current archaeological consensus concludes no single ramp type built the entire pyramid. Builders combined external straight ramps from local quarries for lower levels, temporary lateral ramps, and internal spiraling voids to complete the upper cap.
