@@ -30,7 +30,7 @@ export const AstronomySection: React.FC<AstronomySectionProps> = ({ onSelectEvid
             </div>
           </div>
           <p className="text-base text-[#D8C7A3] max-w-3xl mt-3 leading-relaxed">
-            The Great Pyramid features the most precise cardinal orientation of any ancient stone structure on Earth. How was this achieved, and does the terrestrial layout reflect a deliberate stellar map of the constellation Orion?
+            The Great Pyramid features the most precise cardinal orientation of any ancient stone structure, deviating from True North by under 4 minutes of arc.
           </p>
         </div>
 

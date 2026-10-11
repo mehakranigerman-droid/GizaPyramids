@@ -39,7 +39,7 @@ export const TheoriesSection: React.FC<TheoriesSectionProps> = ({ onSelectEviden
             </div>
           </div>
           <p className="text-base text-[#2B211B]/80 max-w-3xl mt-3 leading-relaxed">
-            Carl Sagan famously stated: <em>“Extraordinary claims require extraordinary evidence.”</em> Rather than ridiculing sensational hypotheses, this interactive dossier tests each famous alternative claim against the empirical record: What is asserted? What evidence is cited? What refutes it? And what crucial physical evidence is completely missing?
+            Testing alternative hypotheses against empirical archaeology, geology, and physical field evidence.
           </p>
         </div>
 

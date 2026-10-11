@@ -351,54 +351,67 @@ export const PyramidComparison: React.FC<PyramidComparisonProps> = ({ onSelectEv
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#171513]/90 via-transparent to-transparent pointer-events-none" />
               
-              {/* Interactive Monument Markers on the Panorama */}
-              <div className="absolute inset-0 p-4 flex items-end justify-around pb-6 pointer-events-none">
-                {/* Khufu Marker */}
-                <button
-                  type="button"
-                  onClick={() => setSelectedPyramidId('khufu')}
-                  className={`pointer-events-auto px-3 py-1.5 border text-xs font-mono uppercase tracking-wider backdrop-blur-md cursor-pointer transition-all ${
-                    selectedPyramidId === 'khufu'
-                      ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#F4EFE5] shadow-lg scale-105'
-                      : 'bg-[#171513]/80 text-[#D8C7A3] border-[#B49A72]/50 hover:bg-[#171513]'
-                  }`}
+              {/* Interactive Monument Markers Pinned Accurately Upon Each Pyramid */}
+              <div className="absolute inset-0 pointer-events-none">
+                {/* 1. Menkaure Marker (Left Pyramid: ~28%, 36%) */}
+                <div 
+                  style={{ left: '28%', top: '36%' }} 
+                  className="absolute -translate-x-1/2 -translate-y-1/2 pointer-events-auto flex flex-col items-center"
                 >
-                  <span className="font-bold block">1. Khufu (Great Pyramid)</span>
-                  <span className="text-[10px] opacity-80">146.6m // 2.58M m³</span>
-                </button>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedPyramidId('menkaure')}
+                    className={`px-2.5 py-1 sm:px-3 sm:py-1.5 border text-xs font-mono uppercase tracking-wider backdrop-blur-md cursor-pointer transition-all text-center shadow-xl mb-1 ${
+                      selectedPyramidId === 'menkaure'
+                        ? 'bg-[#27170F]/95 text-amber-200 border-amber-300 ring-2 ring-amber-400 scale-105 z-30'
+                        : 'bg-[#15110E]/90 text-[#F4EFE5] border-[#B49A72]/60 hover:border-amber-300 hover:scale-102 z-20'
+                    }`}
+                  >
+                    <span className="font-bold block text-[9px] sm:text-[11px]">Pyramid of Menkaure</span>
+                  </button>
+                  <div className="w-2 h-2 -mt-2 rotate-45 border-r border-b bg-[#15110E] border-[#B49A72]/60" />
+                  <span className={`w-2.5 h-2.5 rounded-full mt-0.5 border ${selectedPyramidId === 'menkaure' ? 'bg-amber-400 border-white animate-pulse' : 'bg-[#8A4F3D] border-[#D8C7A3]'}`} />
+                </div>
 
-                {/* Khafre Marker */}
-                <button
-                  type="button"
-                  onClick={() => setSelectedPyramidId('khafre')}
-                  className={`pointer-events-auto px-3 py-1.5 border text-xs font-mono uppercase tracking-wider backdrop-blur-md cursor-pointer transition-all ${
-                    selectedPyramidId === 'khafre'
-                      ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#F4EFE5] shadow-lg scale-105'
-                      : 'bg-[#171513]/80 text-[#D8C7A3] border-[#B49A72]/50 hover:bg-[#171513]'
-                  }`}
+                {/* 2. Khafre Marker (Center Pyramid: ~48%, 25%) */}
+                <div 
+                  style={{ left: '48%', top: '25%' }} 
+                  className="absolute -translate-x-1/2 -translate-y-1/2 pointer-events-auto flex flex-col items-center"
                 >
-                  <span className="font-bold block">2. Khafre</span>
-                  <span className="text-[10px] opacity-80">143.5m // Casing Cap</span>
-                </button>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedPyramidId('khafre')}
+                    className={`px-2.5 py-1 sm:px-3 sm:py-1.5 border text-xs font-mono uppercase tracking-wider backdrop-blur-md cursor-pointer transition-all text-center shadow-xl mb-1 ${
+                      selectedPyramidId === 'khafre'
+                        ? 'bg-[#27170F]/95 text-amber-200 border-amber-300 ring-2 ring-amber-400 scale-105 z-30'
+                        : 'bg-[#15110E]/90 text-[#F4EFE5] border-[#B49A72]/60 hover:border-amber-300 hover:scale-102 z-20'
+                    }`}
+                  >
+                    <span className="font-bold block text-[9px] sm:text-[11px]">Pyramid of Khafre</span>
+                  </button>
+                  <div className="w-2 h-2 -mt-2 rotate-45 border-r border-b bg-[#15110E] border-[#B49A72]/60" />
+                  <span className={`w-2.5 h-2.5 rounded-full mt-0.5 border ${selectedPyramidId === 'khafre' ? 'bg-amber-400 border-white animate-pulse' : 'bg-[#8A4F3D] border-[#D8C7A3]'}`} />
+                </div>
 
-                {/* Menkaure Marker */}
-                <button
-                  type="button"
-                  onClick={() => setSelectedPyramidId('menkaure')}
-                  className={`pointer-events-auto px-3 py-1.5 border text-xs font-mono uppercase tracking-wider backdrop-blur-md cursor-pointer transition-all ${
-                    selectedPyramidId === 'menkaure'
-                      ? 'bg-[#8A4F3D] text-[#F4EFE5] border-[#F4EFE5] shadow-lg scale-105'
-                      : 'bg-[#171513]/80 text-[#D8C7A3] border-[#B49A72]/50 hover:bg-[#171513]'
-                  }`}
+                {/* 3. Khufu Marker (Right Pyramid: ~85%, 22%) */}
+                <div 
+                  style={{ left: '85%', top: '22%' }} 
+                  className="absolute -translate-x-1/2 -translate-y-1/2 pointer-events-auto flex flex-col items-center"
                 >
-                  <span className="font-bold block">3. Menkaure</span>
-                  <span className="text-[10px] opacity-80">65.5m // Granite Base</span>
-                </button>
-              </div>
-
-              {/* Photo Legend */}
-              <div className="absolute top-2 right-2 bg-[#171513]/85 border border-[#B49A72]/40 px-2.5 py-1 text-[11px] font-mono text-[#D8C7A3]">
-                ARCHIVAL SURVEY · SELECT MONUMENT TO INSPECT
+                  <button
+                    type="button"
+                    onClick={() => setSelectedPyramidId('khufu')}
+                    className={`px-2.5 py-1 sm:px-3 sm:py-1.5 border text-xs font-mono uppercase tracking-wider backdrop-blur-md cursor-pointer transition-all text-center shadow-xl mb-1 ${
+                      selectedPyramidId === 'khufu'
+                        ? 'bg-[#27170F]/95 text-amber-200 border-amber-300 ring-2 ring-amber-400 scale-105 z-30'
+                        : 'bg-[#15110E]/90 text-[#F4EFE5] border-[#B49A72]/60 hover:border-amber-300 hover:scale-102 z-20'
+                    }`}
+                  >
+                    <span className="font-bold block text-[9px] sm:text-[11px]">The Great Pyramid (Khufu)</span>
+                  </button>
+                  <div className="w-2 h-2 -mt-2 rotate-45 border-r border-b bg-[#15110E] border-[#B49A72]/60" />
+                  <span className={`w-2.5 h-2.5 rounded-full mt-0.5 border ${selectedPyramidId === 'khufu' ? 'bg-amber-400 border-white animate-pulse' : 'bg-[#8A4F3D] border-[#D8C7A3]'}`} />
+                </div>
               </div>
             </div>
           )}
@@ -409,7 +422,7 @@ export const PyramidComparison: React.FC<PyramidComparisonProps> = ({ onSelectEv
           <div className="flex items-center gap-2 mb-3">
             <span className="w-1.5 h-1.5 bg-[#8A4F3D]" />
             <span className="text-xs font-mono uppercase tracking-wider text-[#8A4F3D] font-bold">
-              Select Pyramid Architectural Profile:
+              Architectural Profiles
             </span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">

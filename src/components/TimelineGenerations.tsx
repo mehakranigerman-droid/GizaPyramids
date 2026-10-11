@@ -40,7 +40,7 @@ export const TimelineGenerations: React.FC<TimelineGenerationsProps> = ({ onSele
           <div className="flex items-center gap-2 mb-3">
             <span className="w-1.5 h-1.5 rounded-full bg-[#8A4F3D] animate-ping" />
             <span className="text-xs font-mono uppercase tracking-wider text-[#8A4F3D] font-bold">
-              Select 4th Dynasty Pharaoh to Inspect Reign & Monument:
+              4th Dynasty Succession
             </span>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">

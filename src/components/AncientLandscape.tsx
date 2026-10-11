@@ -64,12 +64,12 @@ export const AncientLandscape: React.FC<AncientLandscapeProps> = ({ onSelectEvid
           </p>
         </div>
 
-        {/* 2024 Discovery Spotlight: The Ahramat Branch (Open Layout) */}
+        {/* The Ahramat Branch Waterway */}
         <div className="mb-16">
           <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-[#2B211B]/15 pb-4 mb-6">
             <div>
               <span className="font-mono text-xs uppercase tracking-widest text-emerald-800 font-bold">
-                2024 Geophysical Survey · Nature Communications
+                2024 Geophysical Survey
               </span>
               <h3 className="text-3xl sm:text-4xl font-serif font-bold text-[#2B211B] mt-1">
                 The Ahramat ("Pyramids") Branch
@@ -89,10 +89,10 @@ export const AncientLandscape: React.FC<AncientLandscapeProps> = ({ onSelectEvid
             <div className="absolute inset-0 bg-gradient-to-t from-[#1C1613]/90 via-transparent to-transparent pointer-events-none" />
             <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs font-mono text-[#D8C7A3]">
               <span className="drop-shadow">
-                Historical Landscape · The Ahramat Branch & Giza Plateau Harbours (c. 2550 BCE)
+                The Ahramat Branch & Giza Harbours (c. 2550 BCE)
               </span>
               <span className="hidden sm:inline-block text-[#B49A72] drop-shadow">
-                Confirmed May 2024 · Radar Satellite & Deep Sediment Cores
+                Radar Satellite Survey (2024)
               </span>
             </div>
           </div>

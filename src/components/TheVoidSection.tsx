@@ -29,7 +29,7 @@ export const TheVoidSection: React.FC<TheVoidSectionProps> = ({ onSelectEvidence
             </div>
           </div>
           <p className="text-base text-[#D8C7A3] max-w-3xl mt-3 leading-relaxed">
-            In November 2017, the international ScanPyramids mission published a peer-reviewed paper in <em>Nature</em> announcing the discovery of a massive 30-meter-long void sealed deep inside the Great Pyramid. What is this structure, how did particle physics detect it, and what remains unknown?
+            In November 2017, the ScanPyramids mission confirmed a 30-meter-long void sealed deep above the Grand Gallery using cosmic-ray muon radiography.
           </p>
         </div>
 

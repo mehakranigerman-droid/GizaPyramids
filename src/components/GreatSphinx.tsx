@@ -94,10 +94,10 @@ export const GreatSphinx: React.FC<GreatSphinxProps> = ({ onSelectEvidence }) =>
           <div className="absolute inset-0 bg-gradient-to-t from-[#1C1613]/90 via-transparent to-transparent pointer-events-none" />
           <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs font-mono text-[#D8C7A3]">
             <span className="drop-shadow">
-              The Great Sphinx of Giza · In-Situ Yardang Carved from Member I, II, & III Mokattam Limestone
+              The Great Sphinx of Giza
             </span>
             <span className="hidden sm:inline-block text-[#B49A72] drop-shadow">
-              East-Facing Cardinal Orientation (089.5°)
+              East-Facing Orientation (089.5°)
             </span>
           </div>
         </div>

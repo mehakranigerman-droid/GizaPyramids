@@ -42,7 +42,7 @@ export const KhufuInterior: React.FC<KhufuInteriorProps> = ({ onSelectEvidence }
             </div>
           </div>
           <p className="text-base text-[#2B211B]/80 max-w-3xl mt-3 leading-relaxed">
-            Unlike Khafre and Menkaure, whose burial vaults are cut primarily into the subterranean bedrock, Khufu’s Great Pyramid contains three distinct chamber levels elevated deep inside the stone mass. Click any chamber on the architectural cross-section to explore its dimensions, materials, and archaeological status.
+            Unlike Khafre and Menkaure, whose burial vaults are cut into subterranean bedrock, Khufu’s Great Pyramid contains three distinct chamber levels elevated deep inside the masonry.
           </p>
         </div>
 
