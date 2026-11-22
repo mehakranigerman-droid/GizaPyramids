@@ -16,8 +16,8 @@
 
 @layer base {
   body {
-    background-color: #F4EFE5;
-    color: #171513;
+    background-color: #1C1510;
+    color: #F4EFE5;
     font-family: var(--font-sans);
   }
 
@@ -26,25 +26,10 @@
   }
 }
 
-/* Subtle Architectural Grid Patterns for Light & Dark Canvas */
-.bg-surveyor-grid {
-  background-image: 
-    radial-gradient(circle at 1px 1px, rgba(43, 33, 27, 0.05) 1px, transparent 0);
-  background-size: 36px 36px;
-}
-
-.bg-surveyor-grid-dark {
-  background-image: 
-    radial-gradient(circle at 1px 1px, rgba(216, 199, 163, 0.06) 1px, transparent 0);
-  background-size: 36px 36px;
-}
-
-/* Delicate Linear Blueprint Datum Grid */
-.bg-blueprint-lines {
-  background-image: 
-    linear-gradient(to right, rgba(180, 154, 114, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(180, 154, 114, 0.04) 1px, transparent 1px);
-  background-size: 80px 80px;
+/* Static Matte Espresso Limestone Micro-Grain */
+.bg-limestone-grain {
+  background-color: #1C1510;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
 }
 
 /* Atmospheric Ambient Floating Motes */
@@ -89,43 +74,4 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #A99371;
-}
-
-/* Premium Minimal Interactive Affordances */
-.interactive-card {
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
-}
-.interactive-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px -4px rgba(43, 33, 27, 0.12);
-}
-.interactive-card:active {
-  transform: translateY(0);
-}
-
-.interactive-card-dark {
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
-}
-.interactive-card-dark:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(180, 154, 114, 0.3);
-}
-.interactive-card-dark:active {
-  transform: translateY(0);
-}
-
-/* Subtle Clickable Pulse Hint */
-@keyframes subtleInteractiveGlow {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(138, 79, 61, 0);
-  }
-  50% {
-    box-shadow: 0 0 0 3px rgba(138, 79, 61, 0.25);
-  }
-}
-
-.interactive-hint-pulse {
-  animation: subtleInteractiveGlow 3s ease-in-out infinite;
 }

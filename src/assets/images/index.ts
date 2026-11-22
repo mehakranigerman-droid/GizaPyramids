@@ -6,6 +6,7 @@ import grandGallery from './khufu_grand_gallery_1790073101412.jpg';
 import monumentGoldenHour from './giza_all_pyramids_sphinx_1790175740838.jpg';
 import ancientReconstruction from './giza_ancient_reconstruction_1790088353858.jpg';
 import nightCelestial from './giza_night_celestial_1790088369301.jpg';
+import amberLimestoneHero from './amber_limestone_hd_1795342419845.jpg';
 
 export const IMAGES = {
   heroPlateau,
@@ -16,4 +17,5 @@ export const IMAGES = {
   monumentGoldenHour,
   ancientReconstruction,
   nightCelestial,
+  amberLimestoneHero,
 };

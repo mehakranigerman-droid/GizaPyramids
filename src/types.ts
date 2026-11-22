@@ -1,3 +1,14 @@
+export type PageId =
+  | 'overview'
+  | 'khufu'
+  | 'khafre'
+  | 'menkaure'
+  | 'sphinx'
+  | 'construction'
+  | 'astronomy'
+  | 'theories'
+  | 'sources';
+
 export type EvidenceLevel = 
   | 'ESTABLISHED' 
   | 'SUPPORTED' 
