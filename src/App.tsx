@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { LeftSidebarNav, PAGES } from './components/LeftSidebarNav';
 import { HeroSection } from './components/HeroSection';
 import { KhufuPage } from './components/KhufuPage';
+import { InteriorArchitecturePage } from './components/InteriorArchitecturePage';
 import { PyramidProfilePage } from './components/PyramidProfilePage';
 import { GreatSphinx } from './components/GreatSphinx';
 import { ConstructionPage } from './components/ConstructionPage';
@@ -61,7 +62,8 @@ export function App() {
               onOpenLegend={() => setIsLegendOpen(true)}
             />
           )}
-          {activePage === 'khufu' && <KhufuPage />}
+          {activePage === 'khufu' && <KhufuPage onNavigate={handleNavigate} />}
+          {activePage === 'interior' && <InteriorArchitecturePage />}
           {activePage === 'khafre' && <PyramidProfilePage pyramidId="khafre" />}
           {activePage === 'menkaure' && <PyramidProfilePage pyramidId="menkaure" />}
           {activePage === 'sphinx' && <GreatSphinx />}

@@ -31,7 +31,7 @@ export const TheoriesAndEvidencePage: React.FC = () => {
         <header className="border-b border-[#B49A72]/20 pb-6 mb-10">
           <div className="flex flex-wrap items-center justify-between gap-4 mb-2">
             <span className="font-mono text-xs uppercase tracking-widest text-[#E8C56E] font-bold">
-              07 · Claims & Evidence
+              08 · Claims & Evidence
             </span>
             <EvidenceBadge level="ESTABLISHED" as="span" surface="dark" />
           </div>

@@ -1,6 +1,7 @@
 export type PageId =
   | 'overview'
   | 'khufu'
+  | 'interior'
   | 'khafre'
   | 'menkaure'
   | 'sphinx'

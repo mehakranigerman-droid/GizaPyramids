@@ -25,7 +25,7 @@ export const SourcesBibliography: React.FC = () => {
         {/* ================= HEADER ================= */}
         <header className="border-b border-[#B49A72]/20 pb-6 mb-8">
           <span className="font-mono text-xs uppercase tracking-widest text-[#E8C56E] font-bold block mb-2">
-            08 · Primary Literature
+            09 · Primary Literature
           </span>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-[#F4EFE5]">
             Sources & Biblio

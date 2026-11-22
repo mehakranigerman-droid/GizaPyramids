@@ -11,7 +11,7 @@ export const PyramidProfilePage: React.FC<PyramidProfilePageProps> = ({ pyramidI
   const [metricUnit, setMetricUnit] = useState<'meters' | 'feet'>('meters');
   const pyramid = PYRAMIDS.find((p) => p.id === pyramidId) || PYRAMIDS[1];
 
-  const pageNumber = pyramidId === 'khafre' ? '02' : '03';
+  const pageNumber = pyramidId === 'khafre' ? '03' : '04';
   const dynastyFilter =
     pyramidId === 'khafre' ? ['Djedefre', 'Khafre'] : ['Menkaure', 'Shepseskaf'];
   const dynastyContext = DYNASTY_CHRONOLOGY.filter((g) => dynastyFilter.includes(g.pharaoh));

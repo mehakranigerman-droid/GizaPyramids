@@ -10,13 +10,14 @@ export interface PageNavItem {
 export const PAGES: PageNavItem[] = [
   { id: 'overview', number: '00', title: 'Overview' },
   { id: 'khufu', number: '01', title: 'Great Pyramid (Khufu)' },
-  { id: 'khafre', number: '02', title: 'Pyramid of Khafre' },
-  { id: 'menkaure', number: '03', title: 'Pyramid of Menkaure' },
-  { id: 'sphinx', number: '04', title: 'The Great Sphinx' },
-  { id: 'construction', number: '05', title: 'Building Giza & Nile' },
-  { id: 'astronomy', number: '06', title: 'Archaeoastronomy' },
-  { id: 'theories', number: '07', title: 'Theories & Evidence' },
-  { id: 'sources', number: '08', title: 'Sources & Biblio' },
+  { id: 'interior', number: '02', title: 'Interior Architecture' },
+  { id: 'khafre', number: '03', title: 'Pyramid of Khafre' },
+  { id: 'menkaure', number: '04', title: 'Pyramid of Menkaure' },
+  { id: 'sphinx', number: '05', title: 'The Great Sphinx' },
+  { id: 'construction', number: '06', title: 'Building Giza & Nile' },
+  { id: 'astronomy', number: '07', title: 'Archaeoastronomy' },
+  { id: 'theories', number: '08', title: 'Theories & Evidence' },
+  { id: 'sources', number: '09', title: 'Sources & Biblio' },
 ];
 
 interface LeftSidebarNavProps {
