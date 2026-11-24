@@ -75,27 +75,27 @@ export const InteriorArchitecturePage: React.FC = () => {
     return 'Passage';
   };
 
+  // Normalized vertical gauge (-30m to +146.6m -> 0% to 100%)
+  const elevationPct = Math.max(0, Math.min(100, ((selectedChamber.elevationMeters + 30) / 176.6) * 100));
+  const summarySentence = `${selectedChamber.description.split('. ')[0]}.`;
+
   return (
     <section id="interior" className="py-10 sm:py-14 bg-transparent text-[#F4EFE5]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* ================= HEADER ================= */}
-        <header className="border-b border-[#B49A72]/20 pb-5 mb-6">
+        <header className="border-b border-[#B49A72]/15 pb-5 mb-6">
           <div className="flex flex-wrap items-center justify-between gap-4 mb-1.5">
-            <span className="font-mono text-xs uppercase tracking-widest text-[#E8C56E] font-bold">
+            <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#E8C56E] font-medium">
               02 · Great Pyramid of Khufu
             </span>
-            <div className="flex items-center gap-4">
-              <EvidenceBadge level="ESTABLISHED" as="span" surface="dark" />
-              <EvidenceBadge level="UNKNOWN" as="span" surface="dark" />
-            </div>
+            <span className="font-mono text-[11px] text-[#D8C7A3]/70 tracking-wider">
+              14 Known Structures &amp; Muon Voids
+            </span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-serif font-bold text-[#F4EFE5]">
             Interior Architecture
           </h1>
-          <p className="text-sm sm:text-base text-[#D8C7A3] max-w-3xl mt-2 leading-relaxed">
-            Select any structure on the left or click inside the cross-section to inspect its elevation, dimensions, and discovery record.
-          </p>
         </header>
 
         {/* ================= UNBOXED FILTER UNDERLINE BAR & STEPPING CONTROLS ================= */}
@@ -103,7 +103,7 @@ export const InteriorArchitecturePage: React.FC = () => {
           <div className="flex flex-wrap items-center gap-5 sm:gap-8">
             {(
               [
-                { id: 'all', label: `All Features (${counts.all})` },
+                { id: 'all', label: `All (${counts.all})` },
                 { id: 'chambers', label: `Chambers (${counts.chambers})` },
                 { id: 'passages', label: `Passages & Shafts (${counts.passages})` },
                 { id: 'voids', label: `Muon Voids (${counts.voids})` },
@@ -148,9 +148,9 @@ export const InteriorArchitecturePage: React.FC = () => {
           </div>
         </div>
 
-        {/* ================= SIDE-BY-SIDE LAYOUT: NAMES ON LEFT | DIAGRAM + INFO ON RIGHT ================= */}
+        {/* ================= SIDE-BY-SIDE: NAMES ON LEFT | DIAGRAM + INFOGRAPHIC DETAILS ON RIGHT ================= */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
-          {/* LEFT COLUMN: Chamber Names (All visible at once, zero boxes) */}
+          {/* LEFT COLUMN: Chamber Names */}
           <div className="lg:col-span-5">
             <div className="flex items-center justify-between border-b border-[#B49A72]/20 pb-2 mb-1">
               <span className="font-mono text-[11px] uppercase tracking-widest text-[#E8C56E] font-bold">
@@ -207,9 +207,8 @@ export const InteriorArchitecturePage: React.FC = () => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: Diagram on Top + Selected Chamber Information Directly Below */}
-          <div className="lg:col-span-7 space-y-6">
-            {/* Interactive Cross-Section Diagram */}
+          {/* RIGHT COLUMN: Diagram on Top + Compact Infographic Readout Below */}
+          <div className="lg:col-span-7 space-y-5">
             <div>
               <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono text-[#D8C7A3]/80 border-b border-[#B49A72]/20 pb-2 mb-3">
                 <span>NORTH ← CROSS-SECTION → SOUTH</span>
@@ -220,34 +219,30 @@ export const InteriorArchitecturePage: React.FC = () => {
                 <svg viewBox="0 0 860 540" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
                   <defs>
                     <pattern id="interiorMasonry" width="22" height="11" patternUnits="userSpaceOnUse">
-                      <rect width="22" height="11" fill="#211813" />
-                      <line x1="0" y1="11" x2="22" y2="11" stroke="#30241C" strokeWidth="0.8" />
-                      <line x1="22" y1="0" x2="22" y2="11" stroke="#30241C" strokeWidth="0.8" />
+                      <rect width="22" height="11" fill="#1E1611" />
+                      <line x1="0" y1="11" x2="22" y2="11" stroke="#2B2019" strokeWidth="0.7" />
+                      <line x1="22" y1="0" x2="22" y2="11" stroke="#2B2019" strokeWidth="0.7" />
                     </pattern>
                   </defs>
 
-                  {/* Horizontal Elevation Guides */}
-                  <line x1="20" y1="234" x2="840" y2="234" stroke="#B49A72" strokeWidth="0.5" strokeDasharray="3 5" opacity="0.3" />
-                  <text x="24" y="228" fill="#D8C7A3" fontSize="10" fontFamily="monospace" opacity="0.6">+55 m RELIEVING</text>
+                  <line x1="20" y1="234" x2="840" y2="234" stroke="#B49A72" strokeWidth="0.5" strokeDasharray="3 5" opacity="0.28" />
+                  <text x="24" y="228" fill="#D8C7A3" fontSize="10" fontFamily="monospace" opacity="0.55">+55 m RELIEVING</text>
 
-                  <line x1="20" y1="288" x2="840" y2="288" stroke="#B49A72" strokeWidth="0.5" strokeDasharray="3 5" opacity="0.3" />
-                  <text x="24" y="282" fill="#D8C7A3" fontSize="10" fontFamily="monospace" opacity="0.6">+43 m KING&apos;S LEVEL</text>
+                  <line x1="20" y1="288" x2="840" y2="288" stroke="#B49A72" strokeWidth="0.5" strokeDasharray="3 5" opacity="0.28" />
+                  <text x="24" y="282" fill="#D8C7A3" fontSize="10" fontFamily="monospace" opacity="0.55">+43 m KING&apos;S LEVEL</text>
 
-                  <line x1="20" y1="368" x2="840" y2="368" stroke="#B49A72" strokeWidth="0.5" strokeDasharray="3 5" opacity="0.3" />
-                  <text x="24" y="362" fill="#D8C7A3" fontSize="10" fontFamily="monospace" opacity="0.6">+22 m QUEEN&apos;S LEVEL</text>
+                  <line x1="20" y1="368" x2="840" y2="368" stroke="#B49A72" strokeWidth="0.5" strokeDasharray="3 5" opacity="0.28" />
+                  <text x="24" y="362" fill="#D8C7A3" fontSize="10" fontFamily="monospace" opacity="0.55">+22 m QUEEN&apos;S LEVEL</text>
 
-                  {/* Pyramid Silhouette */}
-                  <polygon points="90,455 430,52 770,455" fill="url(#interiorMasonry)" stroke="#B49A72" strokeWidth="2" />
-                  <text x="430" y="38" fill="#E8C56E" fontSize="12" fontFamily="Cinzel" fontWeight="bold" textAnchor="middle">
+                  <polygon points="90,455 430,52 770,455" fill="url(#interiorMasonry)" stroke="#B49A72" strokeWidth="1.4" />
+                  <text x="430" y="38" fill="#E8C56E" fontSize="11.5" fontFamily="Cinzel" fontWeight="bold" textAnchor="middle" letterSpacing="1">
                     146.6 m ORIGINAL SUMMIT
                   </text>
 
-                  {/* Bedrock Floor */}
                   <rect x="0" y="455" width="860" height="85" fill="#18120E" stroke="#B49A72" strokeWidth="1" />
                   <text x="24" y="476" fill="#B49A72" fontSize="10" fontFamily="monospace">BEDROCK DATUM (0.0 m)</text>
                   <text x="24" y="528" fill="#C97B63" fontSize="10" fontFamily="monospace">-30 m SUBTERRANEAN PIT</text>
 
-                  {/* Passages & Shafts */}
                   <line x1="252" y1="404" x2="438" y2="515" stroke="#D8C7A3" strokeWidth="4.5" />
                   <rect x="438" y="498" width="60" height="28" fill="#45352B" stroke="#D8C7A3" strokeWidth="1.8" />
                   <line x1="305" y1="435" x2="395" y2="368" stroke="#D8C7A3" strokeWidth="4.5" />
@@ -256,13 +251,11 @@ export const InteriorArchitecturePage: React.FC = () => {
                   <rect x="414" y="355" width="32" height="24" fill="#5C4A3E" stroke="#D8C7A3" strokeWidth="1.8" />
                   <line x1="395" y1="368" x2="492" y2="288" stroke="#D8C7A3" strokeWidth="8.5" />
 
-                  {/* Air / Stellar Shafts */}
                   <line x1="414" y1="364" x2="262" y2="256" stroke="#B49A72" strokeWidth="1.4" strokeDasharray="3 3" />
                   <line x1="446" y1="364" x2="598" y2="256" stroke="#B49A72" strokeWidth="1.4" strokeDasharray="3 3" />
                   <line x1="514" y1="286" x2="288" y2="164" stroke="#B49A72" strokeWidth="1.8" strokeDasharray="4 3" />
                   <line x1="564" y1="286" x2="682" y2="176" stroke="#B49A72" strokeWidth="1.8" strokeDasharray="4 3" />
 
-                  {/* ScanPyramids Voids */}
                   <rect
                     x="408" y="218" width="92" height="34" rx="3"
                     fill="#C97B63" fillOpacity="0.32"
@@ -274,7 +267,6 @@ export const InteriorArchitecturePage: React.FC = () => {
                     stroke="#C97B63" strokeWidth="1.4" strokeDasharray="2 2"
                   />
 
-                  {/* Antechamber, King's Chamber & 5 Relieving Tiers */}
                   <rect x="492" y="280" width="16" height="17" fill="#45352B" stroke="#D8C7A3" strokeWidth="1.4" />
                   <rect x="514" y="274" width="50" height="24" fill="#8A4F3D" stroke="#F4EFE5" strokeWidth="1.8" />
                   <rect x="514" y="264" width="50" height="5" fill="#5C4A3E" stroke="#D8C7A3" strokeWidth="0.7" />
@@ -283,7 +275,6 @@ export const InteriorArchitecturePage: React.FC = () => {
                   <rect x="514" y="240" width="50" height="5" fill="#5C4A3E" stroke="#D8C7A3" strokeWidth="0.7" />
                   <polygon points="514,237 539,221 564,237" fill="#8A4F3D" stroke="#D8C7A3" strokeWidth="1" />
 
-                  {/* Interactive Hotspots */}
                   {filteredChambers.map((c) => {
                     const isSelected = c.id === selectedChamber.id;
                     const meta = coordMap[c.id] || { x: 430, y: 280, shortLabel: c.name, labelDx: 0, labelDy: -16 };
@@ -367,29 +358,40 @@ export const InteriorArchitecturePage: React.FC = () => {
               </div>
             </div>
 
-            {/* INFORMATION DIRECTLY BELOW THE DIAGRAM */}
-            <div className="border-t border-[#B49A72]/25 pt-5 space-y-5">
-              <div>
-                <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+            {/* CONCISE INFOGRAPHIC DETAILS DIRECTLY BELOW THE DIAGRAM */}
+            <div className="border-t border-[#B49A72]/25 pt-5 space-y-4">
+              <div className="flex flex-wrap items-baseline justify-between gap-2">
+                <div>
                   <span className="font-mono text-xs uppercase tracking-widest text-[#E8C56E] font-bold">
                     {getTypeLabel(selectedChamber.iconType, selectedChamber.status)}
                   </span>
-                  <EvidenceBadge level={selectedChamber.evidenceLevel} as="span" surface="dark" />
+                  <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#F4EFE5] mt-0.5">
+                    {selectedChamber.name}
+                  </h2>
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#F4EFE5]">
-                  {selectedChamber.name}
-                </h2>
+                <EvidenceBadge level={selectedChamber.evidenceLevel} as="span" surface="dark" />
               </div>
 
-              <dl className="grid grid-cols-1 sm:grid-cols-3 gap-4 border-y border-[#B49A72]/20 py-3.5 text-xs font-mono">
-                <div>
-                  <dt className="text-[#D8C7A3]/75 uppercase tracking-wider text-[10px]">Elevation</dt>
-                  <dd className="font-bold text-[#F3D37A] mt-1 tabular-nums">
+              {/* Visual Elevation Position Gauge (-30m to +146.6m) */}
+              <div>
+                <div className="flex items-center justify-between text-[10px] font-mono uppercase text-[#D8C7A3]/80 mb-1">
+                  <span>-30 m Pit</span>
+                  <span className="text-[#F3D37A] font-bold tabular-nums">
                     {selectedChamber.elevationMeters > 0
-                      ? `+${selectedChamber.elevationMeters} m above bedrock`
-                      : `${selectedChamber.elevationMeters} m below bedrock`}
-                  </dd>
+                      ? `+${selectedChamber.elevationMeters} m Elevation`
+                      : `${selectedChamber.elevationMeters} m Depth`}
+                  </span>
+                  <span>+146.6 m Apex</span>
                 </div>
+                <div className="relative h-[2px] bg-[#2B211B] my-2">
+                  <div
+                    className="absolute top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#F3D37A] ring-2 ring-[#1C1510]"
+                    style={{ left: `calc(${elevationPct}% - 5px)` }}
+                  />
+                </div>
+              </div>
+
+              <dl className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-y border-[#B49A72]/20 py-3 text-xs font-mono">
                 <div>
                   <dt className="text-[#D8C7A3]/75 uppercase tracking-wider text-[10px]">Dimensions</dt>
                   <dd className="text-[#F4EFE5] mt-1 leading-snug">{selectedChamber.dimensions}</dd>
@@ -400,15 +402,11 @@ export const InteriorArchitecturePage: React.FC = () => {
                 </div>
               </dl>
 
-              <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 items-start">
-                <div className="sm:col-span-7 space-y-3 text-sm text-[#E2D2B4] leading-relaxed">
-                  <p>{selectedChamber.description}</p>
-                  <p className="text-xs text-[#D8C7A3]">
-                    <strong className="text-[#F4EFE5]">Discovery: </strong>
-                    {selectedChamber.archaeologicalDiscovery}
-                  </p>
+              <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 items-start">
+                <div className="sm:col-span-7 space-y-2.5 text-sm text-[#E2D2B4] leading-relaxed">
+                  <p>{summarySentence}</p>
                   {selectedChamber.debatedAspects && (
-                    <p className="text-xs font-mono text-[#F3D37A] border-t border-[#B49A72]/20 pt-2.5 leading-relaxed">
+                    <p className="text-xs font-mono text-[#F3D37A]">
                       Open Question: {selectedChamber.debatedAspects}
                     </p>
                   )}
@@ -416,16 +414,16 @@ export const InteriorArchitecturePage: React.FC = () => {
 
                 <div className="sm:col-span-5">
                   {isAnomalySelected ? (
-                    <div className="space-y-2.5">
-                      <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-[#B49A72]/20 pb-1.5">
-                        <span className="font-mono text-[11px] uppercase font-bold text-[#E8C56E]">
-                          Muon Scan
+                    <div className="space-y-2">
+                      <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-[#B49A72]/20 pb-1">
+                        <span className="font-mono text-[10px] uppercase font-bold text-[#E8C56E]">
+                          Muon Tomography
                         </span>
-                        <div className="flex gap-2.5 text-[10px] font-mono">
+                        <div className="flex gap-2 text-[10px] font-mono">
                           {(
                             [
                               { id: 'cosmic', label: '1. Flux' },
-                              { id: 'detector', label: '2. Sensors' },
+                              { id: 'detector', label: '2. Scan' },
                               { id: 'discovery', label: '3. Void' },
                             ] as const
                           ).map((st) => (
@@ -433,10 +431,10 @@ export const InteriorArchitecturePage: React.FC = () => {
                               key={st.id}
                               type="button"
                               onClick={() => setMuonStep(st.id)}
-                              className={`pb-0.5 border-b cursor-pointer transition-colors ${
+                              className={`border-b cursor-pointer ${
                                 muonStep === st.id
                                   ? 'border-[#E8C56E] text-[#F3D37A] font-bold'
-                                  : 'border-transparent text-[#D8C7A3]/70 hover:text-[#F4EFE5]'
+                                  : 'border-transparent text-[#D8C7A3]/70'
                               }`}
                             >
                               {st.label}
@@ -445,37 +443,31 @@ export const InteriorArchitecturePage: React.FC = () => {
                         </div>
                       </div>
 
-                      <svg viewBox="0 0 460 230" className="w-full h-auto bg-[#140F0B]">
-                        <polygon points="50,210 230,30 410,210" fill="#2B211B" stroke="#B49A72" strokeWidth="1.5" />
-                        <line x1="20" y1="210" x2="440" y2="210" stroke="#B49A72" strokeWidth="1.5" />
-                        <line x1="220" y1="175" x2="260" y2="135" stroke="#D8C7A3" strokeWidth="6" />
-                        <rect x="210" y="170" width="16" height="10" fill="#38bdf8" stroke="#F4EFE5" strokeWidth="1" />
+                      <svg viewBox="0 0 460 220" className="w-full h-auto bg-[#140F0B]">
+                        <polygon points="50,200 230,25 410,200" fill="#2B211B" stroke="#B49A72" strokeWidth="1.5" />
+                        <line x1="20" y1="200" x2="440" y2="200" stroke="#B49A72" strokeWidth="1.5" />
+                        <line x1="220" y1="168" x2="260" y2="128" stroke="#D8C7A3" strokeWidth="6" />
+                        <rect x="210" y="163" width="16" height="10" fill="#38bdf8" stroke="#F4EFE5" strokeWidth="1" />
                         <g stroke="#38bdf8" strokeWidth="1" strokeDasharray="3 4" opacity="0.65">
-                          <line x1="115" y1="10" x2="215" y2="170" />
-                          <line x1="175" y1="10" x2="216" y2="170" />
-                          <line x1="230" y1="10" x2="218" y2="170" />
-                          <line x1="285" y1="10" x2="222" y2="170" />
-                          <line x1="345" y1="10" x2="225" y2="170" />
+                          <line x1="115" y1="8" x2="215" y2="163" />
+                          <line x1="175" y1="8" x2="216" y2="163" />
+                          <line x1="230" y1="8" x2="218" y2="163" />
+                          <line x1="285" y1="8" x2="222" y2="163" />
+                          <line x1="345" y1="8" x2="225" y2="163" />
                         </g>
                         {muonStep === 'discovery' && (
                           <g>
                             <rect
-                              x="215" y="96" width="70" height="24" rx="3"
+                              x="215" y="92" width="70" height="22" rx="3"
                               fill="#C97B63" fillOpacity="0.75"
                               stroke="#F4EFE5" strokeWidth="1.6"
                             />
-                            <text x="250" y="112" fill="#F4EFE5" fontSize="9.5" fontFamily="Cinzel" fontWeight="bold" textAnchor="middle">
+                            <text x="250" y="107" fill="#F4EFE5" fontSize="9.5" fontFamily="Cinzel" fontWeight="bold" textAnchor="middle">
                               BIG VOID
                             </text>
                           </g>
                         )}
                       </svg>
-
-                      <p className="text-[11px] font-mono text-[#D8C7A3]/80 leading-relaxed">
-                        {muonStep === 'cosmic' && 'Cosmic-ray muons penetrate hundreds of meters of solid masonry.'}
-                        {muonStep === 'detector' && 'Air cavities let excess muons hit internal detectors.'}
-                        {muonStep === 'discovery' && 'Verified above 5-sigma certainty by 3 physics teams.'}
-                      </p>
                     </div>
                   ) : (
                     <figure>
@@ -487,9 +479,6 @@ export const InteriorArchitecturePage: React.FC = () => {
                           referrerPolicy="no-referrer"
                         />
                       </div>
-                      <figcaption className="text-[11px] font-mono text-[#D8C7A3]/75 pt-2">
-                        Corbelled Tura limestone gallery ascending toward the King&apos;s Chamber.
-                      </figcaption>
                     </figure>
                   )}
                 </div>

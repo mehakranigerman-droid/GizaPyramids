@@ -19,59 +19,56 @@
     background-color: #1C1510;
     color: #F4EFE5;
     font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, .font-editorial {
     font-family: var(--font-serif);
+    text-wrap: balance;
   }
 }
 
 /* Static Matte Espresso Limestone Micro-Grain */
 .bg-limestone-grain {
   background-color: #1C1510;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
 }
 
-/* Atmospheric Ambient Floating Motes */
-@keyframes ambientDrift {
-  0% {
-    transform: translateY(0) translateX(0);
-    opacity: 0.2;
+/* Subtle Chapter Fade Transition */
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
   }
-  50% {
-    transform: translateY(-20px) translateX(10px);
-    opacity: 0.7;
-  }
-  100% {
-    transform: translateY(0) translateX(0);
-    opacity: 0.2;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.animate-drift-slow {
-  animation: ambientDrift 8s ease-in-out infinite;
+.animate-chapter-enter {
+  animation: pageFadeIn 220ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.animate-drift-medium {
-  animation: ambientDrift 5s ease-in-out infinite;
-}
-
-.animate-drift-delayed {
-  animation: ambientDrift 11s ease-in-out 3s infinite;
+@media (prefers-reduced-motion: reduce) {
+  .animate-chapter-enter {
+    animation: none;
+  }
 }
 
 /* Custom subtle scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #EFE7DA;
+  background: #1C1510;
 }
 ::-webkit-scrollbar-thumb {
-  background: #C4B18F;
-  border-radius: 4px;
+  background: #3D2F24;
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #A99371;
+  background: #B49A72;
 }

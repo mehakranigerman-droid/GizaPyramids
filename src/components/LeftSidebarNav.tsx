@@ -169,15 +169,15 @@ export const LeftSidebarNav: React.FC<LeftSidebarNavProps> = ({
       {/* DESKTOP SIDEBAR */}
       <aside
         id="desktop-left-sidebar"
-        className="hidden lg:flex fixed top-0 left-0 h-screen w-64 z-40 bg-[#1C1613] text-[#F4EFE5] border-r border-[#B49A72]/20 flex-col"
+        className="hidden lg:flex fixed top-0 left-0 h-screen w-64 z-40 bg-[#1A1410] text-[#F4EFE5] border-r border-[#B49A72]/15 flex-col"
       >
-        <div className="px-6 py-7 border-b border-[#B49A72]/15">
+        <div className="px-6 py-8 border-b border-[#B49A72]/12">
           <button
             type="button"
             onClick={() => handleSelectPage('overview')}
             className="block text-left group focus:outline-none cursor-pointer"
           >
-            <span className="font-serif text-base font-semibold tracking-wider uppercase text-[#F4EFE5] block group-hover:text-[#E2D2B4] transition-colors">
+            <span className="font-serif text-[15px] font-semibold tracking-[0.16em] uppercase text-[#F4EFE5] block group-hover:text-[#E8C56E] transition-colors">
               Giza Pyramids
             </span>
           </button>
@@ -185,7 +185,7 @@ export const LeftSidebarNav: React.FC<LeftSidebarNavProps> = ({
 
         <nav
           aria-label="Chapter Navigation"
-          className="flex-1 overflow-y-auto py-6 px-5 space-y-1.5 focus:outline-none"
+          className="flex-1 overflow-y-auto py-7 px-6 space-y-2 focus:outline-none"
         >
           {PAGES.map((page) => {
             const isActive = activePage === page.id;
@@ -194,16 +194,26 @@ export const LeftSidebarNav: React.FC<LeftSidebarNavProps> = ({
                 key={page.id}
                 type="button"
                 onClick={() => handleSelectPage(page.id)}
-                className={`w-full flex items-center gap-3 py-2 text-left transition-colors cursor-pointer ${
+                className={`w-full flex items-center gap-3 py-1.5 text-left transition-all duration-150 cursor-pointer group ${
                   isActive
-                    ? 'text-[#F4EFE5] font-semibold'
-                    : 'text-[#E2D2B4]/85 hover:text-[#F4EFE5]'
+                    ? 'text-[#F3D37A]'
+                    : 'text-[#D8C7A3]/75 hover:text-[#F4EFE5]'
                 }`}
               >
-                <span className={`font-mono text-xs w-6 shrink-0 tabular-nums ${isActive ? 'text-[#E8C56E] font-bold' : 'text-[#D8C7A3]/85'}`}>
+                <span
+                  className={`font-mono text-[11px] w-5 shrink-0 tabular-nums transition-colors ${
+                    isActive ? 'text-[#E8C56E] font-semibold' : 'text-[#D8C7A3]/55 group-hover:text-[#E2D2B4]'
+                  }`}
+                >
                   {page.number}
                 </span>
-                <span className={`font-serif text-[13px] tracking-wide truncate ${isActive ? 'underline underline-offset-4 decoration-[#E8C56E] decoration-2' : ''}`}>
+                <span
+                  className={`font-serif text-[13px] tracking-wide truncate transition-all ${
+                    isActive
+                      ? 'font-semibold text-[#F4EFE5] underline underline-offset-4 decoration-[#E8C56E]/80 decoration-1'
+                      : 'group-hover:translate-x-0.5'
+                  }`}
+                >
                   {page.title}
                 </span>
               </button>
@@ -211,32 +221,32 @@ export const LeftSidebarNav: React.FC<LeftSidebarNavProps> = ({
           })}
         </nav>
 
-        <div className="px-5 py-5 border-t border-[#B49A72]/15 space-y-3">
+        <div className="px-6 py-5 border-t border-[#B49A72]/12 space-y-3.5">
           <button
             type="button"
             onClick={onOpenLegend}
-            className="block text-xs font-mono uppercase tracking-wider text-[#E2D2B4] hover:text-[#F4EFE5] hover:underline underline-offset-4 cursor-pointer transition-colors"
+            className="block text-[11px] font-mono uppercase tracking-[0.15em] text-[#D8C7A3]/80 hover:text-[#F3D37A] hover:underline underline-offset-4 cursor-pointer transition-colors"
           >
             Evidence Key →
           </button>
 
-          <div className="flex items-center justify-between text-xs font-mono text-[#E2D2B4]/90 pt-1">
+          <div className="flex items-center justify-between text-[11px] font-mono text-[#D8C7A3]/75 pt-0.5">
             <button
               type="button"
               onClick={goToPrevious}
               disabled={currentIndex <= 0}
-              className="hover:text-[#F4EFE5] disabled:opacity-30 cursor-pointer transition-colors"
+              className="hover:text-[#F4EFE5] disabled:opacity-25 cursor-pointer transition-colors"
             >
               ← Prev
             </button>
-            <span className="text-[11px] text-[#D8C7A3]/80 tabular-nums">
+            <span className="text-[10px] text-[#D8C7A3]/55 tabular-nums">
               {currentIndex + 1} / {PAGES.length}
             </span>
             <button
               type="button"
               onClick={goToNext}
               disabled={currentIndex >= PAGES.length - 1}
-              className="hover:text-[#F4EFE5] disabled:opacity-30 cursor-pointer transition-colors"
+              className="hover:text-[#F4EFE5] disabled:opacity-25 cursor-pointer transition-colors"
             >
               Next →
             </button>

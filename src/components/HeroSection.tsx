@@ -15,13 +15,13 @@ interface Hotspot {
   shortName: string;
   subLabel: string;
   ancientName: string;
-  translation: string;
   pharaoh: string;
   x: number;
   y: number;
   keyFact: string;
   targetPage: PageId;
   targetLabel: string;
+  relativeScalePct?: number;
   metrics?: { label: string; value: string }[];
 }
 
@@ -32,19 +32,18 @@ const GOLDEN_HOTSPOTS: Hotspot[] = [
     shortName: 'Menkaure',
     subLabel: '65.5 m original height',
     ancientName: 'Netjer-er-Menkaure',
-    translation: 'Divine is Menkaure',
-    pharaoh: 'Menkaure · c. 2510 BCE',
+    pharaoh: 'c. 2510 BCE',
     x: 14.5,
     y: 35.4,
-    keyFact:
-      'Standing 65.5 m tall on the southwest ridge, clad in 16 lower courses of red Aswan granite hauled 800 km north.',
+    keyFact: 'Lower 16 courses clad in red Aswan granite hauled 800 km north.',
     targetPage: 'menkaure',
-    targetLabel: 'Open Menkaure Page',
+    targetLabel: 'Open Menkaure',
+    relativeScalePct: 45,
     metrics: [
-      { label: 'Original Height', value: '65.5 m (215 ft)' },
-      { label: 'Base Length', value: '104.6 m' },
-      { label: 'Slope Angle', value: '51° 20′' },
-      { label: 'Lower Casing', value: '16 courses red granite' },
+      { label: 'Original Height', value: '65.5 m' },
+      { label: 'Base', value: '104.6 m' },
+      { label: 'Slope', value: '51° 20′' },
+      { label: 'Casing', value: '16 courses granite' },
     ],
   },
   {
@@ -53,19 +52,18 @@ const GOLDEN_HOTSPOTS: Hotspot[] = [
     shortName: 'Khafre',
     subLabel: '143.5 m original height',
     ancientName: 'Wer Khafre',
-    translation: 'Great is Khafre',
-    pharaoh: 'Khafre · c. 2540 BCE',
+    pharaoh: 'c. 2540 BCE',
     x: 40.0,
     y: 22.9,
-    keyFact:
-      'Built atop an elevated bedrock terrace with a steeper 53° slope and intact Tura limestone casing at its apex.',
+    keyFact: 'Built on a +10 m bedrock terrace with intact Tura limestone apex.',
     targetPage: 'khafre',
-    targetLabel: 'Open Khafre Page',
+    targetLabel: 'Open Khafre',
+    relativeScalePct: 98,
     metrics: [
-      { label: 'Original Height', value: '143.5 m (471 ft)' },
-      { label: 'Base Length', value: '215.25 m' },
-      { label: 'Slope Angle', value: '53° 10′' },
-      { label: 'Apex Cap', value: 'Intact Tura limestone' },
+      { label: 'Original Height', value: '143.5 m' },
+      { label: 'Base', value: '215.25 m' },
+      { label: 'Slope', value: '53° 10′' },
+      { label: 'Apex', value: 'Intact Tura cap' },
     ],
   },
   {
@@ -74,19 +72,18 @@ const GOLDEN_HOTSPOTS: Hotspot[] = [
     shortName: 'Khufu (Great Pyramid)',
     subLabel: '146.6 m original height',
     ancientName: 'Akhet Khufu',
-    translation: 'Horizon of Khufu',
-    pharaoh: 'Khufu · c. 2570 BCE',
+    pharaoh: 'c. 2570 BCE',
     x: 76.6,
     y: 22.4,
-    keyFact:
-      'Largest masonry monument of antiquity: 2.3 million stone blocks aligned within 4 minutes of true astronomical north.',
+    keyFact: '2.3M stone blocks aligned within 3′ 38″ of true astronomical north.',
     targetPage: 'khufu',
-    targetLabel: 'Open Khufu Page',
+    targetLabel: 'Open Khufu',
+    relativeScalePct: 100,
     metrics: [
-      { label: 'Original Height', value: '146.6 m (481 ft)' },
-      { label: 'Base Length', value: '230.34 m' },
-      { label: 'True North Dev.', value: '3′ 38″' },
-      { label: 'Interior', value: 'Grand Gallery & 3 vaults' },
+      { label: 'Original Height', value: '146.6 m' },
+      { label: 'Base', value: '230.34 m' },
+      { label: 'True North', value: '3′ 38″ dev.' },
+      { label: 'Blocks', value: '2,300,000' },
     ],
   },
   {
@@ -95,19 +92,18 @@ const GOLDEN_HOTSPOTS: Hotspot[] = [
     shortName: 'The Great Sphinx',
     subLabel: '73.5 m length',
     ancientName: 'Hor-em-akhet',
-    translation: 'Horus on the Horizon',
-    pharaoh: 'Khafre Complex · c. 2540 BCE',
+    pharaoh: 'c. 2540 BCE',
     x: 63.0,
     y: 64.0,
-    keyFact:
-      'Monolithic statue carved directly from living Mokattam limestone bedrock, facing due east inside Khafre’s quarry ditch.',
+    keyFact: 'Monolithic statue carved from living Mokattam limestone facing due east.',
     targetPage: 'sphinx',
-    targetLabel: 'Open Great Sphinx Page',
+    targetLabel: 'Open Sphinx',
+    relativeScalePct: 50,
     metrics: [
-      { label: 'Length', value: '73.5 m (241 ft)' },
-      { label: 'Height', value: '20.2 m (66 ft)' },
-      { label: 'Orientation', value: '089.5° True East' },
-      { label: 'Strata', value: 'Members I–III limestone' },
+      { label: 'Length', value: '73.5 m' },
+      { label: 'Height', value: '20.2 m' },
+      { label: 'Facing', value: '089.5° East' },
+      { label: 'Strata', value: 'Members I–III' },
     ],
   },
 ];
@@ -115,126 +111,110 @@ const GOLDEN_HOTSPOTS: Hotspot[] = [
 const ANCIENT_HOTSPOTS: Hotspot[] = [
   {
     id: 'electrum_capstone',
-    title: 'Electrum Pyramidion (Benbenet)',
+    title: 'Electrum Pyramidion',
     shortName: 'Electrum Capstone',
     subLabel: 'Khufu Apex',
     ancientName: 'Benbenet',
-    translation: 'Primal Mound',
-    pharaoh: 'Khufu · c. 2560 BCE',
+    pharaoh: 'c. 2560 BCE',
     x: 76.5,
     y: 22.0,
-    keyFact:
-      'Gilded or electrum-sheathed capstone crowning the white Tura limestone facade across the Nile valley.',
+    keyFact: 'Gilded capstone crowning Khufu’s polished white Tura limestone facade.',
     targetPage: 'khufu',
-    targetLabel: 'Open Khufu Page',
+    targetLabel: 'Open Khufu',
   },
   {
     id: 'tura_casing',
-    title: 'Polished Tura Limestone Casing',
+    title: 'Polished Tura Casing',
     shortName: 'Tura Casing',
     subLabel: 'Khafre Facade',
     ancientName: 'Inbu-Hedj',
-    translation: 'White Wall Facade',
-    pharaoh: 'Tura Quarrymen',
+    pharaoh: '13 km East Bank',
     x: 40.0,
     y: 28.0,
-    keyFact:
-      'Precision-dressed white calcite limestone blocks laid with sub-millimeter joints from east-bank quarries at Tura.',
+    keyFact: 'White calcite casing stones dressed to sub-millimeter mortar joints.',
     targetPage: 'construction',
-    targetLabel: 'Open Building Giza & Nile',
+    targetLabel: 'Open Building Giza',
   },
   {
     id: 'menkaure_granite',
-    title: 'Menkaure Red Granite Cladding',
+    title: 'Menkaure Red Granite',
     shortName: 'Aswan Granite',
     subLabel: '16 Courses',
     ancientName: 'Netjer-er-Menkaure',
-    translation: 'Divine Foundation',
-    pharaoh: 'Menkaure · c. 2510 BCE',
+    pharaoh: '800 km South',
     x: 14.0,
     y: 38.0,
-    keyFact:
-      'Lower sixteen exterior courses clad in red Aswan granite shipped 800 km downstream from Egypt’s First Cataract.',
+    keyFact: 'Lower 16 courses clad in red granite shipped from the First Cataract.',
     targetPage: 'menkaure',
-    targetLabel: 'Open Menkaure Page',
+    targetLabel: 'Open Menkaure',
   },
   {
     id: 'causeway_khafre',
-    title: 'Khafre Causeway & Valley Complex',
+    title: 'Khafre Causeway',
     shortName: 'Khafre Causeway',
     subLabel: '494 m Axis',
     ancientName: 'Wat-Netjer',
-    translation: 'Sacred Way',
-    pharaoh: 'Khafre · c. 2540 BCE',
+    pharaoh: 'c. 2540 BCE',
     x: 52.0,
     y: 60.0,
-    keyFact:
-      'A 494-meter covered limestone causeway linking the Valley Temple harbour quay beside the Sphinx to Khafre’s mortuary temple.',
+    keyFact: 'Covered limestone avenue connecting the Valley Temple harbour to Khafre.',
     targetPage: 'sphinx',
-    targetLabel: 'Open Great Sphinx Page',
+    targetLabel: 'Open Sphinx',
   },
   {
     id: 'nile_ahramat',
-    title: 'Ahramat Branch & Royal Harbour',
+    title: 'Ahramat Nile Harbour',
     shortName: 'Ahramat Harbour',
     subLabel: '64 km Channel',
     ancientName: 'Iteru Ahramat',
-    translation: 'River of the Pyramids',
-    pharaoh: 'Old Kingdom Fleet',
+    pharaoh: '2024 Radar Map',
     x: 65.0,
     y: 82.0,
-    keyFact:
-      'Extinct navigable Nile tributary mapped in 2024 that carried stone barges directly to Giza’s eastern harbour basins.',
+    keyFact: 'Extinct navigable Nile branch carrying stone barges straight to Giza.',
     targetPage: 'construction',
-    targetLabel: 'Open Building Giza & Nile',
+    targetLabel: 'Open Building Giza',
   },
 ];
 
 const CELESTIAL_HOTSPOTS: Hotspot[] = [
   {
     id: 'north_meridian',
-    title: 'True Astronomical North Meridian',
+    title: 'True North Meridian',
     shortName: 'True North Axis',
     subLabel: '3′ 38″ Dev.',
     ancientName: 'Ikhemu-sek',
-    translation: 'Imperishable Stars',
-    pharaoh: 'Circumpolar Sighting',
+    pharaoh: 'Circumpolar Axis',
     x: 76.5,
     y: 22.4,
-    keyFact:
-      'Khufu’s baselines align with true astronomical north within less than one-fifteenth of a single degree.',
+    keyFact: 'Khufu’s baseline deviates under 1/15th of a degree from true north.',
     targetPage: 'astronomy',
-    targetLabel: 'Open Archaeoastronomy Page',
+    targetLabel: 'Open Astronomy',
   },
   {
     id: 'orion_correlation',
-    title: 'Orion Belt Meridian Vector',
+    title: 'Orion Alignment Debate',
     shortName: 'Orion Alignment Debate',
     subLabel: 'Plateau Diagonal',
     ancientName: 'Sah',
-    translation: 'Osiris in the Sky',
-    pharaoh: 'Archaeoastronomy Critique',
+    pharaoh: 'Debated Hypothesis',
     x: 40.0,
     y: 19.0,
-    keyFact:
-      'Examines whether the diagonal offset of the three pyramids reflects Orion’s belt or practical plateau topography.',
+    keyFact: 'Tests whether the plateau layout mirrors Orion or local bedrock ridges.',
     targetPage: 'astronomy',
-    targetLabel: 'Open Archaeoastronomy Page',
+    targetLabel: 'Open Astronomy',
   },
   {
     id: 'seked_slope',
-    title: 'The 28:22 Seked Slope',
+    title: '28:22 Seked Slope',
     shortName: 'Seked 5½ Palms',
     subLabel: '51° 50′ 40″',
     ancientName: 'Seked 28:22',
-    translation: 'Rise-to-Run Ratio',
-    pharaoh: 'Rhind Mathematical Papyrus',
+    pharaoh: 'Rhind Papyrus',
     x: 71.0,
     y: 35.0,
-    keyFact:
-      'Egyptian builders specified pyramid angle by horizontal setback per vertical cubit, yielding the 22/7 perimeter geometry.',
+    keyFact: 'Modular rise-to-run ratio naturally generating the 22/7 perimeter geometry.',
     targetPage: 'theories',
-    targetLabel: 'Open Theories & Evidence',
+    targetLabel: 'Open Theories',
   },
 ];
 
@@ -273,40 +253,35 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
           className="absolute inset-0 w-full h-full object-cover object-[center_72%] sm:object-[center_62%] lg:object-center pointer-events-none select-none"
         />
 
-        {/* Subtle dark gradient at the upper stone for effortless title legibility */}
         <div
           aria-hidden="true"
           className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[#1C1510]/65 via-[#1C1510]/20 to-transparent pointer-events-none"
         />
 
-        {/* Subtle bottom edge transition into matte espresso band below */}
         <div
           aria-hidden="true"
           className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#1C1510] via-[#1C1510]/40 to-transparent pointer-events-none"
         />
 
-        {/* Monumental Ivory Title & Minimal Taglines in Upper Dark Stone */}
-        <div className="relative z-10 max-w-5xl mx-auto px-5 sm:px-8 pt-12 sm:pt-16 lg:pt-20 text-center">
-          <p className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.28em] text-[#E8C56E] mb-3 [text-shadow:0_1px_6px_rgba(15,10,7,0.9)]">
+        {/* Monumental Ivory Title & Minimal Tagline in Upper Dark Stone */}
+        <div className="relative z-10 max-w-4xl mx-auto px-5 sm:px-8 pt-14 sm:pt-20 lg:pt-24 text-center">
+          <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-[#E8C56E]/90 mb-3.5 [text-shadow:0_1px_8px_rgba(12,8,5,0.9)]">
             Fourth Dynasty · c. 2570–2510 BCE
           </p>
-          <h1 className="font-serif text-[2.75rem] sm:text-[4.25rem] md:text-[5rem] lg:text-[5.5rem] font-bold tracking-[0.05em] text-[#F4EFE5] uppercase leading-none [text-shadow:0_2px_16px_rgba(15,10,7,0.9)]">
+          <h1 className="font-serif text-[2.85rem] sm:text-[4.5rem] md:text-[5.25rem] lg:text-[5.75rem] font-bold tracking-[0.06em] text-[#F4EFE5] uppercase leading-[0.98] [text-shadow:0_4px_24px_rgba(12,8,5,0.92)]">
             Giza Pyramids
           </h1>
-          <p className="font-serif-text text-base sm:text-xl text-[#E2D2B4] font-light tracking-wide mt-4 [text-shadow:0_1px_8px_rgba(15,10,7,0.9)]">
-            Three monuments. One sacred landscape. 4,500 years of inquiry.
-          </p>
-          <p className="font-mono text-[11px] sm:text-xs tracking-[0.2em] uppercase text-[#D8C7A3]/85 mt-3 [text-shadow:0_1px_6px_rgba(15,10,7,0.9)]">
-            Khufu · Khafre · Menkaure · The Great Sphinx
+          <p className="font-serif-text italic text-lg sm:text-2xl text-[#E2D2B4]/95 font-light tracking-wide mt-4 [text-shadow:0_2px_10px_rgba(12,8,5,0.9)]">
+            Three pyramids and the Great Sphinx along the desert horizon
           </p>
         </div>
 
         {/* Compact Explore the Giza Plateau Button Centered Near Bottom of Hero */}
-        <div className="relative z-10 pb-8 sm:pb-10 flex justify-center px-4">
+        <div className="relative z-10 pb-9 sm:pb-12 flex justify-center px-4">
           <button
             type="button"
             onClick={scrollToExplorer}
-            className="px-5 py-2.5 bg-[#1C1510]/75 hover:bg-[#1C1510]/90 border border-[#F4EFE5]/55 hover:border-[#F4EFE5] text-[#F4EFE5] font-mono text-xs uppercase tracking-[0.18em] transition-colors cursor-pointer backdrop-blur-xs"
+            className="px-6 py-2.5 bg-[#1C1510]/70 hover:bg-[#1C1510]/90 border border-[#F4EFE5]/45 hover:border-[#E8C56E]/80 text-[#F4EFE5] hover:text-[#F3D37A] font-mono text-[11px] uppercase tracking-[0.2em] transition-all duration-200 cursor-pointer backdrop-blur-xs"
           >
             Explore the Giza Plateau ↓
           </button>
@@ -314,8 +289,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
       </div>
 
       {/* ================= SCENE TABS & INTERACTIVE PANORAMA (BELOW THE FOLD) ================= */}
-      <div id="panorama-explorer" className="max-w-6xl mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-12">
-        {/* Scene Underline Tabs */}
+      <div id="panorama-explorer" className="max-w-5xl mx-auto px-4 sm:px-6 pt-14 sm:pt-20 pb-14">
         <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 border-b border-[#B49A72]/20 mb-3">
           <button
             type="button"
@@ -361,7 +335,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
           </button>
         </div>
 
-        {/* Panorama Instruction */}
         <p className="text-center font-mono text-[11px] sm:text-xs uppercase tracking-widest text-[#E2D2B4]/90 mb-3">
           Select a monument to explore
         </p>
@@ -495,54 +468,65 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
           })}
         </div>
 
-        {/* Active Monument Spotlight */}
+        {/* Active Monument Infographic Spotlight */}
         {activeHotspot && (
-          <div className="pt-2 border-t border-[#B49A72]/20">
-            <div className="flex flex-col lg:flex-row lg:items-baseline justify-between gap-5 pt-4">
-              <div className="flex-1">
-                <div className="flex flex-wrap items-baseline gap-3 mb-1 font-mono text-xs">
-                  <span className="text-[#E8C56E] font-bold uppercase tracking-wider">
+          <div className="pt-6 border-t border-[#B49A72]/15">
+            <div className="flex flex-col lg:flex-row lg:items-baseline justify-between gap-4">
+              <div>
+                <div className="flex flex-wrap items-baseline gap-2.5 font-mono text-[11px] mb-1.5">
+                  <span className="text-[#E8C56E] font-medium uppercase tracking-[0.16em]">
                     {activeHotspot.ancientName}
                   </span>
-                  <span className="text-[#E2D2B4]/80 font-serif-text italic text-sm">
-                    “{activeHotspot.translation}”
-                  </span>
-                  <span className="text-[#D8C7A3]">{activeHotspot.pharaoh}</span>
+                  <span className="text-[#D8C7A3]/65">· {activeHotspot.pharaoh}</span>
                 </div>
 
-                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#F4EFE5] mb-1.5">
+                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#F4EFE5]">
                   {activeHotspot.title}
                 </h2>
-
-                <p className="text-sm sm:text-base text-[#E2D2B4] leading-relaxed max-w-3xl font-serif-text">
+                <p className="text-base text-[#E2D2B4]/90 mt-1.5 font-serif-text max-w-2xl leading-relaxed">
                   {activeHotspot.keyFact}
                 </p>
               </div>
 
-              <div className="shrink-0">
-                <button
-                  type="button"
-                  onClick={() => onNavigate(activeHotspot.targetPage)}
-                  className="text-xs font-mono uppercase tracking-wider text-[#F3D37A] hover:text-[#F4EFE5] underline underline-offset-4 decoration-[#E8C56E] decoration-2 cursor-pointer whitespace-nowrap"
-                >
-                  {activeHotspot.targetLabel} →
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={() => onNavigate(activeHotspot.targetPage)}
+                className="text-[11px] font-mono uppercase tracking-[0.16em] text-[#F3D37A] hover:text-[#F4EFE5] underline underline-offset-4 decoration-[#E8C56E]/80 decoration-1 cursor-pointer whitespace-nowrap self-start lg:self-end transition-colors"
+              >
+                {activeHotspot.targetLabel} →
+              </button>
             </div>
 
             {activeHotspot.metrics && (
-              <dl className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-5 pt-4 border-t border-[#B49A72]/15">
-                {activeHotspot.metrics.map((stat) => (
-                  <div key={stat.label}>
-                    <dt className="text-[10px] font-mono uppercase text-[#D8C7A3]/85 tracking-wider">
-                      {stat.label}
-                    </dt>
-                    <dd className="text-sm font-mono font-semibold text-[#F4EFE5] mt-1 tabular-nums">
-                      {stat.value}
-                    </dd>
+              <div className="mt-6 pt-5 border-t border-[#B49A72]/12 space-y-5">
+                <dl className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+                  {activeHotspot.metrics.map((stat) => (
+                    <div key={stat.label}>
+                      <dt className="text-[10px] font-mono uppercase text-[#D8C7A3]/70 tracking-[0.14em]">
+                        {stat.label}
+                      </dt>
+                      <dd className="text-base font-mono font-semibold text-[#F4EFE5] mt-1 tabular-nums">
+                        {stat.value}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+
+                {activeHotspot.relativeScalePct && (
+                  <div>
+                    <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-[0.14em] text-[#D8C7A3]/70 mb-1.5">
+                      <span>Scale vs. Great Pyramid Peak</span>
+                      <span className="tabular-nums text-[#E8C56E]">{activeHotspot.relativeScalePct}%</span>
+                    </div>
+                    <div className="h-[2px] bg-[#2B211B] overflow-hidden">
+                      <div
+                        className="h-full bg-[#E8C56E] transition-all duration-300"
+                        style={{ width: `${activeHotspot.relativeScalePct}%` }}
+                      />
+                    </div>
                   </div>
-                ))}
-              </dl>
+                )}
+              </div>
             )}
           </div>
         )}

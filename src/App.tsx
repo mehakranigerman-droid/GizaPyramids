@@ -55,7 +55,7 @@ export function App() {
       />
 
       <div className="pt-11 lg:pt-0 lg:pl-64 min-h-screen flex flex-col">
-        <main className="flex-1">
+        <main key={activePage} className="flex-1 animate-chapter-enter">
           {activePage === 'overview' && (
             <HeroSection
               onNavigate={handleNavigate}
@@ -73,27 +73,27 @@ export function App() {
           {activePage === 'sources' && <SourcesBibliography />}
         </main>
 
-        {/* Clean Unboxed Bottom Page Navigation */}
-        <footer className="border-t border-[#B49A72]/20 bg-[#1C1510]/80 text-[#E2D2B4] py-7 px-4 sm:px-6">
-          <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4 text-xs font-mono">
+        {/* Minimal Museum Footer Navigation */}
+        <footer className="border-t border-[#B49A72]/15 bg-[#1C1510] text-[#D8C7A3]/85 py-8 px-4 sm:px-6">
+          <div className="max-w-5xl mx-auto flex flex-wrap items-center justify-between gap-4 text-xs font-mono">
             <div>
               {prevPage ? (
                 <button
                   type="button"
                   onClick={() => handleNavigate(prevPage.id)}
-                  className="hover:text-[#F4EFE5] hover:underline underline-offset-4 cursor-pointer"
+                  className="hover:text-[#F4EFE5] hover:underline underline-offset-4 cursor-pointer transition-colors"
                 >
                   ← {prevPage.number} {prevPage.title}
                 </button>
               ) : (
-                <span className="opacity-50">00 Overview</span>
+                <span className="text-[#D8C7A3]/45">00 Overview</span>
               )}
             </div>
 
             <button
               type="button"
               onClick={() => setIsLegendOpen(true)}
-              className="uppercase tracking-wider text-[#E2D2B4] hover:text-[#F4EFE5] hover:underline underline-offset-4 cursor-pointer"
+              className="uppercase tracking-[0.16em] text-[#D8C7A3]/75 hover:text-[#F4EFE5] hover:underline underline-offset-4 cursor-pointer transition-colors"
             >
               Evidence Key
             </button>
@@ -103,7 +103,7 @@ export function App() {
                 <button
                   type="button"
                   onClick={() => handleNavigate(nextPage.id)}
-                  className="text-[#F3D37A] hover:text-[#F4EFE5] hover:underline underline-offset-4 cursor-pointer font-semibold"
+                  className="text-[#E8C56E] hover:text-[#F4EFE5] hover:underline underline-offset-4 cursor-pointer font-medium transition-colors"
                 >
                   {nextPage.number} {nextPage.title} →
                 </button>
@@ -111,7 +111,7 @@ export function App() {
                 <button
                   type="button"
                   onClick={() => handleNavigate('overview')}
-                  className="hover:text-[#F4EFE5] hover:underline underline-offset-4 cursor-pointer"
+                  className="hover:text-[#F4EFE5] hover:underline underline-offset-4 cursor-pointer transition-colors"
                 >
                   Return to Overview →
                 </button>

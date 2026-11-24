@@ -21,11 +21,11 @@ const LIGHT_TEXT_COLORS: Record<EvidenceLevel, string> = {
 };
 
 const DARK_TEXT_COLORS: Record<EvidenceLevel, string> = {
-  ESTABLISHED: 'text-emerald-300',
-  SUPPORTED: 'text-sky-300',
-  DEBATED: 'text-amber-300',
-  SPECULATIVE: 'text-rose-300',
-  UNKNOWN: 'text-stone-300',
+  ESTABLISHED: 'text-[#84B89A]',
+  SUPPORTED: 'text-[#8AB2C7]',
+  DEBATED: 'text-[#E8C56E]',
+  SPECULATIVE: 'text-[#D6856C]',
+  UNKNOWN: 'text-[#B8AC99]',
 };
 
 export const EvidenceBadge: React.FC<EvidenceBadgeProps> = ({
@@ -41,9 +41,9 @@ export const EvidenceBadge: React.FC<EvidenceBadgeProps> = ({
   const textColor = surface === 'dark' ? DARK_TEXT_COLORS[level] : LIGHT_TEXT_COLORS[level];
 
   const sizeClasses = {
-    sm: 'text-[11px] tracking-wider',
-    md: 'text-xs tracking-wider',
-    lg: 'text-xs sm:text-sm tracking-widest',
+    sm: 'text-[11px] tracking-[0.14em]',
+    md: 'text-[11px] tracking-[0.15em]',
+    lg: 'text-xs tracking-[0.18em]',
   }[size];
 
   const isButton = as === 'button' || (as !== 'span' && Boolean(onClick));
@@ -51,10 +51,10 @@ export const EvidenceBadge: React.FC<EvidenceBadgeProps> = ({
   const content = (
     <>
       <span
-        className="inline-block w-2 h-2 shrink-0"
+        className="inline-block w-1.5 h-1.5 rotate-45 shrink-0"
         style={{ backgroundColor: info.dotColor }}
       />
-      {showLabel && <span className="font-semibold">{info.label}</span>}
+      {showLabel && <span className="font-medium">{info.label}</span>}
       {isButton && (
         <span className="text-[11px] opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-transform">
           →

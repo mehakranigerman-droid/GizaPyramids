@@ -5,46 +5,46 @@ export const EVIDENCE_LEVELS: Record<EvidenceLevel, EvidenceBadgeInfo> = {
     level: 'ESTABLISHED',
     label: 'Established',
     description: 'Strongly supported by direct archaeological, epigraphic, stratigraphical, or empirical scientific evidence with peer-reviewed consensus.',
-    dotColor: '#22c55e', // green
-    badgeBg: 'bg-emerald-950/40',
-    badgeBorder: 'border-emerald-700/60',
-    badgeText: 'text-emerald-300'
+    dotColor: '#84B89A',
+    badgeBg: 'bg-emerald-950/30',
+    badgeBorder: 'border-emerald-700/40',
+    badgeText: 'text-[#84B89A]'
   },
   SUPPORTED: {
     level: 'SUPPORTED',
     label: 'Supported',
     description: 'Supported by substantial archaeological or physical evidence, but incorporates some degree of modeling, extrapolation, or minor scholarly nuance.',
-    dotColor: '#38bdf8', // blue
-    badgeBg: 'bg-sky-950/40',
-    badgeBorder: 'border-sky-700/60',
-    badgeText: 'text-sky-300'
+    dotColor: '#8AB2C7',
+    badgeBg: 'bg-sky-950/30',
+    badgeBorder: 'border-sky-700/40',
+    badgeText: 'text-[#8AB2C7]'
   },
   DEBATED: {
     level: 'DEBATED',
     label: 'Debated',
     description: 'Significant scholarly, geological, or architectural disagreement exists; competing hypotheses present differing interpretations of the same data.',
-    dotColor: '#eab308', // yellow
-    badgeBg: 'bg-amber-950/40',
-    badgeBorder: 'border-amber-700/60',
-    badgeText: 'text-amber-300'
+    dotColor: '#E8C56E',
+    badgeBg: 'bg-amber-950/30',
+    badgeBorder: 'border-amber-700/40',
+    badgeText: 'text-[#E8C56E]'
   },
   SPECULATIVE: {
     level: 'SPECULATIVE',
     label: 'Speculative',
     description: 'Hypothesis or popular claim lacking rigorous empirical validation, contradictory to primary textual or stratigraphical records, or relying on confirmation bias.',
-    dotColor: '#ef4444', // red
-    badgeBg: 'bg-rose-950/40',
-    badgeBorder: 'border-rose-700/60',
-    badgeText: 'text-rose-300'
+    dotColor: '#D6856C',
+    badgeBg: 'bg-rose-950/30',
+    badgeBorder: 'border-rose-700/40',
+    badgeText: 'text-[#D6856C]'
   },
   UNKNOWN: {
     level: 'UNKNOWN',
     label: 'Unknown',
     description: 'The physical evidence currently does not establish an answer; unresolved archaeological, structural, or chronological mystery.',
-    dotColor: '#a8a29e', // neutral stone
-    badgeBg: 'bg-stone-900/60',
-    badgeBorder: 'border-stone-600/60',
-    badgeText: 'text-stone-300'
+    dotColor: '#B8AC99',
+    badgeBg: 'bg-stone-900/50',
+    badgeBorder: 'border-stone-600/40',
+    badgeText: 'text-[#B8AC99]'
   }
 };
 
